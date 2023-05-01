@@ -9,9 +9,9 @@ export enum ButtonSize {
 }
 
 const SizesWithoutIcon: Record<ButtonSize, string> = {
-  [ButtonSize.xs]: 'py-1.5 px-3 text-sm font-semibold',
-  [ButtonSize.sm]: 'py-2 px-4 text-sm font-semibold',
-  [ButtonSize.base]: 'py-3 px-5 text-base font-medium',
+  [ButtonSize.xs]: 'py-1.5 px-3 text-sm font-semibold h-8',
+  [ButtonSize.sm]: 'py-2 px-4 text-sm font-semibold h-10',
+  [ButtonSize.base]: 'py-3 px-5 text-base font-medium h-12',
 };
 
 const SizesOnlyIcon: Record<ButtonSize, string> = {
