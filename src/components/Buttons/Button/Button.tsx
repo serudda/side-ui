@@ -9,7 +9,7 @@ export enum ButtonSize {
 }
 
 const SizesWithoutIcon: Record<ButtonSize, string> = {
-  [ButtonSize.xs]: 'py-2 px-4 text-xs font-semibold',
+  [ButtonSize.xs]: 'py-1.5 px-3 text-sm font-semibold',
   [ButtonSize.sm]: 'py-2 px-4 text-sm font-semibold',
   [ButtonSize.base]: 'py-3 px-5 text-base font-medium',
 };
@@ -42,22 +42,25 @@ export enum ButtonVariant {
 }
 
 const Variants: Record<ButtonVariant, string> = {
-  [ButtonVariant.primary]: 'bg-primary-200/20 text-primary-50 hover:bg-primary-200/30',
-  [ButtonVariant.secondary]:
-    'bg-transparent hover:bg-white/20 border border-r-primary-50 text-white',
-  [ButtonVariant.tertiary]: 'bg-slate-200/20 text-slate-50 hover:bg-slate-200/30',
-  [ButtonVariant.ghost]: 'bg-transparent hover:bg-neutral-600 text-primary-300',
-  [ButtonVariant.destructive]: 'bg-red-400/20 hover:bg-red-400/40 text-red-50',
-  [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
+  [ButtonVariant.primary]: 'bg-primary-500 enabled:hover:bg-primary-300 text-black',
+  [ButtonVariant.secondary]: 'bg-secondary-500 enabled:hover:bg-secondary-400 text-white',
+  [ButtonVariant.tertiary]:
+    'bg-slate-900 enabled:hover:bg-slate-800 border border-slate-700 text-white',
+  [ButtonVariant.ghost]: 'bg-transparent enabled:hover:bg-slate-800 text-white',
+  [ButtonVariant.destructive]: 'bg-rose-600 enabled:hover:bg-rose-500 text-white',
+  [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/80 text-white',
 };
 
-const DisabledVariants: Record<ButtonVariant, string> = {
-  [ButtonVariant.primary]: 'bg-primary-700 text-neutral-300',
-  [ButtonVariant.secondary]: 'bg-transparent border border-r-neutral-300 text-neutral-300',
-  [ButtonVariant.tertiary]: 'bg-transparent text-neutral-300',
-  [ButtonVariant.ghost]: 'bg-transparent text-neutral-300',
-  [ButtonVariant.destructive]: 'bg-error-800 text-neutral-300',
-  [ButtonVariant.discord]: 'bg-[#5865f2]/60 text-[#5865f2]',
+const InvertVariants: Record<ButtonVariant, string> = {
+  [ButtonVariant.primary]:
+    'bg-transparent border border-primary-900 hover:bg-primary-950 text-primary-100',
+  [ButtonVariant.secondary]:
+    'bg-transparent border border-secondary-700 hover:bg-secondary-950 text-secondary-100',
+  [ButtonVariant.tertiary]: 'bg-transparent border border-slate-700 hover:bg-slate-800 text-white',
+  [ButtonVariant.ghost]: 'bg-transparent hover:bg-slate-800 text-white',
+  [ButtonVariant.destructive]:
+    'bg-transparent border border-rose-900 hover:bg-rose-950 text-rose-300',
+  [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
 };
 
 enum ButtonIconSize {
@@ -82,6 +85,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * The shape of the component. It determines the importance in the hierarchy, for example, the contained button commands the most attention
    */
   variant?: ButtonVariant;
+
+  /**
+   * If set to true, the button's color will be inverted.
+   */
+  invert?: boolean;
 
   /**
    * The icon to display on the left side.
@@ -137,6 +145,7 @@ export const Button = ({
   isDisabled = false,
   isLoading = false,
   isFullWidth = false,
+  invert = false,
   variant = ButtonVariant.primary,
   htmlType = HtmlType.button,
   className,
@@ -157,20 +166,20 @@ export const Button = ({
       'flex items-center justify-center relative overflow-hidden min-w-fit',
       'text-center whitespace-nowrap',
       'transition duration-100 ease-out',
-      'rounded-lg',
+      'rounded-md disabled:opacity-50 disabled:cursor-default',
       setSizes(),
-      isDisabled ? DisabledVariants[variant] : Variants[variant],
+      invert ? InvertVariants[variant] : Variants[variant],
       {
         'w-full': isFullWidth,
         'cursor-default opacity-30': isDisabled,
       },
     ),
     startIcon: cn(ButtonIconSize[size], {
-      'mr-1': children && size === ButtonSize.xs,
+      'mr-1.5': children && size === ButtonSize.xs,
       'mr-2': children && (size === ButtonSize.sm || size === ButtonSize.base),
     }),
     endIcon: cn(ButtonIconSize[size], {
-      'ml-1': children && size === ButtonSize.xs,
+      'ml-1.5': children && size === ButtonSize.xs,
       'ml-2': children && (size === ButtonSize.sm || size === ButtonSize.base),
     }),
     loading: cn(
