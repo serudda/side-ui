@@ -11,12 +11,12 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     dts({
-      include: ['src/components/**/*'],
+      include: ['src/components/'],
     }),
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/components/index.ts'),
+      entry: resolve('src', 'components/index.ts'),
       name: 'side-ui',
       formats: ['es', 'umd'],
       fileName: (format) => `side-ui.${format}.js`,
