@@ -3,7 +3,7 @@ name: Publish package on NPM
 on:
   release:
     types:
-      - 'published'
+      - 'created'
 
 
 jobs:
