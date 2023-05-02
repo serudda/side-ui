@@ -24,6 +24,9 @@
     "build-storybook": "storybook build",
     "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore"
   },
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./dist/side-ui.es.js",
