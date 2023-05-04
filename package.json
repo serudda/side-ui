@@ -33,7 +33,8 @@
       "import": "./dist/side-ui.es.js",
       "require": "./dist/side-ui.umd.js"
     },
-    "./dist/style.css": "./dist/style.css"
+    "./dist/style.css": "./dist/style.css",
+    "./dist/tailwind.config.js": "./dist/tailwind.config.js"
   },
   "main": "./dist/side-ui.umd.js",
   "module": "./dist/side-ui.es.js",
