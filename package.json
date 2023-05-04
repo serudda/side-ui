@@ -34,7 +34,7 @@
       "require": "./dist/side-ui.umd.js"
     },
     "./dist/style.css": "./dist/style.css",
-    "./dist/tailwind.config.js": "./dist/tailwind.config.js"
+    "./dist/tailwind.config.ts": "./dist/tailwind.config.ts"
   },
   "main": "./dist/side-ui.umd.js",
   "module": "./dist/side-ui.es.js",

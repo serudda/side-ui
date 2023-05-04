@@ -17,7 +17,7 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          src: './tailwind.config.js',
+          src: './tailwind.config.ts',
           dest: '',
         },
       ],
