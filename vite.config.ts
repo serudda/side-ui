@@ -2,6 +2,7 @@ import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import * as packageJson from './package.json';
 
@@ -12,6 +13,14 @@ export default defineConfig({
     tsconfigPaths(),
     dts({
       include: ['src/components/'],
+    }),
+    viteStaticCopy({
+      targets: [
+        {
+          src: './tailwind.config.ts',
+          dest: '',
+        },
+      ],
     }),
   ],
   build: {
