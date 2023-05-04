@@ -1,6 +1,4 @@
-import type { Config } from 'tailwindcss';
-
-export default {
+module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
@@ -63,4 +61,4 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config;
+};
