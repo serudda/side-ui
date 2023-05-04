@@ -1,4 +1,5 @@
-import type { Config } from 'tailwindcss';
+// TODO: This import is throwing an error, on the app host. I don't know how to fix it.
+// import type { Config } from 'tailwindcss';
 
 export default {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
@@ -63,4 +64,6 @@ export default {
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+// } satisfies Config;
