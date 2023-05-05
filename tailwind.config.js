@@ -1,7 +1,6 @@
 // TODO: This import is throwing an error, on the app host. I don't know how to fix it.
 // import type { Config } from 'tailwindcss';
-
-export default {
+module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     fontFamily: {
