@@ -1,5 +1,3 @@
-// TODO: This import is throwing an error, on the app host. I don't know how to fix it.
-// import type { Config } from 'tailwindcss';
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
@@ -64,5 +62,3 @@ module.exports = {
   },
   plugins: [],
 };
-
-// } satisfies Config;
