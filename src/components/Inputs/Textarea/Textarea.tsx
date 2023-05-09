@@ -65,7 +65,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   ) => {
     const [isFocused, setIsFocused] = useState(false);
     const classes = {
-      container: cn(className),
+      container: cn('w-full', className),
       textareaContainer: cn(
         'relative flex items-center overflow-hidden',
         'border',
