@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes, type ReactNode } from 'react';
 import cn from 'classnames';
-import { Icon, type IconCatalog } from '~/components';
+import { Icon, Spinner, SpinnerSize, SpinnerVariant, type IconCatalog } from '~/components';
 
 export enum ButtonSize {
   xs = 'xs',
@@ -209,8 +209,10 @@ export const Button = ({
       {...restOfProps}
     >
       {startIcon && <Icon className={classes.startIcon} icon={startIcon} isSolid={isIconSolid} />}
-      <span>{children}</span>
-      {isLoading && <span className={classes.loading}></span>}
+      <span>{!isLoading ? children : 'Processing'}</span>
+      {isLoading && (
+        <Spinner className="ml-2" variant={SpinnerVariant.neutral} size={SpinnerSize.xs} />
+      )}
       {endIcon && <Icon className={classes.endIcon} icon={endIcon} isSolid={isIconSolid} />}
     </button>
   );
