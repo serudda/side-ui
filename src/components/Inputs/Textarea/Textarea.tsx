@@ -31,6 +31,11 @@ export interface TextareaProps
   minHeight?: string;
 
   /**
+   * Whether the Textarea has style or not
+   */
+  styleless?: boolean;
+
+  /**
    * Whether the Textarea is resizable or not
    */
   resize?: Resize;
@@ -54,6 +59,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       value = '',
       name,
       resize = Resize.vertical,
+      styleless = false,
       hasAutoSize = false,
       minHeight = '72px',
       onChange,
@@ -68,16 +74,16 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       container: cn('w-full', className),
       textareaContainer: cn(
         'relative flex items-center overflow-hidden',
-        'border',
-        'rounded-md p-2 w-full',
+        'w-full',
         'text-slate-50',
         {
           'border-slate-700': fieldState === FormFieldState.default && !isDisabled,
           'border-rose-600': fieldState === FormFieldState.error && !isDisabled,
           'border-green-500': fieldState === FormFieldState.success && !isDisabled,
           'border-primary-800': fieldState === FormFieldState.default && isFocused,
-          'bg-slate-900': !isDisabled,
+          'bg-slate-900': !isDisabled && !styleless,
           'bg-slate-900 border-transparent': isDisabled,
+          'border p-2 rounded-md': !styleless,
         },
       ),
       textarea: cn(
