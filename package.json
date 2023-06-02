@@ -23,6 +23,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "publish:local": "pnpm build && yalc publish",
+    "push:local": "pnpm build && yalc push",
     "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore"
   },
   "files": [

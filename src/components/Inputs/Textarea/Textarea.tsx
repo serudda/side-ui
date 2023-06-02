@@ -72,24 +72,19 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     const [isFocused, setIsFocused] = useState(false);
     const classes = {
       container: cn('w-full', className),
-      textareaContainer: cn(
-        'relative flex items-center overflow-hidden',
-        'w-full',
-        'text-slate-50',
-        {
-          'border-slate-700': fieldState === FormFieldState.default && !isDisabled,
-          'border-rose-600': fieldState === FormFieldState.error && !isDisabled,
-          'border-green-500': fieldState === FormFieldState.success && !isDisabled,
-          'border-primary-800': fieldState === FormFieldState.default && isFocused,
-          'bg-slate-900': !isDisabled && !styleless,
-          'bg-slate-900 border-transparent': isDisabled,
-          'border p-2 rounded-md': !styleless,
-        },
-      ),
+      textareaContainer: cn('relative flex items-center overflow-hidden', 'w-full', {
+        'border-slate-700': fieldState === FormFieldState.default && !isDisabled,
+        'border-rose-600': fieldState === FormFieldState.error && !isDisabled,
+        'border-green-500': fieldState === FormFieldState.success && !isDisabled,
+        'border-primary-800': fieldState === FormFieldState.default && isFocused,
+        'bg-slate-900': !isDisabled && !styleless,
+        'bg-slate-900 border-transparent': isDisabled,
+        'border p-2 rounded-md': !styleless,
+      }),
       textarea: cn(
         'w-full',
         'transition duration-100 ease-out outline-none bg-transparent',
-        'placeholder:text-slate-400 text-base',
+        'placeholder:text-slate-500 text-base',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-500',
         {
           'resize-none': resize === Resize.none,
