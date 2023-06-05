@@ -117,6 +117,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 
   /**
+   * The text to display when the button is in a loading state.
+   */
+  loadingText?: string;
+
+  /**
    * Extends the button to 100% width.
    */
   isFullWidth?: boolean;
@@ -144,6 +149,7 @@ export const Button = ({
   isIconSolid = false,
   isDisabled = false,
   isLoading = false,
+  loadingText = 'Loading',
   isFullWidth = false,
   invert = false,
   variant = ButtonVariant.primary,
@@ -209,7 +215,7 @@ export const Button = ({
       {...restOfProps}
     >
       {startIcon && <Icon className={classes.startIcon} icon={startIcon} isSolid={isIconSolid} />}
-      <span>{!isLoading ? children : 'Processing'}</span>
+      <span>{!isLoading ? children : loadingText}</span>
       {isLoading && (
         <Spinner className="ml-2" variant={SpinnerVariant.neutral} size={SpinnerSize.xs} />
       )}
