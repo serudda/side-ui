@@ -11,6 +11,9 @@ export interface CopyBtnProps extends ButtonProps {
    * Specify if the tooltip is active
    */
   isToolTipActive: boolean;
+   /**
+   * Specify if the text is active
+   */
   isTextActive: boolean;
 }
 
