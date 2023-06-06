@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import cn from 'classnames';
-import { Button, ButtonProps, ButtonSize, ButtonVariant, IconCatalog, Tooltip, HtmlType } from '~/components';
+import { Button, ButtonProps, ButtonSize, ButtonVariant, Tooltip, HtmlType } from '~/components';
 
 export interface CopyBtnProps extends ButtonProps {
   /**
    * Ref to the target element
    */
-  target: React.RefObject<HTMLElement> ;
+  target: string | React.RefObject<HTMLElement> ;
   /**
    * Specify if the tooltip is active
    */
@@ -24,9 +24,9 @@ export const CopyBtn = ({
   isIconSolid = false,
   isToolTipActive = false,
   size = ButtonSize.base,
-  startIcon = IconCatalog.clipboard,
+  startIcon,
   target,
-  variant = ButtonVariant.ghost,
+  variant = ButtonVariant.primary,
   isTextActive = true,
   ...restOfProps
 }: CopyBtnProps) => {
@@ -34,7 +34,14 @@ export const CopyBtn = ({
   const [copied, setCopied] = useState(false);
 
   const handleCopy = () => {
-    const text = target.current?.textContent;
+    let text;
+
+    if (typeof target === 'string') {
+      text = target;
+    } else {
+      text = target.current?.textContent;
+    }
+
     if (text) {
       navigator.clipboard.writeText(text);
       setCopied(true);
