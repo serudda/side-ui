@@ -52,9 +52,9 @@ export const CopyButton = ({
 
   /* Append handle to the trigger component */
   const element = cloneElement(child, {
-    className,
+    className: child.props.className ? child.props.className : className,
     onClick: handleClick,
   });
 
-  return <>{withTooltip ? <Tooltip text={copyText}>{element}</Tooltip> : { element }}</>;
+  return <>{withTooltip ? <Tooltip text={copyText}>{element}</Tooltip> : element}</>;
 };
