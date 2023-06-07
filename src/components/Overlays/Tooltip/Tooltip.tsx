@@ -1,4 +1,4 @@
-import { Children, cloneElement, useRef, useState, type ReactNode } from 'react';
+import { Children, cloneElement, useRef, useState, type ReactElement, type ReactNode } from 'react';
 import cn from 'classnames';
 import { usePopper } from 'react-popper';
 import { Portal } from '~/components';
@@ -114,10 +114,10 @@ export const Tooltip = ({
   const handleMouseOver = (): void => setOpen(true);
   const handleMouseOut = (): void => setOpen(false);
 
-  let elements: any = Children.toArray(children); //[1]
+  const child = Children.only(children) as ReactElement; //[1]
 
   /* Append handle to the trigger component */
-  elements = cloneElement(elements[0], {
+  const element = cloneElement(child, {
     ref: refTriggerNode,
     onMouseOver: handleMouseOver,
     onMouseOut: handleMouseOut,
@@ -125,7 +125,7 @@ export const Tooltip = ({
 
   return (
     <>
-      {elements}
+      {element}
       <Portal>
         <div
           aria-label={ariaLabel}
