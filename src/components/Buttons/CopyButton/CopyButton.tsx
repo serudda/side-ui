@@ -1,5 +1,5 @@
 import { Children, ReactElement, cloneElement, type ReactNode } from 'react';
-import { Tooltip } from '~/components';
+import { Tooltip, TooltipSize } from '~/components';
 import { useCopyToClipboard } from '~/hooks';
 
 export interface CopyButtonProps {
@@ -16,7 +16,7 @@ export interface CopyButtonProps {
   /**
    * Whether show the tooltip or not
    */
-  withTooltip: boolean;
+  withTooltip?: boolean;
 
   /**
    * Elements to display inside the Navbar.
@@ -31,7 +31,7 @@ export interface CopyButtonProps {
 
 export const CopyButton = ({
   className,
-  withTooltip = false,
+  withTooltip = true,
   target,
   children,
   onClick,
@@ -56,5 +56,15 @@ export const CopyButton = ({
     onClick: handleClick,
   });
 
-  return <>{withTooltip ? <Tooltip text={copyText}>{element}</Tooltip> : element}</>;
+  return (
+    <>
+      {withTooltip ? (
+        <Tooltip text={copyText} size={TooltipSize.sm}>
+          {element}
+        </Tooltip>
+      ) : (
+        element
+      )}
+    </>
+  );
 };
