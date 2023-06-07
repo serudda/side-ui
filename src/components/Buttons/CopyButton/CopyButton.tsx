@@ -42,10 +42,10 @@ export const CopyButton = ({
   const handleClick = (event: React.MouseEvent) => {
     if (onClick) onClick(event);
     copy(target);
+  };
 
-    setTimeout(() => {
-      setCopied(false);
-    }, 3000);
+  const handleMouseLeave = () => {
+    setCopied(false);
   };
 
   const child = Children.only(children) as ReactElement; //[1]
@@ -54,6 +54,7 @@ export const CopyButton = ({
   const element = cloneElement(child, {
     className: child.props.className ? child.props.className : className,
     onClick: handleClick,
+    onMouseLeave: handleMouseLeave,
   });
 
   return (
