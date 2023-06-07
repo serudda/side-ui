@@ -6,6 +6,7 @@ const meta = {
   component: Tag,
   tags: ['autodocs'],
   args: {
+    children: 'Badge',
     variant: TagVariant.neutral,
     hasCloseBtn: false,
   },
