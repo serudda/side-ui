@@ -1,68 +1,60 @@
-import { useState } from 'react';
-import cn from 'classnames';
-import { Button, ButtonProps, Tooltip } from '~/components';
+import { Children, ReactElement, cloneElement, type ReactNode } from 'react';
+import { Tooltip } from '~/components';
+import { useCopyToClipboard } from '~/hooks';
 
-export interface CopyButtonProps extends ButtonProps {
+export interface CopyButtonProps {
+  /**
+   * Specify an optional className to be added to the component.
+   */
+  className?: string;
+
   /**
    * Ref to the target element
    */
   target: string | React.RefObject<HTMLElement>;
 
   /**
-   * Specify if the tooltip is active
+   * Whether show the tooltip or not
    */
-  isToolTipActive: boolean;
+  withTooltip: boolean;
 
   /**
-   * Specify if the text is active
+   * Elements to display inside the Navbar.
    */
-  isTextActive: boolean;
+  children?: ReactNode;
+
+  /**
+   * Function to be called when the button is clicked
+   */
+  onClick?: (event: React.MouseEvent) => void;
 }
 
 export const CopyButton = ({
   className,
-  isToolTipActive = false,
+  withTooltip = false,
   target,
-  isTextActive = true,
-  ...restOfProps
+  children,
+  onClick,
 }: CopyButtonProps) => {
-  const classes = cn(className);
-  const [copied, setCopied] = useState(false);
-  const tooltipText = copied ? 'Copied' : 'Copy';
+  const { copy, copied, setCopied } = useCopyToClipboard();
+  const copyText = copied ? 'Copied' : 'Copy';
 
-  const getTextFromTarget = (
-    target: string | React.RefObject<HTMLElement>,
-  ): string | null | undefined => {
-    if (typeof target === 'string') return target;
-    return target.current?.textContent;
+  const handleClick = (event: React.MouseEvent) => {
+    if (onClick) onClick(event);
+    copy(target);
+
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000);
   };
 
-  const handleClick = () => {
-    const text = getTextFromTarget(target);
-    if (!text) return;
+  const child = Children.only(children) as ReactElement; //[1]
 
-    navigator.clipboard.writeText(text);
-    setCopied(true);
-  };
+  /* Append handle to the trigger component */
+  const element = cloneElement(child, {
+    className,
+    onClick: handleClick,
+  });
 
-  // Reset the copied state to false when mouse leaves the button
-  const handleMouseLeave = () => setCopied(false);
-
-  const renderButton = (
-    <Button
-      className={classes}
-      onClick={handleClick}
-      onMouseLeave={handleMouseLeave}
-      {...restOfProps}
-    >
-      {isTextActive && tooltipText}
-    </Button>
-  );
-
-  return (
-    <>
-      {isToolTipActive && <Tooltip text={tooltipText}>{renderButton}</Tooltip>}
-      {!isToolTipActive && renderButton}
-    </>
-  );
+  return <>{withTooltip ? <Tooltip text={copyText}>{element}</Tooltip> : { element }}</>;
 };

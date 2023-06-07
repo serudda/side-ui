@@ -1,35 +1,14 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { ButtonVariant, Textarea } from '~/components';
-import { parseIconOptions } from '~/storybook/utils';
+import { Textarea } from '~/components';
 import { CopyButton, CopyButtonProps } from './CopyButton';
 
 const meta = {
   title: 'UI Components/Buttons/Copy Button',
   component: CopyButton,
-  argTypes: {
-    startIcon: {
-      table: {
-        type: {
-          summary: 'angle, arrowDown, arrowExternal, etc.',
-        },
-      },
-      options: parseIconOptions(),
-    },
-    endIcon: {
-      table: {
-        type: {
-          summary: 'angle, arrowDown, arrowExternal, etc.',
-        },
-      },
-      options: parseIconOptions(),
-    },
-  },
   args: {
-    target: '',
-    isToolTipActive: true,
-    isTextActive: true,
-    variant: ButtonVariant.primary,
+    target: 'This is the text',
+    withTooltip: true,
   },
 } satisfies Meta<typeof CopyButton>;
 
@@ -37,8 +16,14 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    target: 'Change this text and test it',
+  render: (args) => {
+    return (
+      <div className="mt-32 flex items-center justify-center">
+        <CopyButton {...args}>
+          <div>Click here</div>
+        </CopyButton>
+      </div>
+    );
   },
 };
 
@@ -50,10 +35,14 @@ const CopyButtonExample = (args: CopyButtonProps) => {
     setValue(event.target.value);
   };
 
+  const handleClick = () => console.log('Clicked');
+
   return (
     <div className="relative flex flex-col items-start gap-8">
       <Textarea ref={targetRef} value={value} onChange={handleChange} />
-      <CopyButton {...args} target={targetRef} />
+      <CopyButton {...args} target={targetRef} onClick={handleClick}>
+        <div>Click here</div>
+      </CopyButton>
     </div>
   );
 };
