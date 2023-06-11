@@ -12,7 +12,8 @@ export default defineConfig({
     react(),
     tsconfigPaths(),
     dts({
-      include: ['src/components/'],
+      include: ['src/**/*'],
+      exclude: ['src/**/*.stories.tsx', 'src/storybook/**/*'],
     }),
     viteStaticCopy({
       targets: [
@@ -25,7 +26,7 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve('src', 'components/index.ts'),
+      entry: resolve('src', 'index.ts'),
       name: 'side-ui',
       formats: ['es', 'umd'],
       fileName: (format) => `side-ui.${format}.js`,

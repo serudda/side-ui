@@ -1,3 +1,3 @@
 export * from './BaseModal/BaseModal';
 export * from './ConfirmationModal/ConfirmationModal';
-export * from './ModalContainer';
+export * from './ModalContainer/ModalContainer';
