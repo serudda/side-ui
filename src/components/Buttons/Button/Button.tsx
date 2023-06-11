@@ -42,7 +42,7 @@ export enum ButtonVariant {
 }
 
 const Variants: Record<ButtonVariant, string> = {
-  [ButtonVariant.primary]: 'bg-primary-500 enabled:hover:bg-primary-300 text-black',
+  [ButtonVariant.primary]: 'bg-primary-500 enabled:hover:bg-primary-200 text-black',
   [ButtonVariant.secondary]: 'bg-secondary-500 enabled:hover:bg-secondary-400 text-white',
   [ButtonVariant.tertiary]:
     'bg-slate-900 enabled:hover:bg-slate-800 border border-slate-700 text-white',
