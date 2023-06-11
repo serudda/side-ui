@@ -34,7 +34,7 @@ const meta = {
     body: <ModalBodyLongSample />,
     footer: (
       <div className="flex w-full items-center justify-end space-x-4">
-        <Button variant={ButtonVariant.secondary} size={ButtonSize.sm}>
+        <Button variant={ButtonVariant.tertiary} size={ButtonSize.sm} invert>
           Cancelar
         </Button>
         <Button variant={ButtonVariant.primary} size={ButtonSize.sm}>
@@ -58,6 +58,7 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
         className="text-base-white"
         body={args.body}
         header={args.header}
+        footer={args.footer}
         onClose={() => close(true)}
       />
     ));
@@ -65,7 +66,7 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
 
   return (
     <>
-      <Button size={ButtonSize.xs} onClick={handleClick}>
+      <Button size={ButtonSize.xs} onClick={handleClick} invert>
         Open Modal
       </Button>
       {modalNode}
