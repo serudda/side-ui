@@ -32,6 +32,7 @@ specifiers:
   react-popper: ^2.3.0
   storybook: ^7.0.7
   tailwindcss: ^3.3.2
+  tailwindcss-scrollbar: ^0.1.0
   typescript: ^5.0.2
   vite: ^4.3.2
   vite-plugin-dts: ^2.3.0
@@ -73,6 +74,7 @@ devDependencies:
   prop-types: 15.8.1
   storybook: 7.0.7
   tailwindcss: 3.3.2
+  tailwindcss-scrollbar: 0.1.0_tailwindcss@3.3.2
   typescript: 5.0.4
   vite: 4.3.3
   vite-plugin-dts: 2.3.0_vite@4.3.3
@@ -7345,6 +7347,14 @@ packages:
 
   /synchronous-promise/2.0.17:
     resolution: {integrity: sha512-AsS729u2RHUfEra9xJrE39peJcc2stq2+poBXX8bcM08Y6g9j/i/PUzwNQqkaJde7Ntg1TO7bSREbR5sdosQ+g==}
+    dev: true
+
+  /tailwindcss-scrollbar/0.1.0_tailwindcss@3.3.2:
+    resolution: {integrity: sha512-egipxw4ooQDh94x02XQpPck0P0sfwazwoUGfA9SedPATIuYDR+6qe8d31Gl7YsSMRiOKDkkqfI0kBvEw9lT/Hg==}
+    peerDependencies:
+      tailwindcss: '>= 2.x.x'
+    dependencies:
+      tailwindcss: 3.3.2
     dev: true
 
   /tailwindcss/3.3.2:

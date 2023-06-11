@@ -52,3 +52,26 @@ select:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0px 1000px rgba(37, 41, 45, 1) inset;
   transition: background-color 5000s ease-in-out 0s;
 }
+
+body.opened-modal {
+  overflow: hidden;
+}
+
+body.opened-modal::-webkit-scrollbar-thumb {
+  cursor: pointer;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  -webkit-transition: color 0.2s ease;
+  -o-transition: color 0.2s ease;
+  transition: color 0.2s ease;
+}
+
+body.opened-modal::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+body.opened-modal::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 10px;
+}
