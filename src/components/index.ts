@@ -1,4 +1,5 @@
 export * from './Buttons';
+export * from './DropdownMenu/DropdownMenu';
 export * from './Icon/Icon';
 export * from './Inputs';
 export * from './Loaders';
