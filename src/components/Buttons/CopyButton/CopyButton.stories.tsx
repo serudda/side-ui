@@ -6,6 +6,7 @@ import { CopyButton, CopyButtonProps } from './CopyButton';
 const meta = {
   title: 'UI Components/Buttons/Copy Button',
   component: CopyButton,
+  tags: ['autodocs'],
   args: {
     target: 'This is the text',
     withTooltip: true,
