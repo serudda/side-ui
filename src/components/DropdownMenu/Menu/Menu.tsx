@@ -17,7 +17,7 @@ export interface MenuProps {
  * Menu (Dropdown Menu)
  */
 export const Menu = ({ className, children }: MenuProps) => {
-  const classes = cn(className, 'flex-grow w-full overflow-y-auto');
+  const classes = cn(className, 'flex-grow w-full overflow-y-auto p-1.5');
 
   return (
     <div className={classes} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

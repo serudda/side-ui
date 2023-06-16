@@ -102,11 +102,13 @@ export const Popover = ({
   const [popoverElement, setPopoverElement] = useState<RefObject<HTMLElement> | HTMLElement | null>(
     null,
   );
+
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const refTriggerNode = useRef<HTMLSpanElement>(null);
 
   const [open, setOpen] = useState<boolean>(isOpen);
   useOnClickOutside(popoverElement as RefObject<HTMLElement>, () => {
+    console.log('useOnClickOutside');
     if (onClickOutside) return onClickOutside();
     setOpen(false);
   });

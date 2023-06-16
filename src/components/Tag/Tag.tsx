@@ -21,11 +21,20 @@ const Variants: Record<TagVariant, string> = {
   [TagVariant.error]: 'bg-red-400/10 text-red-400 ring-1 ring-inset ring-red-400/20',
 };
 
+const VariantsWithoutContent: Record<TagVariant, string> = {
+  [TagVariant.primary]: 'bg-primary-400',
+  [TagVariant.secondary]: 'bg-secondary-400',
+  [TagVariant.neutral]: 'bg-slate-400',
+  [TagVariant.success]: 'bg-green-500',
+  [TagVariant.warning]: 'bg-yellow-400',
+  [TagVariant.error]: 'bg-red-400',
+};
+
 export interface TagProps {
   /**
    * Set the Tag content
    */
-  children: ReactNode;
+  children?: ReactNode;
 
   /**
    * The shape of the component. It determines the importance in the hierarchy, for example, the contained button commands the most attention
@@ -54,9 +63,8 @@ export interface TagProps {
 }
 
 /**
- * The Tag component is useful to emphasize information to the user, works best with single word values.
- * @author Sergio Ruiz<sergioruizdavila@gmail.com>
- * Created at 2022-05-30
+ * The Tag component is useful to emphasize information to the user,
+ * works best with single word values.
  */
 export const Tag = ({
   children,
@@ -69,10 +77,16 @@ export const Tag = ({
   const [tagContent, setTagContent] = useState('');
 
   const classes = {
-    tag: cn(className, 'items-center rounded-md', Variants[variant], {
-      'inline-flex py-1 px-2': tagContent.length > 1,
-      'w-6 h-6 flex justify-center flex-grow-0 flex-shrink-0': tagContent.length === 1,
-    }),
+    tag: cn(
+      className,
+      'items-center rounded-md',
+      tagContent.length === 0 ? VariantsWithoutContent[variant] : Variants[variant],
+      {
+        'inline-flex py-1 px-2': tagContent.length > 1,
+        'w-6 h-6 flex justify-center flex-grow-0 flex-shrink-0': tagContent.length === 1,
+        'w-1.5 h-1.5': tagContent.length === 0,
+      },
+    ),
     text: cn('text-xs font-medium'),
     endIcon: cn('cursor-pointer', 'h-3.5 w-3.5', {
       'ml-1': hasCloseBtn,
