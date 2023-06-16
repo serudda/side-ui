@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, DropdownMenu, Icon, IconCatalog } from '~/components';
+import { Button, DropdownMenu, Tag, TagVariant } from '~/components';
 
 const meta = {
   title: 'UI Components/DropdownMenu',
@@ -14,22 +14,20 @@ const meta = {
     menu: (
       <DropdownMenu.Menu>
         <DropdownMenu.Option onClick={() => console.log('clicked: 1')}>
-          <div className="flex items-center space-x-1">
-            <Icon icon={IconCatalog.barsArrowDown} className="text-success-500" />
-            <span>Normal</span>
-          </div>
+          <span className="text-sm text-slate-50">Feature request</span>
         </DropdownMenu.Option>
         <DropdownMenu.Option onClick={() => console.log('clicked: 2')}>
-          <div className="flex items-center space-x-1">
-            <Icon icon={IconCatalog.chevronDown} className="text-warning-500" />
-            <span>Prioritario</span>
-          </div>
+          <span className="flex w-full items-center">
+            <span className="text-sm text-slate-50">What's new</span>
+            <Tag className="ml-auto" variant={TagVariant.error} />
+          </span>
         </DropdownMenu.Option>
         <DropdownMenu.Option onClick={() => console.log('clicked: 3')}>
-          <div className="flex items-center space-x-1">
-            <Icon icon={IconCatalog.documentCheck} className="text-error-500" />
-            <span>Urgente</span>
-          </div>
+          <span className="text-sm text-slate-50">Report issue</span>
+        </DropdownMenu.Option>
+        <hr className="my-1.5 border border-slate-800" />
+        <DropdownMenu.Option onClick={() => console.log('clicked: 4')}>
+          <span className="text-sm font-semibold text-slate-50">Twitter @serudda</span>
         </DropdownMenu.Option>
       </DropdownMenu.Menu>
     ),
