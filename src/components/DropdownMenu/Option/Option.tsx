@@ -22,7 +22,12 @@ export interface OptionProps {
  * Represents an item to use in the DropdownMenu component
  */
 export const Option = ({ className, children, onClick }: OptionProps) => {
-  const classes = cn(className, 'flex', 'p-4', 'hover:bg-slate-800 cursor-pointer');
+  const classes = cn(
+    className,
+    'flex',
+    'p-2',
+    'hover:bg-slate-950 cursor-pointer min-w-[200px] rounded',
+  );
 
   const handleClick = (event: React.MouseEvent) => {
     if (onClick) onClick(event);
@@ -31,7 +36,7 @@ export const Option = ({ className, children, onClick }: OptionProps) => {
   /* Render JSX */
   return (
     <div role="option" tabIndex={0} className={classes} onClick={handleClick}>
-      <span className="text-sm text-slate-50">{children}</span>
+      {children}
     </div>
   );
 };

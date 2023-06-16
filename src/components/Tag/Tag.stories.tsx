@@ -6,7 +6,6 @@ const meta = {
   component: Tag,
   tags: ['autodocs'],
   args: {
-    children: 'Badge',
     variant: TagVariant.neutral,
     hasCloseBtn: false,
   },
@@ -37,6 +36,12 @@ export const Default: Story = {
         <Tag {...args} variant={TagVariant.error}>
           <span>BADGE</span>
         </Tag>
+        <Tag {...args} variant={TagVariant.neutral} />
+        <Tag {...args} variant={TagVariant.primary} />
+        <Tag {...args} variant={TagVariant.secondary} />
+        <Tag {...args} variant={TagVariant.success} />
+        <Tag {...args} variant={TagVariant.warning} />
+        <Tag {...args} variant={TagVariant.error} />
       </div>
     );
   },
