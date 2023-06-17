@@ -118,7 +118,6 @@ export const Popover = ({
   const [open, setOpen] = useState<boolean>(isOpen);
 
   const handleClickOutside = () => {
-    console.log('onClickOutside: ', onClickOutside);
     if (onClickOutside) return onClickOutside();
     setOpen(false);
   };
@@ -161,13 +160,11 @@ export const Popover = ({
   };
 
   useEffect(() => {
-    console.log('isOpen: ', isOpen);
     setOpen(isOpen);
     handleForceUpdate();
   }, [isOpen]);
 
   useEffect(() => {
-    console.log('open: ', open);
     handleForceUpdate();
   }, [open]);
 
