@@ -117,15 +117,16 @@ export const Popover = ({
 
   const [open, setOpen] = useState<boolean>(isOpen);
 
-  useOnClickOutside(
-    {
-      current: popoverElement,
-    } as RefObject<HTMLElement>,
-    () => {
-      console.log('onClickOutside: ', onClickOutside);
-      if (onClickOutside) return onClickOutside();
-      setOpen(false);
-    },
+  console.log('useOnClickOutside: ', useOnClickOutside);
+
+  const handleClickOutside = () => {
+    console.log('onClickOutside: ', onClickOutside);
+    if (onClickOutside) return onClickOutside();
+    setOpen(false);
+  };
+
+  useOnClickOutside({ current: popoverElement } as RefObject<HTMLElement>, () =>
+    handleClickOutside(),
   );
 
   /* Popper config */
@@ -155,18 +156,18 @@ export const Popover = ({
       }
     : { ...styles.popper };
 
-  useEffect(() => {
-    setOpen(isOpen);
+  const handleForceUpdate = () => {
     let timeout: ReturnType<typeof setTimeout>;
     if (forceUpdate) timeout = setTimeout(() => forceUpdate());
     return () => clearTimeout(timeout);
-  }, [isOpen]);
+  };
 
   useEffect(() => {
-    let timeout: ReturnType<typeof setTimeout>;
-    if (forceUpdate) timeout = setTimeout(() => forceUpdate());
-    return () => clearTimeout(timeout);
-  }, [open]);
+    setOpen(isOpen);
+    handleForceUpdate();
+  }, [isOpen]);
+
+  useEffect(() => handleForceUpdate(), [open]);
 
   const handleTriggerClick = (): void => setOpen(!open);
 
@@ -209,3 +210,10 @@ export const Popover = ({
     </>
   );
 };
+
+/**
+ * [1]
+ * References:
+ * https://css-tricks.com/using-react-portals-to-render-children-outside-the-dom-hierarchy/
+ * https://codepen.io/davidgilbertson/pen/ooXVyw
+ */
