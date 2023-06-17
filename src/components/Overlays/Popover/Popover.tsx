@@ -117,8 +117,6 @@ export const Popover = ({
 
   const [open, setOpen] = useState<boolean>(isOpen);
 
-  console.log('useOnClickOutside: ', useOnClickOutside);
-
   const handleClickOutside = () => {
     console.log('onClickOutside: ', onClickOutside);
     if (onClickOutside) return onClickOutside();
@@ -163,11 +161,15 @@ export const Popover = ({
   };
 
   useEffect(() => {
+    console.log('isOpen: ', isOpen);
     setOpen(isOpen);
     handleForceUpdate();
   }, [isOpen]);
 
-  useEffect(() => handleForceUpdate(), [open]);
+  useEffect(() => {
+    console.log('open: ', open);
+    handleForceUpdate();
+  }, [open]);
 
   const handleTriggerClick = (): void => setOpen(!open);
 

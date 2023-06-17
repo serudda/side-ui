@@ -70,6 +70,8 @@ function useEventListener<
     // Create event listener that calls handler function stored in ref
     const listener: typeof handler = (event) => savedHandler.current(event);
 
+    console.log('targetElement: ', targetElement);
+
     targetElement.addEventListener(eventName, listener, options);
 
     // Remove event listener on cleanup
