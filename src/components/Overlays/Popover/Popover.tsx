@@ -1,4 +1,13 @@
-import { Children, ReactNode, RefObject, cloneElement, useEffect, useRef, useState } from 'react';
+import {
+  Children,
+  ReactNode,
+  cloneElement,
+  useEffect,
+  useRef,
+  useState,
+  type ReactElement,
+  type RefObject,
+} from 'react';
 import cn from 'classnames';
 import { usePopper } from 'react-popper';
 import { hasProp } from '~/common';
@@ -107,11 +116,13 @@ export const Popover = ({
   const refTriggerNode = useRef<HTMLSpanElement>(null);
 
   const [open, setOpen] = useState<boolean>(isOpen);
+
   useOnClickOutside(
     {
       current: popoverElement,
     } as RefObject<HTMLElement>,
     () => {
+      console.log('onClickOutside: ', onClickOutside);
       if (onClickOutside) return onClickOutside();
       setOpen(false);
     },
@@ -146,30 +157,29 @@ export const Popover = ({
 
   useEffect(() => {
     setOpen(isOpen);
-    let timeout: any;
+    let timeout: ReturnType<typeof setTimeout>;
     if (forceUpdate) timeout = setTimeout(() => forceUpdate());
     return () => clearTimeout(timeout);
   }, [isOpen]);
 
   useEffect(() => {
-    let timeout: any;
+    let timeout: ReturnType<typeof setTimeout>;
     if (forceUpdate) timeout = setTimeout(() => forceUpdate());
     return () => clearTimeout(timeout);
   }, [open]);
 
   const handleTriggerClick = (): void => setOpen(!open);
 
-  // TODO: find any
-  let elements: any = Children.toArray(children);
+  const child = Children.only(children) as ReactElement; //[1]
 
   /* Append handle to the trigger component */
-  elements = hasProp(elements[0].props, 'onClick')
-    ? cloneElement(elements[0], { ref: refTriggerNode })
-    : cloneElement(elements[0], { ref: refTriggerNode, onClick: handleTriggerClick });
+  const element = hasProp(child.props, 'onClick')
+    ? cloneElement(child, { ref: refTriggerNode })
+    : cloneElement(child, { ref: refTriggerNode, onClick: handleTriggerClick });
 
   return (
     <>
-      {elements}
+      {element}
       <Portal>
         <div
           role={role}
