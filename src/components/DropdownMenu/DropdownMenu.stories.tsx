@@ -31,6 +31,7 @@ const meta = {
         </DropdownMenu.Option>
       </DropdownMenu.Menu>
     ),
+    onClickOutside: undefined,
   },
 } satisfies Meta<typeof DropdownMenu>;
 
