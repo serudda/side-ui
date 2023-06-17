@@ -107,11 +107,15 @@ export const Popover = ({
   const refTriggerNode = useRef<HTMLSpanElement>(null);
 
   const [open, setOpen] = useState<boolean>(isOpen);
-  useOnClickOutside(popoverElement as RefObject<HTMLElement>, () => {
-    console.log('useOnClickOutside');
-    if (onClickOutside) return onClickOutside();
-    setOpen(false);
-  });
+  useOnClickOutside(
+    {
+      current: popoverElement,
+    } as RefObject<HTMLElement>,
+    () => {
+      if (onClickOutside) return onClickOutside();
+      setOpen(false);
+    },
+  );
 
   /* Popper config */
   const { styles, attributes, forceUpdate } = usePopper(
@@ -142,13 +146,13 @@ export const Popover = ({
 
   useEffect(() => {
     setOpen(isOpen);
-    let timeout: NodeJS.Timeout;
+    let timeout: any;
     if (forceUpdate) timeout = setTimeout(() => forceUpdate());
     return () => clearTimeout(timeout);
   }, [isOpen]);
 
   useEffect(() => {
-    let timeout: NodeJS.Timeout;
+    let timeout: any;
     if (forceUpdate) timeout = setTimeout(() => forceUpdate());
     return () => clearTimeout(timeout);
   }, [open]);
