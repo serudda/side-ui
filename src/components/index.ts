@@ -5,4 +5,5 @@ export * from './Inputs';
 export * from './Loaders';
 export * from './Overlays';
 export * from './Portal/Portal';
+export * from './Progress';
 export * from './Tag/Tag';
