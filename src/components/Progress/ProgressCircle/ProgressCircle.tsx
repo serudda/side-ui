@@ -73,7 +73,7 @@ export const ProgressCircle = ({
   const [percent, setPercent] = useState(Math.floor((value * 100) / maxValue));
 
   const classes = {
-    progressCircle: cn(className, '-translate-x-1/2 translate-y-0', Sizes[size]),
+    progressCircle: cn(className, Sizes[size]),
     track: cn('fill-none stroke-slate-700'),
     indicator: cn('fill-none transition-all duration-500 ease-in-out', {
       [Variants[variant]]: percent < 80,
@@ -82,9 +82,7 @@ export const ProgressCircle = ({
     }),
   };
 
-  useEffect(() => {
-    setPercent(Math.floor((value * 100) / maxValue));
-  }, [value, maxValue]);
+  useEffect(() => setPercent(Math.floor((value * 100) / maxValue)), [value, maxValue]);
 
   /* Render JSX */
   return (
