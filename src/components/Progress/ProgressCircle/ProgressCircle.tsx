@@ -88,6 +88,7 @@ export const ProgressCircle = ({
 }: ProgressCircleProps) => {
   const remaining = maxValue - value;
   const [percent, setPercent] = useState(Math.floor((value * 100) / maxValue));
+  const PERCENT_LIMIT = 92.86;
 
   const classes = {
     progressCircle: cn(className, Sizes[size], {
@@ -95,16 +96,19 @@ export const ProgressCircle = ({
     }),
     track: cn('fill-none stroke-slate-700'),
     indicator: cn('fill-none transition-all duration-500 ease-in-out', {
-      [Variants[variant]]: percent < 92.86,
-      [Variants.warning]: percent >= 92.86 && percent < 100,
+      [Variants[variant]]: percent < PERCENT_LIMIT,
+      [Variants.warning]: percent >= PERCENT_LIMIT && percent < 100,
       [Variants.error]: percent >= 100,
     }),
     remainingCounter: cn(
       remainingClassName,
-      'absolute inset-0 m-auto flex items-center justify-center text-xs font-semibold',
+      'absolute inset-0 m-auto',
+      'flex items-center justify-center',
+      'text-xs font-semibold',
+      'transition-all duration-500 ease-in-out',
       {
-        'text-slate-400': percent < 92.86,
-        'text-yellow-600': percent >= 92.86 && percent < 100,
+        'text-slate-400': percent < PERCENT_LIMIT,
+        'text-yellow-600': percent >= PERCENT_LIMIT && percent < 100,
         'text-red-400': percent >= 100,
       },
     ),
