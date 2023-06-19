@@ -31,7 +31,7 @@ const Variants: Record<ProgressCircleVariant, string> = {
   [ProgressCircleVariant.secondary]: 'stroke-secondary-300',
   [ProgressCircleVariant.neutral]: 'stroke-slate-50',
   [ProgressCircleVariant.success]: 'stroke-green-400',
-  [ProgressCircleVariant.warning]: 'stroke-yellow-400',
+  [ProgressCircleVariant.warning]: 'stroke-yellow-600',
   [ProgressCircleVariant.error]: 'stroke-red-400',
 };
 
@@ -45,6 +45,11 @@ export interface ProgressCircleProps {
    * Sets the progress as a value between 0 and maxValue
    */
   value: number;
+
+  /**
+   * Shows the remaining value
+   */
+  showRemaining?: boolean;
 
   /**
    * The shape of the component.
@@ -75,6 +80,7 @@ export interface ProgressCircleProps {
 export const ProgressCircle = ({
   value,
   maxValue,
+  showRemaining = false,
   variant = ProgressCircleVariant.primary,
   size = ProgressCircleSize.sm,
   className,
@@ -89,13 +95,18 @@ export const ProgressCircle = ({
     }),
     track: cn('fill-none stroke-slate-700'),
     indicator: cn('fill-none transition-all duration-500 ease-in-out', {
-      [Variants[variant]]: percent < 80,
-      [Variants.warning]: percent >= 80 && percent < 100,
+      [Variants[variant]]: percent < 92.86,
+      [Variants.warning]: percent >= 92.86 && percent < 100,
       [Variants.error]: percent >= 100,
     }),
     remainingCounter: cn(
       remainingClassName,
-      'absolute inset-0 m-auto flex items-center justify-center text-xs font-semibold text-slate-400',
+      'absolute inset-0 m-auto flex items-center justify-center text-xs font-semibold',
+      {
+        'text-slate-400': percent < 92.86,
+        'text-yellow-600': percent >= 92.86 && percent < 100,
+        'text-red-400': percent >= 100,
+      },
     ),
   };
 
@@ -104,7 +115,7 @@ export const ProgressCircle = ({
   /* Render JSX */
   return (
     <div className="relative">
-      <span className={classes.remainingCounter}>{remaining}</span>
+      {showRemaining && <span className={classes.remainingCounter}>{remaining}</span>}
 
       <svg viewBox="0 0 36 36" className={classes.progressCircle}>
         <path
