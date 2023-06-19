@@ -39,6 +39,7 @@ export enum ButtonVariant {
   ghost = 'ghost',
   destructive = 'destructive',
   discord = 'discord',
+  twitter = 'twitter',
 }
 
 const Variants: Record<ButtonVariant, string> = {
@@ -49,6 +50,7 @@ const Variants: Record<ButtonVariant, string> = {
   [ButtonVariant.ghost]: 'bg-transparent enabled:hover:bg-slate-800 text-white',
   [ButtonVariant.destructive]: 'bg-rose-600 enabled:hover:bg-rose-500 text-white',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/80 text-white',
+  [ButtonVariant.twitter]: 'bg-[#1d9bf0] enabled:hover:bg-[#1a8cd8] text-white',
 };
 
 const InvertVariants: Record<ButtonVariant, string> = {
@@ -61,6 +63,7 @@ const InvertVariants: Record<ButtonVariant, string> = {
   [ButtonVariant.destructive]:
     'bg-transparent border border-rose-900 hover:bg-rose-950 text-rose-300',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
+  [ButtonVariant.twitter]: 'bg-[#1d9bf0]/60 hover:bg-[#1d9bf0]/80 text-white',
 };
 
 enum ButtonIconSize {

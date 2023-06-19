@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { IconCatalog } from '~/components';
 import { parseIconOptions } from '~/storybook/utils';
 import { Button, ButtonSize, ButtonVariant, HtmlType } from './Button';
 
@@ -40,5 +41,15 @@ export const Default: Story = {
     children: 'Label text',
     size: ButtonSize.xs,
     variant: ButtonVariant.primary,
+  },
+};
+
+export const Twitter: Story = {
+  args: {
+    children: 'Log in with Twitter',
+    size: ButtonSize.sm,
+    variant: ButtonVariant.twitter,
+    startIcon: IconCatalog.twitter,
+    isIconSolid: true,
   },
 };
