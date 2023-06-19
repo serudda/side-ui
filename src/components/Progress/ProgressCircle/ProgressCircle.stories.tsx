@@ -55,6 +55,13 @@ export const Default: Story = {
           maxValue={280}
           variant={ProgressCircleVariant.primary}
         />
+        <ProgressCircle
+          {...args}
+          value={30}
+          maxValue={280}
+          remainingClassName="text-red-500"
+          variant={ProgressCircleVariant.primary}
+        />
       </div>
     );
   },
