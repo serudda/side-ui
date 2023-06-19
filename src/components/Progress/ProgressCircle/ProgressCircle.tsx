@@ -6,6 +6,7 @@ export enum ProgressCircleSize {
   sm = 'sm',
   base = 'base',
   lg = 'lg',
+  xl = 'xl',
 }
 
 const Sizes: Record<ProgressCircleSize, string> = {
@@ -13,6 +14,7 @@ const Sizes: Record<ProgressCircleSize, string> = {
   [ProgressCircleSize.sm]: 'h-4 w-4',
   [ProgressCircleSize.base]: 'h-5 w-5',
   [ProgressCircleSize.lg]: 'h-6 w-6',
+  [ProgressCircleSize.xl]: 'h-7 w-7',
 };
 
 export enum ProgressCircleVariant {
@@ -45,7 +47,9 @@ export interface ProgressCircleProps {
   value: number;
 
   /**
-   * The shape of the component. It determines the importance in the hierarchy, for example, the contained button commands the most attention
+   * The shape of the component.
+   * It determines the importance in the hierarchy, for example,
+   * the contained button commands the most attention
    */
   variant?: ProgressCircleVariant;
 
@@ -58,6 +62,11 @@ export interface ProgressCircleProps {
    * Specify an optional className to be added to the component
    */
   className?: string;
+
+  /**
+   * Specify an optional className to be added to the remaining counter
+   */
+  remainingClassName?: string;
 }
 
 /**
@@ -69,37 +78,49 @@ export const ProgressCircle = ({
   variant = ProgressCircleVariant.primary,
   size = ProgressCircleSize.sm,
   className,
+  remainingClassName,
 }: ProgressCircleProps) => {
+  const remaining = maxValue - value;
   const [percent, setPercent] = useState(Math.floor((value * 100) / maxValue));
 
   const classes = {
-    progressCircle: cn(className, Sizes[size]),
+    progressCircle: cn(className, Sizes[size], {
+      'opacity-0': remaining <= 0,
+    }),
     track: cn('fill-none stroke-slate-700'),
     indicator: cn('fill-none transition-all duration-500 ease-in-out', {
       [Variants[variant]]: percent < 80,
       [Variants.warning]: percent >= 80 && percent < 100,
-      [Variants.error]: percent === 100,
+      [Variants.error]: percent >= 100,
     }),
+    remainingCounter: cn(
+      remainingClassName,
+      'absolute inset-0 m-auto flex items-center justify-center text-xs font-semibold text-slate-400',
+    ),
   };
 
   useEffect(() => setPercent(Math.floor((value * 100) / maxValue)), [value, maxValue]);
 
   /* Render JSX */
   return (
-    <svg viewBox="0 0 36 36" className={classes.progressCircle}>
-      <path
-        className={classes.track}
-        stroke-dasharray="100, 100"
-        strokeWidth={3}
-        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-      ></path>
-      <path
-        className={classes.indicator}
-        stroke-dasharray={`${percent}, 100`}
-        strokeWidth={3.5}
-        strokeLinecap="round"
-        d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-      ></path>
-    </svg>
+    <div className="relative">
+      <span className={classes.remainingCounter}>{remaining}</span>
+
+      <svg viewBox="0 0 36 36" className={classes.progressCircle}>
+        <path
+          className={classes.track}
+          stroke-dasharray="100, 100"
+          strokeWidth={3}
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+        ></path>
+        <path
+          className={classes.indicator}
+          stroke-dasharray={`${percent}, 100`}
+          strokeWidth={3.5}
+          strokeLinecap="round"
+          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+        ></path>
+      </svg>
+    </div>
   );
 };
