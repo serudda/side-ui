@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariant } from '~/components';
-import { useModal } from '~/hooks';
+import { Button, ButtonSize, ButtonVariant } from '@/components';
+import { useModal } from '@/hooks';
 import { BaseModal, type BaseModalProps } from './BaseModal';
 
 const ModalBodyLongSample = () => {

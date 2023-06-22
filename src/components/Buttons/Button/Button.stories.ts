@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { IconCatalog } from '~/components';
-import { parseIconOptions } from '~/storybook/utils';
+import { IconCatalog } from '@/components';
+import { parseIconOptions } from '@/storybook/utils';
 import { Button, ButtonSize, ButtonVariant, HtmlType } from './Button';
 
 const meta = {
