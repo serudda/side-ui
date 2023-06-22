@@ -124,13 +124,13 @@ export const ProgressCircle = ({
       <svg viewBox="0 0 36 36" className={classes.progressCircle}>
         <path
           className={classes.track}
-          stroke-dasharray="100, 100"
+          strokeDasharray="100, 100"
           strokeWidth={3}
           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
         ></path>
         <path
           className={classes.indicator}
-          stroke-dasharray={`${percent}, 100`}
+          strokeDasharray={`${percent}, 100`}
           strokeWidth={3.5}
           strokeLinecap="round"
           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
