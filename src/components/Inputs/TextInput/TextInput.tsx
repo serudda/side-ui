@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FocusEvent, InputHTMLAttributes, useState } from 'react';
 import cn from 'classnames';
-import { FormFieldState, Input } from '~/common';
-import { Icon, IconCatalog, Spinner, SpinnerSize, SpinnerVariant } from '~/components';
+import { FormFieldState, Input } from '@/common';
+import { Icon, IconCatalog, Spinner, SpinnerSize, SpinnerVariant } from '@/components';
 
 export interface TextInputProps
   extends Input,

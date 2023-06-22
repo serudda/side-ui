@@ -6,7 +6,7 @@ import {
   ButtonSize,
   ButtonVariant,
   ModalSize,
-} from '~/components';
+} from '@/components';
 
 export interface ConfirmationModalProps extends Omit<BaseModalProps, 'body' | 'size' | 'footer'> {
   /**

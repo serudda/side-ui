@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea } from '~/components';
+import { Textarea } from '@/components';
 import { CopyButton, CopyButtonProps } from './CopyButton';
 
 const meta = {

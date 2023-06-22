@@ -1,6 +1,6 @@
 import { Children, ReactElement, cloneElement, type ReactNode } from 'react';
-import { Tooltip, TooltipSize } from '~/components';
-import { useCopyToClipboard } from '~/hooks';
+import { Tooltip, TooltipSize } from '@/components';
+import { useCopyToClipboard } from '@/hooks';
 
 export interface CopyButtonProps {
   /**
