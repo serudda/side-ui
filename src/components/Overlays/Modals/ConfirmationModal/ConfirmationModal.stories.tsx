@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariant } from '~/components';
-import { useModal } from '~/hooks';
+import { Button, ButtonSize, ButtonVariant } from '@/components';
+import { useModal } from '@/hooks';
 import { ConfirmationModal, type ConfirmationModalProps } from './ConfirmationModal';
 
 const meta = {

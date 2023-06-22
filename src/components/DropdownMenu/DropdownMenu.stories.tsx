@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, DropdownMenu, Tag, TagVariant } from '~/components';
+import { Button, DropdownMenu, Tag, TagVariant } from '@/components';
 
 const meta = {
   title: 'UI Components/DropdownMenu',

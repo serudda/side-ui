@@ -8,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import cn from 'classnames';
-import { FormFieldState, Input } from '~/common';
+import { FormFieldState, Input } from '@/common';
 
 export enum Resize {
   both = 'both',

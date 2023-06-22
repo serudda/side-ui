@@ -1,4 +1,4 @@
-import { IconCatalog } from '~/components/';
+import { IconCatalog } from '@/components';
 
 /**
  * parseIconOptions

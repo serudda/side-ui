@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes, type ReactNode } from 'react';
 import cn from 'classnames';
-import { Icon, Spinner, SpinnerSize, SpinnerVariant, type IconCatalog } from '~/components';
+import { Icon, Spinner, SpinnerSize, SpinnerVariant, type IconCatalog } from '@/components';
 
 export enum ButtonSize {
   xs = 'xs',

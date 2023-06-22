@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { parseIconOptions } from '~/storybook/utils';
+import { parseIconOptions } from '@/storybook/utils';
 import { Icon, IconCatalog } from './Icon';
 
 const meta = {

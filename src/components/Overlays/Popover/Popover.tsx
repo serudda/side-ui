@@ -10,9 +10,9 @@ import {
 } from 'react';
 import cn from 'classnames';
 import { usePopper } from 'react-popper';
-import { hasProp } from '~/common';
-import { Portal } from '~/components';
-import { useOnClickOutside } from '~/hooks';
+import { hasProp } from '@/common';
+import { Portal } from '@/components';
+import { useOnClickOutside } from '@/hooks';
 
 export enum PopoverPlacement {
   topStart = 'top-start',
