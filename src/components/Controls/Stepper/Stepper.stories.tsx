@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     name: 'Stepper',
-    minValue: 3,
+    minValue: 1,
     maxValue: 10,
     value: 20,
     onChange: (value) => console.log('value: ', value),
