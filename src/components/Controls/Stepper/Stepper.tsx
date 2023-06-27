@@ -2,10 +2,6 @@ import React, { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
 import { Icon, IconCatalog } from '@/components';
 
-export enum StepperSize {
-  sm = 'sm',
-}
-
 export interface StepperProps {
   /**
    * Specify an optional test ID to use on e2e tests.
@@ -31,16 +27,6 @@ export interface StepperProps {
    * Name attr for the Stepper.
    **/
   name?: string;
-
-  /**
-   * Changes the size of the Stepperr.
-   */
-  size?: StepperSize;
-
-  /**
-   * Specify whether the Stepper should be disabled.
-   */
-  isDisabled?: boolean;
 
   /**
    * The input is read only.
@@ -96,8 +82,6 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
       value,
       minValue = 0,
       maxValue = Infinity,
-      size = StepperSize.sm,
-      isDisabled = false,
       isRequired = false,
       isReadOnly = false,
       className,
@@ -107,11 +91,21 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     },
     ref,
   ) => {
+    const [currentValue, setCurrentValue] = useState(value || minValue);
+
     const classes = {
       container: cn(className),
+      label: cn('mb-2 block text-sm font-semibold leading-4 text-slate-400'),
+      stepperContainer: cn(
+        'inline-flex h-10 rounded-md border border-slate-700 bg-slate-900 p-1 text-white',
+      ),
+      input: cn(
+        'w-10 appearance-none border-none bg-transparent text-center font-semibold text-slate-50 outline-none',
+      ),
+      button: cn(
+        'select-none rounded bg-slate-800 disabled:opacity-20 p-1 enabled:hover:bg-slate-950',
+      ),
     };
-
-    const [currentValue, setCurrentValue] = useState(value || minValue);
 
     useEffect(() => {
       let newValue = value || minValue;
@@ -123,7 +117,9 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
       let newValue = parseInt(event.target.value, 10);
-      if (isNaN(newValue)) newValue = 0;
+      if (isNaN(newValue)) newValue = minValue;
+      if (newValue < minValue) newValue = minValue;
+      if (newValue > maxValue) newValue = maxValue;
 
       setCurrentValue(newValue);
       if (onChange) onChange(newValue);
@@ -134,6 +130,7 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     };
 
     const handleInputFocus = (event: FocusEvent<HTMLInputElement>): void => {
+      event.target.select();
       if (onFocus) onFocus(event);
     };
 
@@ -152,16 +149,17 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
     return (
       <div className={classes.container}>
         {label && (
-          <label className="mb-2 block text-sm font-semibold leading-4 text-slate-400" htmlFor={id}>
+          <label className={classes.label} htmlFor={id}>
             {label}
             {isRequired && <span className="ml-1 text-rose-400">*</span>}
           </label>
         )}
-        <div className="inline-flex h-10 rounded-md border border-slate-700 bg-slate-900 p-1 text-white">
+        <div className={classes.stepperContainer}>
           {/* MINUS BUTTON */}
           <button
-            className="cursor-pointer select-none rounded bg-slate-800 p-1 hover:bg-slate-950"
+            className={classes.button}
             onClick={handleMinusClick}
+            disabled={currentValue === minValue}
           >
             <Icon icon={IconCatalog.minusSmall} className="h-[22px] w-[22px]" />
           </button>
@@ -172,8 +170,7 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
             data-testid={dataTestId}
             ref={ref}
             name={name}
-            className="w-10 appearance-none border-none bg-transparent text-center font-semibold text-slate-50 outline-none"
-            disabled={isDisabled}
+            className={classes.input}
             value={currentValue}
             readOnly={isReadOnly}
             required={isRequired}
@@ -184,8 +181,9 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
           {/* PLUS BUTTON */}
           <button
-            className="cursor-pointer select-none rounded bg-slate-800 p-1 hover:bg-slate-950"
+            className={classes.button}
             onClick={handlePlusClick}
+            disabled={currentValue === maxValue}
           >
             <Icon icon={IconCatalog.plusSmall} className="h-[22px] w-[22px]" />
           </button>
