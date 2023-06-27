@@ -1,4 +1,5 @@
 import { CSSProperties } from 'react';
+import { SelectOption } from '@/common';
 
 /**
  * isNullOrUndefined
@@ -31,6 +32,17 @@ export const includeTerm = (term: string, text: string) =>
 export const hasProp = (obj = {}, prop: string): boolean => {
   if (obj === null || typeof obj !== 'object') return false;
   return prop in obj;
+};
+
+/**
+ * findIndexByFirstChar
+ * @description - Find the item's position based on the first char
+ * @param {number} startYear - the year when the range starts
+ * @param {number} endYear - the year when the range finishs
+ * @returns {number}
+ */
+export const findIndexByFirstChar = (list: Array<SelectOption> = [], char: string): number => {
+  return list.findIndex((item) => item.label.toLowerCase().charAt(0) === char);
 };
 
 /**

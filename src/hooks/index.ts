@@ -5,3 +5,4 @@ export * from './useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
 export * from './useKeyPress/useKeyPress';
 export * from './useModal/useModal';
 export * from './useOnClickOutside/useOnClickOutside';
+export * from './usePopupMenu/usePopupMenu';
