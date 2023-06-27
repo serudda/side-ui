@@ -70,7 +70,7 @@ export interface StepperProps {
 }
 
 /**
- * Switch represents a physical switch that allows users to turn things on or off, where choosing an option results in an immediate action.
+ * Stepper component is used to increment or decrement a value by clicking on the buttons.
  */
 export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
   (
@@ -107,20 +107,23 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
       ),
     };
 
-    useEffect(() => {
-      let newValue = value || minValue;
-      if (newValue < minValue) newValue = minValue;
-      if (newValue > maxValue) newValue = maxValue;
+    const parseValue = (value: string | number | undefined) => {
+      if (!value) return minValue;
 
-      setCurrentValue(newValue);
-    }, [value, minValue, maxValue]);
-
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
-      let newValue = parseInt(event.target.value, 10);
+      let newValue = parseInt(value as string, 10);
       if (isNaN(newValue)) newValue = minValue;
       if (newValue < minValue) newValue = minValue;
       if (newValue > maxValue) newValue = maxValue;
 
+      return newValue;
+    };
+
+    useEffect(() => {
+      setCurrentValue(parseValue(value));
+    }, [value, minValue, maxValue]);
+
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
+      const newValue = parseValue(event.target.value);
       setCurrentValue(newValue);
       if (onChange) onChange(newValue);
     };
