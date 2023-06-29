@@ -71,6 +71,11 @@ export interface PopoverProps {
   children?: ReactNode;
 
   /**
+   * Specify an optional array of ref objects to be added to the whitelist.
+   */
+  whitelistContainers?: Array<RefObject<HTMLElement>>;
+
+  /**
    * Function called when the use clicks outside the popover container.
    */
   onClickOutside?: () => void;
@@ -89,6 +94,7 @@ export const Popover = ({
   role = 'menu',
   menuClassName,
   menuFullWidth = false,
+  whitelistContainers = [],
   children,
 }: PopoverProps) => {
   const classes = {
@@ -122,8 +128,9 @@ export const Popover = ({
     setOpen(false);
   };
 
-  useOnClickOutside({ current: popoverElement } as RefObject<HTMLElement>, () =>
-    handleClickOutside(),
+  useOnClickOutside(
+    [...whitelistContainers, { current: popoverElement } as RefObject<HTMLElement>],
+    () => handleClickOutside(),
   );
 
   /* Popper config */

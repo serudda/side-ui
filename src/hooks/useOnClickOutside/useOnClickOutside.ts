@@ -14,11 +14,18 @@ export const useOnClickOutside = (
 ) => {
   // TODO: remove this once the React bug has been fixed: https://github.com/facebook/react/issues/24657
   const enabledRef = useRef(false);
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      enabledRef.current = enabled;
-    });
-  }, [enabled]);
+  useEffect(
+    process.env.NODE_ENV === 'test'
+      ? () => {
+          enabledRef.current = enabled;
+        }
+      : () => {
+          requestAnimationFrame(() => {
+            enabledRef.current = enabled;
+          });
+        },
+    [enabled],
+  );
 
   function handleOutsideClick<E extends MouseEvent | PointerEvent | FocusEvent>(
     event: E,
@@ -65,7 +72,7 @@ export const useOnClickOutside = (
     // This allows us to check whether the event was defaultPrevented when you are nesting this
     // inside a `<Dialog />` for example.
     if (
-      // This check alllows us to know whether or not we clicked on a "focusable" element like a
+      // This check allows us to know whether or not we clicked on a "focusable" element like a
       // button or an input. This is a backwards compatibility check so that you can open a <Menu
       // /> and click on another <Menu /> which should close Menu A and open Menu B. We might
       // revisit that so that you will require 2 clicks instead.
@@ -96,9 +103,7 @@ export const useOnClickOutside = (
   useDocumentEvent(
     'click',
     (event) => {
-      if (!initialClickTarget.current) {
-        return;
-      }
+      if (!initialClickTarget.current) return;
 
       handleOutsideClick(event, () => initialClickTarget.current as HTMLElement);
 
