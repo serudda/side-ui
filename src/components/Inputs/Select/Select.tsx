@@ -201,7 +201,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           maxOptions: 7,
           maxHeight: '300px',
         })}
-        className="w-full flex-grow overflow-y-auto p-1.5 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-neutral-400 scrollbar-track-neutral-700"
+        className="w-full flex-grow overflow-y-auto p-1.5 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-700 scrollbar-track-slate-950"
       >
         {renderOptions}
       </div>
