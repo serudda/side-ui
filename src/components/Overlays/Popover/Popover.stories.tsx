@@ -1,5 +1,6 @@
+import { useRef } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Popover } from '@/components';
+import { Button, Popover, PopoverProps } from '@/components';
 
 const meta = {
   title: 'UI Components/Overlays/Popover',
@@ -23,9 +24,33 @@ export const Default: Story = {
     return (
       <div className="relative mt-32 flex items-center justify-center">
         <Popover {...args}>
-          <Button>This is a Button</Button>
+          <span>
+            <Button>This is a Button</Button>
+          </span>
         </Popover>
       </div>
     );
   },
+};
+
+const WhiteListExample = (args: PopoverProps) => {
+  const divNode = useRef(null);
+  return (
+    <>
+      <div className="relative mt-32 flex items-center justify-center">
+        <Popover content={args.content} whitelistContainers={[divNode]}>
+          <span>
+            <Button>This is a Button</Button>
+          </span>
+        </Popover>
+      </div>
+      <div className="absolute left-10 top-10" ref={divNode}>
+        CLICKABLE ELEMENT
+      </div>
+    </>
+  );
+};
+
+export const ExampleWhiteList: Story = {
+  render: (args) => <WhiteListExample {...args} />,
 };
