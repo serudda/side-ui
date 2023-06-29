@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   FocusEvent,
+  MouseEvent,
   SelectHTMLAttributes,
   useEffect,
   useMemo,
@@ -36,6 +37,11 @@ export interface SelectProps
    * Provide a handler that is called when the select was clicked.
    */
   onSelectClick?: () => void;
+
+  /**
+   * Provide a handler that is called when an option was clicked.
+   */
+  onOptionClick?: (event: MouseEvent<HTMLDivElement>, option: SelectOption) => void;
 
   /**
    * Provide a handler that is called when an option was selected.
@@ -80,6 +86,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       onBlur,
       onFocus,
       onSelectClick,
+      onOptionClick,
       dataTestId,
     },
     ref,
@@ -138,12 +145,15 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       setSelectedOption(defaultOption);
     }, [defaultOption]);
 
-    const handleOptionClick = (option: SelectOption) => (): void => {
-      setOptionCursor(option);
-      setSelectedOption(option);
-      if (onChange) onChange(option, name);
-      handleClickOutside();
-    };
+    const handleOptionClick =
+      (option: SelectOption) =>
+      (event: MouseEvent<HTMLDivElement>): void => {
+        setOptionCursor(option);
+        setSelectedOption(option);
+        if (onOptionClick) onOptionClick(event, option);
+        if (onChange) onChange(option, name);
+        handleClickOutside();
+      };
 
     const handleClickOutside = (): void => setIsOpen(false);
 
