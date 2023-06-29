@@ -95,7 +95,7 @@ export const Stepper = React.forwardRef<HTMLInputElement, StepperProps>(
 
     const classes = {
       container: cn(className),
-      label: cn('mb-2 block text-sm font-semibold leading-4 text-slate-400'),
+      label: cn('mb-2 block text-left text-sm font-semibold leading-4 text-slate-400'),
       stepperContainer: cn(
         'inline-flex h-10 rounded-md border border-slate-700 bg-slate-900 p-1 text-white',
       ),

@@ -200,7 +200,10 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     return (
       <div className={classes.container}>
         {label && (
-          <label className="mb-2 block text-sm font-semibold leading-4 text-slate-400" htmlFor={id}>
+          <label
+            className="mb-2 block text-left text-sm font-semibold leading-4 text-slate-400"
+            htmlFor={id}
+          >
             {label}
             {isRequired && <span className="ml-1 text-rose-400">*</span>}
           </label>
