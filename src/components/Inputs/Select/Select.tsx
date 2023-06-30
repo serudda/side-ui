@@ -2,6 +2,7 @@ import React, {
   ChangeEvent,
   FocusEvent,
   MouseEvent,
+  RefObject,
   SelectHTMLAttributes,
   useEffect,
   useMemo,
@@ -32,6 +33,8 @@ export interface SelectProps
    * Specify an optional className to be added to the popover menu.
    */
   menuClassName?: string;
+
+  menuRef?: RefObject<HTMLElement>;
 
   /**
    * Provide a handler that is called when the select was clicked.
@@ -81,6 +84,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       isFullWidth = false,
       isLoading = false,
       menuClassName,
+      menuRef,
       className = '',
       onChange,
       onBlur,
@@ -195,6 +199,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     const popoverContent = (
       <div
+        ref={menuRef as RefObject<HTMLDivElement>}
         role="listbox"
         style={setMaxHeightByOptions({
           listLength: options.length,
@@ -226,6 +231,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           hasArrow={false}
           menuClassName={classes.menu}
           menuFullWidth
+          whitelistContainers={[menuRef, ref] as Array<RefObject<HTMLDivElement>>}
         >
           <div
             id={id}
