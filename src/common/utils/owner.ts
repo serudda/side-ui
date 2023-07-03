@@ -1,5 +1,9 @@
 import { MutableRefObject } from 'react';
 
+/**
+ * The getOwnerDocument function allows you to get the owner document of an element.
+ * @reference https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-react/src/utils/owner.ts
+ */
 export function getOwnerDocument<T extends Element | MutableRefObject<Element | null>>(
   element: T | null | undefined,
 ) {
