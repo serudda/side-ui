@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { TextInput } from '@/components';
-import { Select } from './Select';
+import { Select, SelectSize } from './Select';
 
 const meta = {
   title: 'UI Components/Inputs/Select',
@@ -31,6 +31,7 @@ export const Default: Story = {
   args: {
     placeholder: 'Choose an option',
     name: 'Select',
+    size: SelectSize.base,
     onChange: (selectedOption) => console.log('value: ', selectedOption),
   },
 };
