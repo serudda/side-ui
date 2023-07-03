@@ -8,4 +8,5 @@ export * from './useLatestValue/useLatestValue';
 export * from './useModal/useModal';
 export * from './useOnClickOutside/useOnClickOutside';
 export * from './usePopupMenu/usePopupMenu';
+export * from './useToggle/useToggle';
 export * from './useWindowEvent/useWindowEvent';
