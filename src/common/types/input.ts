@@ -54,6 +54,7 @@ export interface Input {
 
 export type SelectOption = {
   value: string;
+  code?: string;
   label: string;
 };
 
