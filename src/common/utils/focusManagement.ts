@@ -2,6 +2,11 @@ import { disposables } from './disposables';
 import { match } from './match';
 import { getOwnerDocument } from './owner';
 
+/**
+ * Focus the first non-disabled element.
+ * @reference https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-react/src/utils/focus-management.ts
+ */
+
 // Credit:
 //  - https://stackoverflow.com/a/30753870
 const focusableSelector = [
