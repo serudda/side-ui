@@ -21,9 +21,22 @@ import {
 } from '@/components';
 import { usePopupMenu } from '@/hooks';
 
+export enum SelectSize {
+  sm = 'sm',
+  base = 'base',
+}
+
+const Sizes: Record<SelectSize, string> = {
+  [SelectSize.sm]: 'p-1 pl-2.5 px-2 h-8',
+  [SelectSize.base]: 'p-2 pl-3 h-10',
+};
+
 export interface SelectProps
   extends Input,
-    Omit<SelectHTMLAttributes<HTMLSelectElement>, 'required' | 'onChange' | 'onFocus' | 'onBlur'> {
+    Omit<
+      SelectHTMLAttributes<HTMLSelectElement>,
+      'size' | 'required' | 'onChange' | 'onFocus' | 'onBlur'
+    > {
   /**
    * Set the select options list.
    */
@@ -34,7 +47,15 @@ export interface SelectProps
    */
   menuClassName?: string;
 
+  /**
+   * Specify an optional ref to be attached to the popover menu.
+   */
   menuRef?: RefObject<HTMLElement>;
+
+  /**
+   * Changes the size of the Select, giving it more or less padding
+   */
+  size?: SelectSize;
 
   /**
    * Provide a handler that is called when the select was clicked.
@@ -74,6 +95,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       id,
       name,
       options = [],
+      size = SelectSize.base,
       placeholder,
       label,
       assistiveText,
@@ -105,9 +127,9 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     const classes = {
       container: cn(className, { 'w-full': isFullWidth }),
       select: cn(
-        'flex p-2 pl-3 cursor-pointer',
+        'flex cursor-pointer',
         'border rounded-md appearance-none outline-none truncate',
-        'h-10',
+        Sizes[size],
         {
           'w-full': isFullWidth,
           'border-slate-700': fieldState === FormFieldState.default,
@@ -120,14 +142,22 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       ),
       menu: cn(menuClassName),
       option: (item: SelectOption, index: number) =>
-        cn('flex items-center space-x-3', 'p-2 rounded', {
+        cn('flex items-center space-x-3', 'rounded', {
+          'p-1.5 px-2 text-sm': size === SelectSize.sm,
+          'p-2 text-base': size === SelectSize.base,
           'bg-slate-950': index === cursor || item.value === selectedOption?.value,
           'hover:bg-slate-800': index !== cursor && item.value !== selectedOption?.value,
         }),
-      placeholder: cn('flex flex-wrap items-center text-base truncate leading-[22px]', {
+      placeholder: cn('flex flex-wrap items-center truncate', {
+        'text-sm': size === SelectSize.sm,
+        'text-base leading-[22px]': size === SelectSize.base,
         'text-slate-400': !selectedOption?.label,
       }),
       endContainer: cn('flex items-center space-x-2 self-stretch flex-shrink-0 pl-1 ml-auto'),
+      chevronDownIcon: cn({
+        'h-4 w-4': size === SelectSize.sm,
+        'h-5 w-5': size === SelectSize.base,
+      }),
       assistiveText: cn('mt-2 text-xs font-medium', {
         'text-slate-200': fieldState === FormFieldState.default,
         'text-rose-400': fieldState === FormFieldState.error,
@@ -203,8 +233,8 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         role="listbox"
         style={setMaxHeightByOptions({
           listLength: options.length,
-          maxOptions: 7,
-          maxHeight: '300px',
+          maxOptions: size === SelectSize.base ? 7 : 6,
+          maxHeight: size === SelectSize.base ? '300px' : '172px',
         })}
         className="w-full flex-grow overflow-y-auto p-1.5 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-700 scrollbar-track-slate-950"
       >
@@ -257,7 +287,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
               {/* CHEVRON ICON */}
               <Icon
-                className="h-5 w-5"
+                className={classes.chevronDownIcon}
                 icon={isFocused ? IconCatalog.chevronUp : IconCatalog.chevronDown}
               />
             </div>
