@@ -2,6 +2,10 @@ import { microTask } from './microTask';
 
 export type Disposables = ReturnType<typeof disposables>;
 
+/**
+ * A collection of disposable functions.
+ * @reference https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-react/src/utils/disposables.ts
+ */
 export function disposables() {
   const _disposables: Function[] = [];
 

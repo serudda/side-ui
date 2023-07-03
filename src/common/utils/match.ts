@@ -1,3 +1,7 @@
+/**
+ * This function is used to match a value to a handler.
+ * @reference https://github.com/tailwindlabs/headlessui/blob/main/packages/%40headlessui-react/src/utils/match.ts
+ */
 export function match<TValue extends string | number = string, TReturnValue = unknown>(
   value: TValue,
   lookup: Record<TValue, TReturnValue | ((...args: any[]) => TReturnValue)>,
