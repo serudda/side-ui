@@ -31,6 +31,10 @@ type Story = StoryObj<typeof meta>;
 const CopyButtonExample = (args: ToastProps) => {
   const { addToast } = useToast();
 
+  const handleOpenCustomToast = () => {
+    addToast(args);
+  };
+
   const handleOpenNeutralToast = () => {
     addToast({
       variant: ToastVariant.neutral,
@@ -76,6 +80,7 @@ const CopyButtonExample = (args: ToastProps) => {
 
   return (
     <div className="mb-6 flex items-center space-x-5">
+      <Button onClick={handleOpenCustomToast}>Open Custom Toast</Button>
       <Button onClick={handleOpenNeutralToast}>Open Neutral Toast</Button>
       <Button onClick={handleOpenSuccessToast}>Open Success Toast</Button>
       <Button onClick={handleOpenWarningToast}>Open Warning Toast</Button>

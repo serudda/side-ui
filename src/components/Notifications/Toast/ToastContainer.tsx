@@ -8,8 +8,8 @@ export enum ToastPlacement {
 }
 
 const Placement: Record<ToastPlacement, string> = {
-  [ToastPlacement.top]: 'top-3 left-1/2 -translate-x-1/2 transform',
-  [ToastPlacement.bottom]: 'bottom-3 left-1/2 -translate-x-1/2 transform',
+  [ToastPlacement.top]: 'top-5 left-1/2 -translate-x-1/2 transform',
+  [ToastPlacement.bottom]: 'bottom-5 left-1/2 -translate-x-1/2 transform',
 };
 
 export interface ToastContainerProps {
