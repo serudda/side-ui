@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import cn from 'classnames';
 import { useToast } from '@/contexts';
-import { Button, ButtonSize, ButtonVariant } from '../../Buttons';
 import { Icon, IconCatalog } from '../../Icon/Icon';
 
 export type ActionType = {
