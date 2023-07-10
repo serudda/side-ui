@@ -7,7 +7,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     trigger: (
-      <div className="e-inline-flex">
+      <div className="inline-flex">
         <Button>Trigger</Button>
       </div>
     ),
