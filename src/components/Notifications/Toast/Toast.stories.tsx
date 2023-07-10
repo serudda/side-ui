@@ -28,7 +28,7 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const CopyButtonExample = (args: ToastProps) => {
+const ToastExample = (args: ToastProps) => {
   const { addToast } = useToast();
 
   const handleOpenCustomToast = () => {
@@ -90,5 +90,5 @@ const CopyButtonExample = (args: ToastProps) => {
 };
 
 export const ExampleWithRef: Story = {
-  render: (args) => <CopyButtonExample {...args} />,
+  render: (args) => <ToastExample {...args} />,
 };
