@@ -13,6 +13,11 @@ export interface OptionProps {
   children?: ReactNode;
 
   /**
+   * Specify if the option is disabled
+   */
+  isDisabled?: boolean;
+
+  /**
    * Callback when the option was clicked
    */
   onClick: (event: React.MouseEvent) => void;
@@ -21,15 +26,14 @@ export interface OptionProps {
 /**
  * Represents an item to use in the DropdownMenu component
  */
-export const Option = ({ className, children, onClick }: OptionProps) => {
-  const classes = cn(
-    className,
-    'flex',
-    'p-2',
-    'hover:bg-slate-950 cursor-pointer min-w-[200px] rounded',
-  );
+export const Option = ({ className, children, isDisabled = false, onClick }: OptionProps) => {
+  const classes = cn(className, 'flex', 'p-2', 'min-w-[200px] rounded', {
+    'cursor-default': isDisabled,
+    'cursor-pointer hover:bg-slate-950': !isDisabled,
+  });
 
   const handleClick = (event: React.MouseEvent) => {
+    if (isDisabled) return;
     if (onClick) onClick(event);
   };
 
