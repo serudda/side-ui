@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useIsomorphicLayoutEffect } from '../useIsomorphicLayoutEffect/useIsomorphicLayoutEffect';
+import { useIsomorphicLayoutEffect } from '..';
 
 /**
  * The useLatestValue hook allows you to get the latest value of a variable.
