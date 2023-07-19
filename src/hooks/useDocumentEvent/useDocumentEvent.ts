@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useLatestValue } from '../useLatestValue/useLatestValue';
+import { useLatestValue } from '..';
 
 /**
  * The useDocumentEvent hook allows you to add an event listener to the document.
