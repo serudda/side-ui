@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useRef } from 'react';
-import { useIsomorphicLayoutEffect } from '@/hooks';
+import { useIsomorphicLayoutEffect } from '..';
 
 /**
  * The useEventListener hook allows you to add an event listener to a DOM element in React.
