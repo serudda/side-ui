@@ -283,9 +283,8 @@ export const Icon = ({ icon, iconStyle = IconStyle.light, className, onClick }: 
     'stroke-current fill-none': iconStyle !== IconStyle.solid,
   });
 
-  if (iconStyle === IconStyle.solid && iconPath === undefined) {
-    throw new Error(`Solid icon path is undefined for icon "${icon}".`);
-  }
+  if (iconStyle === IconStyle.solid && iconPath === undefined)
+    console.error(`Solid icon path is undefined for icon "${icon}".`);
 
   return (
     <svg
