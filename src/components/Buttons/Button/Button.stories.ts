@@ -50,6 +50,5 @@ export const Twitter: Story = {
     size: ButtonSize.sm,
     variant: ButtonVariant.twitter,
     startIcon: IconCatalog.twitter,
-    isIconSolid: true,
   },
 };

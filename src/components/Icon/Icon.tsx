@@ -257,7 +257,7 @@ export interface IconProps {
   /**
    * The style of the icon
    */
-  iconStyle: IconStyle;
+  iconStyle?: IconStyle;
 
   /**
    * The callback function to be called when the icon is clicked.
@@ -268,11 +268,9 @@ export interface IconProps {
 /**
  * The Icons catalog
  */
-export const Icon = ({ icon, iconStyle, className, onClick }: IconProps) => {
+export const Icon = ({ icon, iconStyle = IconStyle.light, className, onClick }: IconProps) => {
   const iconPaths = Icons[icon];
-
   const iconPath = iconStyle === IconStyle.solid ? iconPaths.solid : iconPaths.outline;
-
   const strokeWidth = IconStyles[iconStyle];
 
   const classes = cn(className, {

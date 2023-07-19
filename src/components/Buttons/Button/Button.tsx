@@ -1,6 +1,13 @@
 import { type ButtonHTMLAttributes, type ReactNode } from 'react';
 import cn from 'classnames';
-import { Icon, Spinner, SpinnerSize, SpinnerVariant, type IconCatalog } from '@/components';
+import {
+  Icon,
+  IconStyle,
+  Spinner,
+  SpinnerSize,
+  SpinnerVariant,
+  type IconCatalog,
+} from '@/components';
 
 export enum ButtonSize {
   xs = 'xs',
@@ -105,11 +112,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   endIcon?: IconCatalog;
 
   /**
-   * If set to true, the icon will be solid.
-   */
-  isIconSolid?: boolean;
-
-  /**
    * Disables the button, disallowing user interaction.
    */
   isDisabled?: boolean;
@@ -149,7 +151,6 @@ export const Button = ({
   size = ButtonSize.base,
   startIcon,
   endIcon,
-  isIconSolid = false,
   isDisabled = false,
   isLoading = false,
   loadingText = 'Loading',
@@ -217,12 +218,14 @@ export const Button = ({
       onClick={onClick}
       {...restOfProps}
     >
-      {startIcon && <Icon className={classes.startIcon} icon={startIcon} isSolid={isIconSolid} />}
+      {startIcon && (
+        <Icon className={classes.startIcon} icon={startIcon} iconStyle={IconStyle.light} />
+      )}
       <span>{!isLoading ? children : loadingText}</span>
       {isLoading && (
         <Spinner className="ml-2" variant={SpinnerVariant.neutral} size={SpinnerSize.xs} />
       )}
-      {endIcon && <Icon className={classes.endIcon} icon={endIcon} isSolid={isIconSolid} />}
+      {endIcon && <Icon className={classes.endIcon} icon={endIcon} iconStyle={IconStyle.light} />}
     </button>
   );
 };
