@@ -42,6 +42,11 @@ export interface SpinnerProps {
   size?: SpinnerSize;
 
   /**
+   * Hides the track of the spinner
+   */
+  hideTrack?: boolean;
+
+  /**
    * The variant of the component. It supports those theme colors that makes sense for this component.
    */
   variant?: SpinnerVariant;
@@ -62,18 +67,16 @@ export const Spinner = ({
   size = SpinnerSize.md,
   style = {},
   isFullScreen = false,
+  hideTrack = false,
 }: SpinnerProps) => {
   const classes = {
     spinner: cn(className, 'flex items-center justify-center', {
       'h-full w-full': isFullScreen,
     }),
-    stroke: cn(
-      'rounded-full',
-      'border-slate-700',
-      'ease-linear animate-spin',
-      Variants[variant],
-      Sizes[size],
-    ),
+    stroke: cn('rounded-full', 'ease-linear animate-spin', Variants[variant], Sizes[size], {
+      'border-transparent': hideTrack,
+      'border-slate-700': !hideTrack,
+    }),
   };
 
   return (
