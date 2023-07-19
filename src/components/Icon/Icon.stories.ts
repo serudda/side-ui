@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { parseIconOptions } from '@/storybook/utils';
-import { Icon, IconCatalog } from './Icon';
+import { Icon, IconCatalog, IconStyle } from './Icon';
 
 const meta = {
   title: 'UI Components/Icon',
@@ -24,6 +24,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     icon: IconCatalog.adjustmentsHorizontal,
+    iconStyle: IconStyle.regular,
     className: 'w-6 h-6',
   },
 };
