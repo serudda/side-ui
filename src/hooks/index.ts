@@ -1,4 +1,5 @@
 export * from './useBodyClass/useBodyClass';
+export * from './useBreakpoint/useBreakpoint';
 export * from './useCopyToClipboard/useCopyToClipboard';
 export * from './useDebounce/useDebounce';
 export * from './useDocumentEvent/useDocumentEvent';
@@ -13,3 +14,4 @@ export * from './useOnClickOutside/useOnClickOutside';
 export * from './usePopupMenu/usePopupMenu';
 export * from './useToggle/useToggle';
 export * from './useWindowEvent/useWindowEvent';
+export * from './useWindowSize/useWindowSize';
