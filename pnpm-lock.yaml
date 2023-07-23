@@ -11,6 +11,7 @@ specifiers:
   '@storybook/react': ^7.0.7
   '@storybook/react-vite': ^7.0.7
   '@storybook/testing-library': ^0.0.14-next.2
+  '@types/lodash.throttle': ^4.1.7
   '@types/node': ^20.3.2
   '@types/prettier': ^2.7.2
   '@types/react': ^18.0.28
@@ -25,6 +26,7 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-react-refresh: ^0.3.4
   eslint-plugin-storybook: ^0.6.11
+  lodash.throttle: ^4.1.1
   postcss: ^8.4.23
   prettier: ^2.8.7
   prettier-plugin-tailwindcss: ^0.2.8
@@ -44,7 +46,9 @@ specifiers:
 dependencies:
   '@paralleldrive/cuid2': 2.2.1
   '@popperjs/core': 2.11.7
+  '@types/lodash.throttle': 4.1.7
   classnames: 2.3.2
+  lodash.throttle: 4.1.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-popper: 2.3.0_d52dtujcogewjimhlbpfze4rs4
@@ -3001,9 +3005,14 @@ packages:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
+  /@types/lodash.throttle/4.1.7:
+    resolution: {integrity: sha512-znwGDpjCHQ4FpLLx19w4OXDqq8+OvREa05H89obtSyXyOFKL3dDjCslsmfBz0T2FU8dmf5Wx1QvogbINiGIu9g==}
+    dependencies:
+      '@types/lodash': 4.14.194
+    dev: false
+
   /@types/lodash/4.14.194:
     resolution: {integrity: sha512-r22s9tAS7imvBt2lyHC9B8AGwWnXaYb1tY09oyLkXDs4vArpYJzw09nj8MLx5VfciBPGIb+ZwG0ssYnEPJxn/g==}
-    dev: true
 
   /@types/mdx/2.0.5:
     resolution: {integrity: sha512-76CqzuD6Q7LC+AtbPqrvD9AqsN0k8bsYo2bM2J8pmNldP1aIPAbzUQ7QbobyXL4eLr1wK5x8FZFe8eF/ubRuBg==}
@@ -5787,6 +5796,10 @@ packages:
   /lodash.merge/4.6.2:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: true
+
+  /lodash.throttle/4.1.1:
+    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
+    dev: false
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
