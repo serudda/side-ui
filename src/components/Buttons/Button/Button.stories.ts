@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { IconCatalog } from '@/components';
+import { IconCatalog, IconStyle } from '@/components';
 import { parseIconOptions } from '@/storybook/utils';
 import { Button, ButtonSize, ButtonVariant, HtmlType } from './Button';
 
@@ -50,5 +50,6 @@ export const Twitter: Story = {
     size: ButtonSize.sm,
     variant: ButtonVariant.twitter,
     startIcon: IconCatalog.twitter,
+    iconStyle: IconStyle.light
   },
 };

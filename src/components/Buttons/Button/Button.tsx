@@ -140,6 +140,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
    * Elements to display inside the Navbar.
    */
   children?: ReactNode;
+
+  /**
+   * The style for displaying icons in the button. It determines the appearance of the icons, including stroke thickness and fill.
+   */
+  iconStyle?: IconStyle;
 }
 
 /**
@@ -160,6 +165,7 @@ export const Button = ({
   htmlType = HtmlType.button,
   className,
   onClick,
+  iconStyle = IconStyle.light,
   ...restOfProps
 }: ButtonProps) => {
   const setSizes = () => {
@@ -218,14 +224,12 @@ export const Button = ({
       onClick={onClick}
       {...restOfProps}
     >
-      {startIcon && (
-        <Icon className={classes.startIcon} icon={startIcon} iconStyle={IconStyle.light} />
-      )}
+      {startIcon && <Icon className={classes.startIcon} icon={startIcon} iconStyle={iconStyle} />}
       <span>{!isLoading ? children : loadingText}</span>
       {isLoading && (
         <Spinner className="ml-2" variant={SpinnerVariant.neutral} size={SpinnerSize.xs} />
       )}
-      {endIcon && <Icon className={classes.endIcon} icon={endIcon} iconStyle={IconStyle.light} />}
+      {endIcon && <Icon className={classes.endIcon} icon={endIcon} iconStyle={iconStyle} />}
     </button>
   );
 };
