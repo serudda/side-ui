@@ -266,7 +266,7 @@ export interface IconProps {
   icon: IconCatalog;
 
   /**
-   * The style of the icon
+   * The style for displaying icons in the button. It determines the appearance of the icons, including stroke thickness and fill.
    */
   iconStyle?: IconStyle;
 
