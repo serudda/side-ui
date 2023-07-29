@@ -20,10 +20,12 @@ export enum TooltipPlacement {
 
 export enum TooltipColor {
   black = 'black',
+  white = 'white',
 }
 
 const Colors: Record<TooltipColor, string> = {
   [TooltipColor.black]: 'bg-slate-900 text-white border border-slate-800',
+  [TooltipColor.white]: 'bg-slate-50 text-slate-900 border border-slate-800',
 };
 
 export enum TooltipSize {
