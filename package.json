@@ -45,10 +45,12 @@
     "@popperjs/core": "^2.11.7",
     "@types/lodash.throttle": "^4.1.7",
     "classnames": "^2.3.2",
+    "clsx": "^2.0.0",
     "lodash.throttle": "^4.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-popper": "^2.3.0",
+    "tailwind-merge": "^1.14.0",
     "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
