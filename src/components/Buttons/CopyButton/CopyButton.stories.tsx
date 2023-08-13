@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Textarea } from '@/components';
+import { Button, IconCatalog, Textarea } from '@/components';
 import { CopyButton, CopyButtonProps } from './CopyButton';
 
 const meta = {
@@ -22,6 +22,20 @@ export const Default: Story = {
       <div className="mt-32 flex items-center justify-center">
         <CopyButton {...args}>
           <div>Click here</div>
+        </CopyButton>
+      </div>
+    );
+  },
+};
+
+export const ButtonExample: Story = {
+  render: (args) => {
+    return (
+      <div className="mt-32 flex items-center justify-center">
+        <CopyButton {...args}>
+          <span>
+            <Button startIcon={IconCatalog.square2Stack} />
+          </span>
         </CopyButton>
       </div>
     );

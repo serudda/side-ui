@@ -44,9 +44,7 @@ export const CopyButton = ({
     copy(target);
   };
 
-  const handleMouseLeave = () => {
-    setCopied(false);
-  };
+  const handleMouseLeave = () => setCopied(false);
 
   const child = Children.only(children) as ReactElement; //[1]
 

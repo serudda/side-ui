@@ -58,6 +58,11 @@ module.exports = {
           950: '#080A5E',
         },
       },
+      minWidth: (theme) => ({
+        ...theme('width'),
+        100: '26rem',
+        128: '32rem',
+      }),
     },
   },
   plugins: [require('tailwindcss-scrollbar')],
