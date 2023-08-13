@@ -26,7 +26,7 @@ const meta = {
           <span className="text-sm text-slate-50">Report issue</span>
         </DropdownMenu.Option>
         <hr className="my-1.5 border border-slate-800" />
-        <DropdownMenu.Option onClick={() => console.log('clicked: 4')}>
+        <DropdownMenu.Option onClick={() => console.log('clicked: 4')} isDisabled>
           <span className="text-sm font-semibold text-slate-50">Twitter @serudda</span>
         </DropdownMenu.Option>
       </DropdownMenu.Menu>

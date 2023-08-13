@@ -4,6 +4,7 @@ export * from './DropdownMenu/DropdownMenu';
 export * from './Icon/Icon';
 export * from './Inputs';
 export * from './Loaders';
+export * from './NewsTag/NewsTag';
 export * from './Notifications';
 export * from './Overlays';
 export * from './Portal/Portal';

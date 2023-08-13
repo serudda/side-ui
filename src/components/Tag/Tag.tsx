@@ -9,6 +9,7 @@ export enum TagVariant {
   success = 'success',
   warning = 'warning',
   error = 'error',
+  special = 'special',
 }
 
 const Variants: Record<TagVariant, string> = {
@@ -19,6 +20,8 @@ const Variants: Record<TagVariant, string> = {
   [TagVariant.success]: 'bg-green-500/10 text-green-400 ring-1 ring-inset ring-green-500/20',
   [TagVariant.warning]: 'bg-yellow-400/10 text-yellow-500 ring-1 ring-inset ring-yellow-400/20',
   [TagVariant.error]: 'bg-red-400/10 text-red-400 ring-1 ring-inset ring-red-400/20',
+  [TagVariant.special]:
+    'bg-gradient-to-r from-rose-800/60 to-secondary-600/60 text-white ring-1 ring-inset ring-secondary-500/70',
 };
 
 const VariantsWithoutContent: Record<TagVariant, string> = {
@@ -28,6 +31,17 @@ const VariantsWithoutContent: Record<TagVariant, string> = {
   [TagVariant.success]: 'bg-green-500',
   [TagVariant.warning]: 'bg-yellow-400',
   [TagVariant.error]: 'bg-red-400',
+  [TagVariant.special]: 'bg-rose-400',
+};
+
+export enum TagSize {
+  xs = 'xs',
+  sm = 'sm',
+}
+
+const Sizes: Record<TagSize, string> = {
+  [TagSize.xs]: 'py-0.5 px-1.5',
+  [TagSize.sm]: 'py-1 px-2',
 };
 
 export interface TagProps {
@@ -40,6 +54,11 @@ export interface TagProps {
    * The shape of the component. It determines the importance in the hierarchy, for example, the contained button commands the most attention
    */
   variant?: TagVariant;
+
+  /**
+   * The size of the component
+   */
+  size?: TagSize;
 
   /**
    * Specify an optional className to be added to the component
@@ -69,6 +88,7 @@ export interface TagProps {
 export const Tag = ({
   children,
   variant = TagVariant.primary,
+  size = TagSize.sm,
   hasCloseBtn = false,
   className,
   dataTestId,
@@ -81,10 +101,10 @@ export const Tag = ({
       className,
       'items-center rounded-md',
       tagContent.length === 0 ? VariantsWithoutContent[variant] : Variants[variant],
+      tagContent.length > 1 ? Sizes[size] : 'w-1.5 h-1.5',
       {
-        'inline-flex py-1 px-2': tagContent.length > 1,
+        'inline-flex': tagContent.length > 1,
         'w-6 h-6 flex justify-center flex-grow-0 flex-shrink-0': tagContent.length === 1,
-        'w-1.5 h-1.5': tagContent.length === 0,
       },
     ),
     text: cn('text-xs font-medium'),
