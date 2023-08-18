@@ -133,6 +133,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
 
   /**
+   * Whether the button should be a square or not.
+   */
+  isSquare?: boolean;
+
+  /**
    * The text to display when the button is in a loading state.
    */
   loadingText?: string;
@@ -165,6 +170,7 @@ export const Button = ({
   iconStyle = IconStyle.regular,
   isDisabled = false,
   isLoading = false,
+  isSquare = false,
   loadingText = 'Loading',
   isFullWidth = false,
   invert = false,
@@ -191,10 +197,11 @@ export const Button = ({
       'flex items-center justify-center relative overflow-hidden',
       'text-center whitespace-nowrap',
       'transition duration-100 ease-out',
-      'rounded-md disabled:opacity-50 disabled:cursor-default',
+      'disabled:opacity-50 disabled:cursor-default',
       setSizes(),
       invert ? InvertVariants[variant] : Variants[variant],
       {
+        'rounded-md': !isSquare,
         'w-full': isFullWidth,
         'cursor-default opacity-30': isDisabled,
       },
