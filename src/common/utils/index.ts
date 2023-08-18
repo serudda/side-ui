@@ -4,4 +4,4 @@ export * from './match';
 export * from './microTask';
 export * from './owner';
 export * from './focusManagement';
-export * from './cn'
+export * from './cn';
