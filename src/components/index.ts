@@ -9,4 +9,5 @@ export * from './Notifications';
 export * from './Overlays';
 export * from './Portal/Portal';
 export * from './Progress';
+export * from './SlideOver/SlideOver';
 export * from './Tag/Tag';
