@@ -19,7 +19,7 @@ export interface CopyButtonProps {
   withTooltip?: boolean;
 
   /**
-   * Elements to display inside the Navbar.
+   * The content of the button
    */
   children?: ReactNode;
 

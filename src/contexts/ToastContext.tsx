@@ -2,11 +2,11 @@ import React, { createContext, useContext, useRef, useState } from 'react';
 import { createId } from '@paralleldrive/cuid2';
 import { ToastProps } from '@/components';
 
-export interface ToastContextType {
+export type ToastContextType = {
   currentToasts: Array<ToastProps>;
   addToast: (toast: ToastProps) => void;
   deleteToast: (toastId: string | number) => void;
-}
+};
 
 interface ToastProviderProps {
   children: React.ReactNode;
@@ -15,6 +15,7 @@ interface ToastProviderProps {
 /*  CONTEXT DEFINITION  */
 export const ToastContext = createContext<ToastContextType>({} as ToastContextType);
 
+/* PROVIDER DEFINITION */
 export const ToastProvider = ({ children }: ToastProviderProps): JSX.Element => {
   const [currentToasts, setCurrentToasts] = useState<Array<ToastProps>>([]);
   const currentToastsRef = useRef(currentToasts);
