@@ -1,3 +1,5 @@
+/*eslint no-undef: "off"*/
+
 /** @typedef  {import("@ianvs/prettier-plugin-sort-imports").PluginConfig} SortImportsConfig*/
 /** @typedef  {import("prettier").Config} PrettierConfig*/
 /** @typedef  {{ tailwindConfig: string }} TailwindConfig*/
