@@ -1,5 +1,5 @@
 import { type ButtonHTMLAttributes, type ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import {
   Icon,
   IconStyle,
@@ -58,6 +58,16 @@ const Variants: Record<ButtonVariant, string> = {
   [ButtonVariant.destructive]: 'bg-rose-600 enabled:hover:bg-rose-500 text-white',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0] enabled:hover:bg-[#1a8cd8] text-white',
+};
+
+const ActiveVariant: Record<ButtonVariant, string> = {
+  [ButtonVariant.primary]: 'bg-primary-700 enabled:hover:bg-primary-700',
+  [ButtonVariant.secondary]: 'bg-secondary-700 enabled:hover:bg-secondary-700',
+  [ButtonVariant.tertiary]: 'bg-secondary-950 enabled:hover:bg-secondary-950',
+  [ButtonVariant.ghost]: 'bg-slate-900 enabled:hover:bg-slate-900',
+  [ButtonVariant.destructive]: 'bg-rose-800 enabled:hover:bg-rose-800',
+  [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/60',
+  [ButtonVariant.twitter]: 'bg-[#1a8cd8] enabled:hover:bg-[#1a8cd8]',
 };
 
 const InvertVariants: Record<ButtonVariant, string> = {
@@ -128,6 +138,11 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   isDisabled?: boolean;
 
   /**
+   * Whether the button is active or not.
+   */
+  isActive?: boolean;
+
+  /**
    * If set to true, the button will display a loading effect.
    */
   isLoading?: boolean;
@@ -168,6 +183,7 @@ export const Button = ({
   startIcon,
   endIcon,
   iconStyle = IconStyle.regular,
+  isActive = false,
   isDisabled = false,
   isLoading = false,
   isSquare = false,
@@ -199,7 +215,8 @@ export const Button = ({
       'transition duration-100 ease-out',
       'disabled:opacity-50 disabled:cursor-default',
       setSizes(),
-      invert ? InvertVariants[variant] : Variants[variant],
+      invert && !isActive ? InvertVariants[variant] : Variants[variant],
+      isActive && ActiveVariant[variant],
       {
         'rounded-md': !isSquare,
         'w-full': isFullWidth,

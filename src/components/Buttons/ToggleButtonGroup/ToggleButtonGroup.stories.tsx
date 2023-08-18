@@ -16,5 +16,6 @@ export const Default: Story = {
   args: {
     size: ButtonSize.sm,
     variant: ButtonVariant.primary,
+    isFullWidth: false,
   },
 };
