@@ -1,24 +1,27 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 import cn from 'classnames';
-import { Button, ButtonProps, ButtonSize, ButtonVariant } from '@/components';
-import { ToggleGroupProvider, useToggleGroup } from '@/contexts';
+import { Button, ButtonProps } from '@/components';
+import { useToggleGroup } from '@/contexts';
 
-enum ToggleButtonPosition {
+export enum ToggleButtonGroupPosition {
   left = 'left',
   middle = 'middle',
   right = 'right',
 }
 
-export interface ToggleButtonProps extends ButtonProps {
+export interface ToggleButtonGroupProps extends ButtonProps {
   /**
    * Specify an optional className to be added to the component.
    */
   className?: string;
 
-  position?: ToggleButtonPosition;
+  /**
+   * The position of the button on the group.
+   */
+  position?: ToggleButtonGroupPosition;
 
   /**
-   * The value of the button
+   * The value of the button.
    */
   value: string;
 
@@ -28,18 +31,18 @@ export interface ToggleButtonProps extends ButtonProps {
   children: ReactNode;
 }
 
-const ToggleButton = ({
+export const ToggleButtonGroup = ({
   children,
   value,
-  position = ToggleButtonPosition.middle,
+  position = ToggleButtonGroupPosition.middle,
   className,
   ...props
-}: ToggleButtonProps) => {
+}: ToggleButtonGroupProps) => {
   const { value: selectedValue, onChange } = useToggleGroup();
   const classes = cn(className, {
-    'rounded-l-md': position === ToggleButtonPosition.left,
-    '-ml-px': position === ToggleButtonPosition.middle,
-    '-ml-px rounded-r-md': position === ToggleButtonPosition.right,
+    'rounded-l-md': position === ToggleButtonGroupPosition.left,
+    '-ml-px': position === ToggleButtonGroupPosition.middle,
+    '-ml-px rounded-r-md': position === ToggleButtonGroupPosition.right,
   });
 
   const handleClick = () => onChange(value);
@@ -57,80 +60,6 @@ const ToggleButton = ({
   );
 };
 
-export interface ToggleButtonGroupProps {
-  /**
-   * Specify an optional className to be added to the component.
-   */
-  className?: string;
-
-  /**
-   * Extends the buttons to 100% width.
-   */
-  isFullWidth?: boolean;
-
-  /**
-   * The value of the buttons.
-   */
-  variant?: ButtonVariant;
-
-  /**
-   * The size of the buttons.
-   */
-  size?: ButtonSize;
-}
-
-export const ToggleButtonGroup = ({
-  variant = ButtonVariant.primary,
-  size = ButtonSize.sm,
-  isFullWidth = false,
-  className,
-}: ToggleButtonGroupProps) => {
-  const classes = {
-    container: cn(className, 'isolate inline-flex', {
-      'w-full': isFullWidth,
-    }),
-  };
-  const [favoriteFruit, setFavoriteFruit] = useState<string | null>('banana');
-
-  const handleChange = (value: string) => {
-    console.log(value);
-    setFavoriteFruit(value);
-  };
-
-  return (
-    <ToggleGroupProvider
-      value={favoriteFruit}
-      onChange={handleChange}
-      className={classes.container}
-      aria-label="What is your favorite fruit?"
-    >
-      <ToggleButton
-        variant={variant}
-        value="subtle"
-        size={size}
-        position={ToggleButtonPosition.left}
-        isFullWidth={isFullWidth}
-      >
-        Subtle
-      </ToggleButton>
-      <ToggleButton
-        variant={variant}
-        value="moderate"
-        size={size}
-        position={ToggleButtonPosition.middle}
-        isFullWidth={isFullWidth}
-      >
-        Moderate
-      </ToggleButton>
-      <ToggleButton
-        variant={variant}
-        value="wild"
-        size={size}
-        position={ToggleButtonPosition.right}
-        isFullWidth={isFullWidth}
-      >
-        Wild
-      </ToggleButton>
-    </ToggleGroupProvider>
-  );
-};
+/**
+ * @reference https://www.joshuawootonn.com/react-toggle-group-component
+ */
