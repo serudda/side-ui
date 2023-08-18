@@ -1,5 +1,5 @@
-import { twMerge } from "tailwind-merge";
-import { clsx, ClassValue } from "clsx";
+import { ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 /**
  * Combines and merges Tailwind CSS classes using twMerge and clsx utility functions.
@@ -9,8 +9,8 @@ import { clsx, ClassValue } from "clsx";
  * @returns {string} - The merged and combined class names as a string.
  */
 export const cn = (...inputs: ClassValue[]) => {
-  return twMerge(clsx(inputs))
-}
+  return twMerge(clsx(inputs));
+};
 
 /**
  * Source:
