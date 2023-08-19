@@ -73,9 +73,10 @@ export const SlideOver = ({
 }: SlideOverProps) => {
   const classes = {
     container: cn(
-      'absolute inset-0 sm:inset-y-0 transition-all p-4',
+      'absolute inset-0 sm:inset-y-0 p-4',
       'grid grid-rows-[0.05fr,1fr] gap-4 items-start',
-      'bg-slate-950  border-slate-700 text-white',
+      'bg-slate-950 border-slate-700 text-white',
+      'transition-all',
       SlideOverWidths[width],
 
       // Control styles when Slider is on the left side (not right-aligned)
@@ -91,7 +92,7 @@ export const SlideOver = ({
       },
       className,
     ),
-    header: cn('flex items-center justify-between pt-2 items-start', {
+    header: cn('flex justify-between items-start', 'pt-2', {
       'flex-row-reverse': isTitleRightAligned,
     }),
   };

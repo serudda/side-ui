@@ -11,7 +11,7 @@ import {
 } from '@/components';
 
 const meta = {
-  title: 'UI Components/SlideOver/SlideOver',
+  title: 'UI Components/SlideOver',
   component: SlideOver,
   tags: ['autodocs'],
   args: {
@@ -31,38 +31,73 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <SlideOver {...args}>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-      </SlideOver>
+      <div className="h-screen">
+        <SlideOver {...args}>
+          <div className="flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>
+        </SlideOver>
+      </div>
     );
   },
 };
 
 const OverflowScrollExample = (args: SlideOverProps) => {
   return (
-    <SlideOver {...args}>
-      <div
-        className="h-full overflow-scroll text-white"
-        style={{ scrollbarColor: 'transparent transparent' }}
-      >
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-        <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
-      </div>
-    </SlideOver>
+    <div className="h-screen">
+      <SlideOver {...args}>
+        <div
+          className="h-full overflow-scroll text-white"
+          style={{ scrollbarColor: 'transparent transparent' }}
+        >
+          <div className="flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Samuel Llibre Santos</div>
+          </div>
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Samuel Llibre Santos</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Samuel Llibre Santos</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Samuel Llibre Santos</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Samuel Llibre Santos</div>
+          </div>{' '}
+          <div className="mt-10 flex h-20 gap-4 rounded bg-slate-800 p-4">
+            <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+            <div className="font-bold ">Sergio Ruiz</div>
+          </div>
+        </div>
+      </SlideOver>
+    </div>
   );
 };
 
@@ -78,7 +113,7 @@ const ButtonExample = (args: SlideOverProps) => {
   };
 
   return (
-    <>
+    <div className="h-screen">
       <Button
         startIcon={IconCatalog.squareHalf}
         size={ButtonSize.xs}
@@ -86,11 +121,12 @@ const ButtonExample = (args: SlideOverProps) => {
         onClick={toggleSlideOver}
       />
       <SlideOver {...args} isOpen={SlideOverOpen} onClick={toggleSlideOver}>
-        <div className="h-full overflow-scroll text-white">
-          <div className="mt-10 h-20 rounded bg-slate-800 p-4">This is a content</div>
+        <div className="flex h-20 gap-4 rounded bg-slate-800 p-4">
+          <div className="h-10 w-10 rounded-full border border-solid border-slate-500 bg-slate-950"></div>
+          <div className="font-bold ">Sergio Ruiz</div>
         </div>
       </SlideOver>
-    </>
+    </div>
   );
 };
 
