@@ -24,7 +24,8 @@
     "build-storybook": "storybook build",
     "publish:local": "pnpm build && yalc publish",
     "push:local": "pnpm build && yalc push",
-    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
+       "prepare": "npx husky install"
   },
   "files": [
     "dist"
@@ -54,6 +55,8 @@
     "vite-tsconfig-paths": "^4.2.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@storybook/addon-essentials": "^7.0.7",
     "@storybook/addon-interactions": "^7.0.7",
@@ -75,6 +78,8 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "eslint-plugin-storybook": "^0.6.11",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
     "postcss": "^8.4.23",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.8",
