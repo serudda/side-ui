@@ -2,6 +2,7 @@ import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonSize, ButtonVariant } from '@/components';
 import { useModal } from '@/hooks';
+import { BasicModalHeader } from '../ModalSections';
 import { ConfirmationModal, type ConfirmationModalProps } from './ConfirmationModal';
 
 const meta = {
@@ -9,10 +10,6 @@ const meta = {
   component: ConfirmationModal,
   tags: ['autodocs'],
   args: {
-    header: {
-      title: 'Do you want to add a new item?',
-      hasCloseBtn: false,
-    },
     description: 'This action cannot be undone. Please confirm.',
     cancelBtnLabel: 'Cancel',
     confirmBtnLabel: 'Add new item',
@@ -31,6 +28,13 @@ const TemplateExample = (args: ConfirmationModalProps) => {
     const item = await openModal<string | null>((close) => (
       <ConfirmationModal
         {...args}
+        header={
+          <BasicModalHeader
+            title="Confirmation Modal"
+            hasCloseBtn={false}
+            onClose={() => close(null)}
+          />
+        }
         onClose={() => close(null)}
         onConfirm={() => close('New Item')}
       />

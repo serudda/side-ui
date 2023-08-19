@@ -1,7 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import cn from 'classnames';
 import { Key } from '@/common';
-import { Button, ButtonSize, ButtonVariant, IconCatalog } from '@/components';
 import { useBodyClass, useKeyPress } from '@/hooks';
 
 export enum ModalSize {
@@ -9,6 +8,7 @@ export enum ModalSize {
   base = 'base',
   lg = 'lg',
   xl = 'xl',
+  full = 'full',
 }
 
 const Sizes: Record<ModalSize, string> = {
@@ -16,23 +16,7 @@ const Sizes: Record<ModalSize, string> = {
   [ModalSize.base]: 'max-w-lg',
   [ModalSize.lg]: 'max-w-xl',
   [ModalSize.xl]: 'max-w-2xl',
-};
-
-export type HeaderType = {
-  /**
-   * Title for modal header
-   */
-  title?: string;
-
-  /**
-   * Render close button
-   */
-  hasCloseBtn?: boolean;
-
-  /**
-   * Set an extra action on the modal header
-   */
-  action?: ReactNode;
+  [ModalSize.full]: 'max-w-full',
 };
 
 export interface BaseModalProps {
@@ -44,7 +28,7 @@ export interface BaseModalProps {
   /**
    * Define the modal header
    */
-  header?: HeaderType;
+  header?: ReactNode;
 
   /**
    * Elements to display inside the Modal.
@@ -82,17 +66,23 @@ export const BaseModal = ({
   const classes = {
     container: cn(
       className,
-      'transform-none transition-transform h-full my-7 mx-auto relative w-auto pointer-events-none',
+      'transform-none transition-transform relative w-auto pointer-events-none',
       Sizes[size],
+      {
+        'my-7 mx-auto h-full': size !== ModalSize.full,
+        'h-screen': size === ModalSize.full,
+      },
     ),
     content: cn(
       'bg-slate-950',
-      'rounded-2xl',
-      'max-h-full overflow-hidden',
+      'overflow-hidden',
       'relative flex flex-col w-full pointer-events-auto bg-clip-padding outline-0',
+      {
+        'rounded-2xl max-h-full': size !== ModalSize.full,
+        'h-full': size === ModalSize.full,
+      },
     ),
-    header: cn('flex items-center flex-shrink-0 justify-between', {
-      'py-4 pl-6 pr-5': header,
+    header: cn({
       'p-3': !header,
     }),
     footer: cn('flex flex-wrap flex-shrink-0 items-center w-full', {
@@ -114,30 +104,10 @@ export const BaseModal = ({
 
   /* Render JSX */
   return (
-    <div className={classes.container} style={{ height: 'calc(100% - 3.5rem)' }}>
+    <div className={classes.container}>
       <div className={classes.content}>
         {/* HEADER */}
-        {header && (
-          <div className={classes.header}>
-            {header.title && (
-              <h2 className="font-semi-bold line-clamp-3 text-xl text-neutral-50">
-                {header.title}
-              </h2>
-            )}
-
-            <div className="ml-auto flex items-center">
-              {header.action && header.action}
-              {header.hasCloseBtn && (
-                <Button
-                  startIcon={IconCatalog.xMark}
-                  variant={ButtonVariant.ghost}
-                  size={ButtonSize.sm}
-                  onClick={handleCancelBtnClick}
-                />
-              )}
-            </div>
-          </div>
-        )}
+        <div className={classes.header}>{header}</div>
 
         {/* BODY */}
         <div className="relative flex-auto overflow-y-auto px-6 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-800 scrollbar-track-slate-900">

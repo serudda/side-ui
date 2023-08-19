@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonSize, ButtonVariant } from '@/components';
 import { useModal } from '@/hooks';
+import { BasicModalHeader } from '../ModalSections';
 import { BaseModal, type BaseModalProps } from './BaseModal';
 
 const ModalBodyLongSample = () => {
@@ -27,10 +28,6 @@ const meta = {
   component: BaseModal,
   tags: ['autodocs'],
   args: {
-    header: {
-      title: '¿Deseas cancelar?',
-      hasCloseBtn: true,
-    },
     body: <ModalBodyLongSample />,
     footer: (
       <div className="flex w-full items-center justify-end space-x-4">
@@ -53,12 +50,15 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
   const { modalNode, openModal } = useModal();
 
   const handleClick = async () => {
-    await openModal<boolean>((close) => (
+    await openModal<boolean | null>((close) => (
       <BaseModal
         className="text-base-white"
         body={args.body}
-        header={args.header}
+        header={
+          <BasicModalHeader title="Modal Title TEST" hasCloseBtn onClose={() => close(null)} />
+        }
         footer={args.footer}
+        size={args.size}
         onClose={() => close(true)}
       />
     ));
