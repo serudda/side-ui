@@ -63,6 +63,14 @@ module.exports = {
         100: '26rem',
         128: '32rem',
       }),
+      zIndex: {
+        1: '1',
+        10: '10', // Navbar
+        20: '20', // Overlay
+        30: '30', // Modal
+        40: '40', // Toast
+        50: '50', // Tooltip and Popover
+      },
     },
   },
   plugins: [require('tailwindcss-scrollbar')],
