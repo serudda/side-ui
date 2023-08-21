@@ -7,6 +7,7 @@ export enum IconCatalog {
   arrowLongRight = 'arrowLongRight',
   arrowLongLeft = 'arrowLongLeft',
   arrowRightOnRectangle = 'arrowRightOnRectangle',
+  arrowsOutSimple = 'arrowsOutSimple',
   barsArrowDown = 'barsArrowDown',
   bars3 = 'bars3',
   beaker = 'beaker',
@@ -21,6 +22,7 @@ export enum IconCatalog {
   clipboard = 'clipboard',
   discord = 'discord',
   documentCheck = 'documentCheck',
+  dotsThree = 'dotsThree',
   ellipsisHorizontal = 'ellipsisHorizontal',
   ellipsisHorizontalCircle = 'ellipsisHorizontalCircle',
   faceSmile = 'faceSmile',
@@ -85,6 +87,11 @@ const Icons: Record<IconCatalog, IconType> = {
   [IconCatalog.arrowRightOnRectangle]: {
     outline:
       'M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9',
+  },
+
+  [IconCatalog.arrowsOutSimple]: {
+    outline:
+      'M19.563 4.75V8.5a.312.312 0 1 1-.625 0V5.505L14.47 9.97a.313.313 0 0 1-.442-.442l4.466-4.466H15.5a.313.313 0 1 1 0-.625h3.75a.313.313 0 0 1 .313.312ZM9.528 14.029l-4.466 4.466V15.5a.313.313 0 1 0-.625 0v3.75a.313.313 0 0 0 .312.313H8.5a.312.312 0 1 0 0-.625H5.505L9.97 14.47a.313.313 0 0 0-.442-.442Z',
   },
 
   [IconCatalog.barsArrowDown]: {
@@ -157,6 +164,11 @@ const Icons: Record<IconCatalog, IconType> = {
       'M10.125 2.25h-4.5c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125v-9M10.125 2.25h.375a9 9 0 0 1 9 9v.375M10.125 2.25A3.375 3.375 0 0 1 13.5 5.625v1.5c0 .621.504 1.125 1.125 1.125h1.5a3.375 3.375 0 0 1 3.375 3.375M9 15l2.25 2.25L15 12',
     solid:
       'M9 1.5H5.625c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a1.875 1.875 0 01-1.875-1.875V5.25A3.75 3.75 0 009 1.5zm6.61 10.936a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 14.47a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z M12.971 1.816A5.23 5.23 0 0114.25 5.25v1.875c0 .207.168.375.375.375H16.5a5.23 5.23 0 013.434 1.279 9.768 9.768 0 00-6.963-6.963z',
+  },
+
+  [IconCatalog.dotsThree]: {
+    outline:
+      'M12.842 11.842a.842.842 0 1 1-1.685 0 .842.842 0 0 1 1.685 0Zm-8-.842a.842.842 0 1 0 0 1.685.842.842 0 0 0 0-1.685Zm14.316 0a.842.842 0 1 0 0 1.685.842.842 0 0 0 0-1.685Z',
   },
 
   [IconCatalog.ellipsisHorizontal]: {

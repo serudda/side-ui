@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button, ButtonSize, ButtonVariant } from '@/components';
 import { useModal } from '@/hooks';
-import { BasicModalHeader } from '../ModalSections';
-import { BaseModal, type BaseModalProps } from './BaseModal';
+import { BasicModalHeader, FullScreenModalHeader } from '../ModalSections';
+import { BaseModal, ModalSize, type BaseModalProps } from './BaseModal';
 
 const ModalBodyLongSample = () => {
   return (
@@ -54,9 +54,7 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
       <BaseModal
         className="text-base-white"
         body={args.body}
-        header={
-          <BasicModalHeader title="Modal Title TEST" hasCloseBtn onClose={() => close(null)} />
-        }
+        header={<BasicModalHeader title="Modal Title" hasCloseBtn onClose={() => close(null)} />}
         footer={args.footer}
         size={args.size}
         onClose={() => close(true)}
@@ -76,4 +74,45 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
 
 export const Default: Story = {
   render: (args) => <TemplateImperativeExample {...args} />,
+};
+
+const TemplateFullScreenModalExample = (args: BaseModalProps) => {
+  const { modalNode, openModal } = useModal();
+
+  const handleClick = async () => {
+    await openModal<boolean | null>((close) => (
+      <BaseModal
+        className="text-base-white"
+        body={args.body}
+        header={
+          <FullScreenModalHeader
+            title="Modal Title"
+            hasGoBackBtn
+            onClose={() => close(null)}
+            action={
+              <Button variant={ButtonVariant.primary} size={ButtonSize.xs}>
+                Primary Action
+              </Button>
+            }
+          />
+        }
+        footer={args.footer}
+        size={ModalSize.fullScreen}
+        onClose={() => close(true)}
+      />
+    ));
+  };
+
+  return (
+    <>
+      <Button size={ButtonSize.xs} onClick={handleClick} invert>
+        Open Modal
+      </Button>
+      {modalNode}
+    </>
+  );
+};
+
+export const FullScreenModal: Story = {
+  render: (args) => <TemplateFullScreenModalExample {...args} />,
 };

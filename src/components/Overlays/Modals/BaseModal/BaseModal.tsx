@@ -8,7 +8,7 @@ export enum ModalSize {
   base = 'base',
   lg = 'lg',
   xl = 'xl',
-  full = 'full',
+  fullScreen = 'fullScreen',
 }
 
 const Sizes: Record<ModalSize, string> = {
@@ -16,7 +16,19 @@ const Sizes: Record<ModalSize, string> = {
   [ModalSize.base]: 'max-w-lg',
   [ModalSize.lg]: 'max-w-xl',
   [ModalSize.xl]: 'max-w-2xl',
-  [ModalSize.full]: 'max-w-full',
+  [ModalSize.fullScreen]: 'max-w-full',
+};
+
+export enum ModalBgColor {
+  transparent = 'transparent',
+  slate = 'slate',
+  black = 'black',
+}
+
+const BgColors: Record<ModalBgColor, string> = {
+  [ModalBgColor.transparent]: 'bg-transparent',
+  [ModalBgColor.slate]: 'bg-slate-950',
+  [ModalBgColor.black]: 'bg-black',
 };
 
 export interface BaseModalProps {
@@ -24,6 +36,16 @@ export interface BaseModalProps {
    * Specify an optional className to be added to the component
    */
   className?: string;
+
+  /**
+   * Changes the size of the modal, giving it more or less padding
+   */
+  size?: ModalSize;
+
+  /**
+   * Changes the background color of the modal
+   */
+  bgColor?: ModalBgColor;
 
   /**
    * Define the modal header
@@ -41,11 +63,6 @@ export interface BaseModalProps {
   footer?: ReactNode;
 
   /**
-   * Changes the size of the modal, giving it more or less padding
-   */
-  size?: ModalSize;
-
-  /**
    * The callback to get notified when the modal was closed
    */
   onClose?: () => void;
@@ -57,10 +74,11 @@ export interface BaseModalProps {
  */
 export const BaseModal = ({
   className,
+  size = ModalSize.base,
+  bgColor = ModalBgColor.slate,
   header,
   body,
   footer,
-  size = ModalSize.base,
   onClose,
 }: BaseModalProps) => {
   const classes = {
@@ -69,21 +87,25 @@ export const BaseModal = ({
       'transform-none transition-transform relative w-auto pointer-events-none',
       Sizes[size],
       {
-        'my-7 mx-auto h-full': size !== ModalSize.full,
-        'h-screen': size === ModalSize.full,
+        'my-7 mx-auto h-full': size !== ModalSize.fullScreen,
+        'h-screen': size === ModalSize.fullScreen,
       },
     ),
     content: cn(
-      'bg-slate-950',
       'overflow-hidden',
       'relative flex flex-col w-full pointer-events-auto bg-clip-padding outline-0',
+      BgColors[bgColor],
       {
-        'rounded-2xl max-h-full': size !== ModalSize.full,
-        'h-full': size === ModalSize.full,
+        'rounded-2xl max-h-full': size !== ModalSize.fullScreen,
+        'h-full': size === ModalSize.fullScreen,
       },
     ),
     header: cn({
       'p-3': !header,
+    }),
+    body: cn('relative', {
+      'flex-auto overflow-y-auto px-6 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-800 scrollbar-track-slate-900':
+        size !== ModalSize.fullScreen,
     }),
     footer: cn('flex flex-wrap flex-shrink-0 items-center w-full', {
       'p-6': footer,
@@ -110,9 +132,7 @@ export const BaseModal = ({
         <div className={classes.header}>{header}</div>
 
         {/* BODY */}
-        <div className="relative flex-auto overflow-y-auto px-6 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-800 scrollbar-track-slate-900">
-          {body}
-        </div>
+        <div className={classes.body}>{body}</div>
 
         {/* FOOTER */}
         <div className={classes.footer}>{footer}</div>
