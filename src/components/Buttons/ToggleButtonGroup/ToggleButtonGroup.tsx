@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import cn from 'classnames';
-import { Button, ButtonProps } from '@/components';
+import { Button, type ButtonProps } from '@/components';
 import { useToggleGroup } from '@/contexts';
 
 export enum ToggleButtonGroupPosition {
@@ -9,7 +9,7 @@ export enum ToggleButtonGroupPosition {
   right = 'right',
 }
 
-export interface ToggleButtonGroupProps extends ButtonProps {
+export interface ToggleButtonGroupProps extends Omit<ButtonProps, ''> {
   /**
    * Specify an optional className to be added to the component.
    */
@@ -36,7 +36,7 @@ export const ToggleButtonGroup = ({
   value,
   position = ToggleButtonGroupPosition.middle,
   className,
-  ...props
+  ...restOfProps
 }: ToggleButtonGroupProps) => {
   const { value: selectedValue, onChange } = useToggleGroup();
   const classes = cn(className, {
@@ -49,7 +49,7 @@ export const ToggleButtonGroup = ({
 
   return (
     <Button
-      {...props}
+      {...restOfProps}
       className={classes}
       onClick={handleClick}
       isActive={selectedValue === value}
