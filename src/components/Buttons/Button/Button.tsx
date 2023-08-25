@@ -47,6 +47,7 @@ export enum ButtonVariant {
   destructive = 'destructive',
   discord = 'discord',
   twitter = 'twitter',
+  special = 'special',
 }
 
 const Variants: Record<ButtonVariant, string> = {
@@ -58,6 +59,8 @@ const Variants: Record<ButtonVariant, string> = {
   [ButtonVariant.destructive]: 'bg-rose-600 enabled:hover:bg-rose-500 text-white',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0] enabled:hover:bg-[#1a8cd8] text-white',
+  [ButtonVariant.special]:
+    'bg-gradient-to-r from-rose-800/90 to-secondary-600/70 hover:from-rose-800/60 hover:to-secondary-600/40 text-white ring-1 ring-inset ring-secondary-500/70',
 };
 
 const ActiveVariant: Record<ButtonVariant, string> = {
@@ -68,6 +71,8 @@ const ActiveVariant: Record<ButtonVariant, string> = {
   [ButtonVariant.destructive]: 'bg-rose-800 enabled:hover:bg-rose-800',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 enabled:hover:bg-[#5865f2]/60',
   [ButtonVariant.twitter]: 'bg-[#1a8cd8] enabled:hover:bg-[#1a8cd8]',
+  [ButtonVariant.special]:
+    'bg-gradient-to-r from-rose-800/60 to-secondary-600/60 text-white ring-1 ring-inset ring-secondary-500/70',
 };
 
 const InvertVariants: Record<ButtonVariant, string> = {
@@ -81,6 +86,8 @@ const InvertVariants: Record<ButtonVariant, string> = {
     'bg-transparent border border-rose-900 hover:bg-rose-950 text-rose-300',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0]/60 hover:bg-[#1d9bf0]/80 text-white',
+  [ButtonVariant.special]:
+    'bg-gradient-to-r from-rose-800/60 to-secondary-600/60 text-white ring-1 ring-inset ring-secondary-500/70',
 };
 
 enum ButtonIconSize {
