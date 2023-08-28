@@ -12,4 +12,5 @@ export * from './Notifications';
 export * from './Overlays';
 export * from './Portal/Portal';
 export * from './Progress';
+export * from './Slot/Slot';
 export * from './Tag/Tag';

@@ -10,6 +10,7 @@ export * from './useKeyPress/useKeyPress';
 export * from './useLatestValue/useLatestValue';
 export * from './useLocalStorage/useLocalStorage';
 export * from './useModal/useModal';
+export * from './useMultipleRefs/useMultipleRefs';
 export * from './useOnClickOutside/useOnClickOutside';
 export * from './usePopupMenu/usePopupMenu';
 export * from './useToggle/useToggle';
