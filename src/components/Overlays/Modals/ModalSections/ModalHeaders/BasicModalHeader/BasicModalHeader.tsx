@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import cn from 'classnames';
-import { Button, ButtonSize, ButtonVariant, IconCatalog } from '@/components';
+import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@/components';
 
 export interface BasicModalHeaderProps {
   /**
@@ -55,11 +55,13 @@ export const BasicModalHeader = ({
         {action}
         {hasCloseBtn && (
           <Button
-            startIcon={IconCatalog.xMark}
             variant={ButtonVariant.ghost}
-            size={ButtonSize.sm}
+            size={ButtonSize.xs}
             onClick={handleCloseBtnClick}
-          />
+            isOnlyIcon
+          >
+            <Icon className="h-5 w-5" icon={IconCatalog.xMark} iconStyle={IconStyle.regular} />
+          </Button>
         )}
       </div>
     </div>

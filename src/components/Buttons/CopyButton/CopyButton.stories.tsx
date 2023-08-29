@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, IconCatalog, Textarea } from '@/components';
+import { Button, Icon, IconCatalog, IconStyle, Textarea } from '@/components';
 import { CopyButton, CopyButtonProps } from './CopyButton';
 
 const meta = {
@@ -34,7 +34,13 @@ export const ButtonExample: Story = {
       <div className="mt-32 flex items-center justify-center">
         <CopyButton {...args}>
           <span>
-            <Button startIcon={IconCatalog.square2Stack} />
+            <Button isOnlyIcon>
+              <Icon
+                className="h-8 w-8"
+                icon={IconCatalog.square2Stack}
+                iconStyle={IconStyle.regular}
+              />
+            </Button>
           </span>
         </CopyButton>
       </div>

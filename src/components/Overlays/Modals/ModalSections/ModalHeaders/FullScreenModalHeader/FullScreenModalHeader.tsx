@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import cn from 'classnames';
-import { Button, ButtonSize, ButtonVariant, IconCatalog } from '@/components';
+import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@/components';
 
 export interface FullScreenModalHeaderProps {
   /**
@@ -60,9 +60,15 @@ export const FullScreenModalHeader = ({
               <Button
                 size={ButtonSize.base}
                 variant={ButtonVariant.ghost}
-                startIcon={IconCatalog.arrowLeft}
                 onClick={handleGoBackBtnClick}
-              />
+                isOnlyIcon
+              >
+                <Icon
+                  className="h-8 w-8"
+                  icon={IconCatalog.arrowLeft}
+                  iconStyle={IconStyle.regular}
+                />
+              </Button>
             </div>
           )}
 
