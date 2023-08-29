@@ -30,6 +30,12 @@ module.exports = {
       ],
     },
     extend: {
+      borderWidth: {
+        3: '3px',
+        5: '5px',
+        6: '6px',
+        7: '7px',
+      },
       colors: {
         primary: {
           50: '#FEFFD6',
