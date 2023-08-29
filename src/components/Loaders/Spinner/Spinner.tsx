@@ -4,13 +4,15 @@ import cn from 'classnames';
 export enum SpinnerSize {
   xs = 'xs',
   sm = 'sm',
-  md = 'md',
+  base = 'base',
+  lg = 'lg',
 }
 
 const Sizes: Record<SpinnerSize, string> = {
   [SpinnerSize.xs]: 'w-4 h-4 border-2',
-  [SpinnerSize.sm]: 'w-8 h-8 border-4',
-  [SpinnerSize.md]: 'w-16 h-16 border-8',
+  [SpinnerSize.sm]: 'w-5 h-5 border-2',
+  [SpinnerSize.base]: 'w-6 h-6 border-3',
+  [SpinnerSize.lg]: 'w-7 h-7 border-4',
 };
 
 export enum SpinnerVariant {
@@ -64,7 +66,7 @@ export interface SpinnerProps {
 export const Spinner = ({
   className,
   variant = SpinnerVariant.primary,
-  size = SpinnerSize.md,
+  size = SpinnerSize.base,
   style = {},
   isFullScreen = false,
   hideTrack = false,

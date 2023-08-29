@@ -1,35 +1,15 @@
 import { type Meta, type StoryObj } from '@storybook/react';
-import { Icon, IconCatalog, IconStyle } from '@/components';
-import { parseIconOptions } from '@/storybook/utils';
+import { Icon, IconCatalog, IconStyle, Spinner, SpinnerSize, SpinnerVariant } from '@/components';
 import { Button, ButtonSize, ButtonVariant, HtmlType } from './Button';
 
 const meta = {
   title: 'UI Components/Buttons/Button',
   component: Button,
   tags: ['autodocs'],
-  argTypes: {
-    startIcon: {
-      table: {
-        type: {
-          summary: 'angle, arrowDown, arrowExternal, etc.',
-        },
-      },
-      options: parseIconOptions(),
-    },
-    endIcon: {
-      table: {
-        type: {
-          summary: 'angle, arrowDown, arrowExternal, etc.',
-        },
-      },
-      options: parseIconOptions(),
-    },
-  },
   args: {
     size: ButtonSize.xs,
     variant: ButtonVariant.primary,
     htmlType: HtmlType.button,
-    iconStyle: IconStyle.regular,
   },
 } satisfies Meta<typeof Button>;
 
@@ -42,10 +22,8 @@ export const Default: Story = {
       <div className="inline-flex content-end items-end space-x-3">
         <Button {...args}>Clean Board</Button>
         <Button size={ButtonSize.xs} invert onClick={() => {}}>
-          <div className="flex items-center gap-2">
-            <Icon className="h-5 w-5" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
-            Clean Board
-          </div>
+          <Icon className="mr-2 h-4 w-4" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
+          Clean Board
         </Button>
       </div>
     );
@@ -134,31 +112,20 @@ export const StartIcon: Story = {
   render: (args) => {
     return (
       <div className="inline-flex content-end items-end space-x-3">
-        <Button
-          {...args}
-          size={ButtonSize.xs}
-          variant={ButtonVariant.primary}
-          startIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.xs} variant={ButtonVariant.primary} invert>
+          <Icon
+            className="mr-2 h-5 w-5"
+            icon={IconCatalog.plusSmall}
+            iconStyle={IconStyle.regular}
+          />
           Clean Board
         </Button>
-        <Button
-          {...args}
-          size={ButtonSize.sm}
-          variant={ButtonVariant.secondary}
-          startIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.secondary} invert>
+          <Icon className="mr-2 h-5 w-5" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
           Clean Board
         </Button>
-        <Button
-          {...args}
-          size={ButtonSize.base}
-          variant={ButtonVariant.tertiary}
-          startIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.base} variant={ButtonVariant.tertiary} invert>
+          <Icon className="mr-2 h-6 w-6" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
           Clean Board
         </Button>
       </div>
@@ -170,32 +137,17 @@ export const EndIcon: Story = {
   render: (args) => {
     return (
       <div className="inline-flex content-end items-end space-x-3">
-        <Button
-          {...args}
-          size={ButtonSize.xs}
-          variant={ButtonVariant.primary}
-          endIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.xs} variant={ButtonVariant.primary} invert>
           Clean Board
+          <Icon className="ml-2 h-5 w-5" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
         </Button>
-        <Button
-          {...args}
-          size={ButtonSize.sm}
-          variant={ButtonVariant.secondary}
-          endIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.secondary} invert>
           Clean Board
+          <Icon className="ml-2 h-6 w-6" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
         </Button>
-        <Button
-          {...args}
-          size={ButtonSize.base}
-          variant={ButtonVariant.tertiary}
-          endIcon={IconCatalog.bars3}
-          invert
-        >
+        <Button {...args} size={ButtonSize.base} variant={ButtonVariant.tertiary} invert>
           Clean Board
+          <Icon className="ml-2 h-7 w-7" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
         </Button>
       </div>
     );
@@ -206,38 +158,69 @@ export const OnlyIcon: Story = {
   render: (args) => {
     return (
       <div className="inline-flex content-end items-end space-x-3">
-        <Button
-          {...args}
-          size={ButtonSize.xs}
-          variant={ButtonVariant.primary}
-          endIcon={IconCatalog.square2Stack}
-          invert
-        />
-        <Button
-          {...args}
-          size={ButtonSize.sm}
-          variant={ButtonVariant.secondary}
-          endIcon={IconCatalog.square2Stack}
-          invert
-        />
-        <Button
-          {...args}
-          size={ButtonSize.base}
-          variant={ButtonVariant.tertiary}
-          endIcon={IconCatalog.square2Stack}
-          iconStyle={IconStyle.thin}
-          invert
-        />
+        <Button {...args} size={ButtonSize.xs} variant={ButtonVariant.primary} invert isOnlyIcon>
+          <Icon className="h-4 w-4" icon={IconCatalog.beaker} iconStyle={IconStyle.solid} />
+        </Button>
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.secondary} invert isOnlyIcon>
+          <Icon className="h-6 w-6" icon={IconCatalog.square2Stack} iconStyle={IconStyle.regular} />
+        </Button>
+        <Button {...args} size={ButtonSize.base} variant={ButtonVariant.tertiary} invert isOnlyIcon>
+          <Icon className="h-7 w-7" icon={IconCatalog.bolt} iconStyle={IconStyle.solid} />
+        </Button>
+      </div>
+    );
+  },
+};
+
+export const IsLoading: Story = {
+  render: (args) => {
+    return (
+      <div className="inline-flex content-end items-end space-x-3">
+        <Button {...args} size={ButtonSize.xs} variant={ButtonVariant.secondary} isDisabled>
+          <Spinner className="mr-3" variant={SpinnerVariant.neutral} size={SpinnerSize.xs} />
+          Loading...
+        </Button>
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.secondary} isDisabled>
+          <Spinner className="mr-3" variant={SpinnerVariant.neutral} size={SpinnerSize.sm} />
+          Loading...
+        </Button>
+        <Button {...args} size={ButtonSize.base} variant={ButtonVariant.secondary} isDisabled>
+          <Spinner className="mr-3" variant={SpinnerVariant.neutral} size={SpinnerSize.base} />
+          Loading...
+        </Button>
       </div>
     );
   },
 };
 
 export const Twitter: Story = {
-  args: {
-    children: 'Log in with Twitter',
-    size: ButtonSize.sm,
-    variant: ButtonVariant.twitter,
-    startIcon: IconCatalog.twitter,
+  render: (args) => {
+    return (
+      <div className="inline-flex content-end items-end space-x-3">
+        <Button {...args} size={ButtonSize.base} variant={ButtonVariant.twitter}>
+          <Icon className="mr-2 h-4 w-4" icon={IconCatalog.twitter} iconStyle={IconStyle.solid} />
+          Log in with Twitter
+        </Button>
+      </div>
+    );
+  },
+};
+
+export const AsChild: Story = {
+  render: (args) => {
+    return (
+      <div className="inline-flex content-end items-end space-x-3">
+        <Button {...args} variant={ButtonVariant.twitter} size={ButtonSize.xs} asChild>
+          <a href="https://twon.app" target="_blank">
+            <Icon
+              className="mr-2 h-5 w-5"
+              icon={IconCatalog.plusSmall}
+              iconStyle={IconStyle.bold}
+            />
+            Log in with Twitter
+          </a>
+        </Button>
+      </div>
+    );
   },
 };
