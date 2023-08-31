@@ -4,6 +4,7 @@ export enum IconCatalog {
   adjustmentsHorizontal = 'adjustmentsHorizontal',
   arrowFatLinesUp = 'arrowFatLinesUp',
   arrowLeft = 'arrowLeft',
+  arrowLongDown = 'arrowLongDown',
   arrowLongRight = 'arrowLongRight',
   arrowLongLeft = 'arrowLongLeft',
   arrowRightOnRectangle = 'arrowRightOnRectangle',
@@ -79,6 +80,10 @@ const Icons: Record<IconCatalog, IconType> = {
 
   [IconCatalog.arrowLeft]: {
     outline: 'M10.833 18 5 12m0 0 5.833-6M5 12h14',
+  },
+
+  [IconCatalog.arrowLongDown]: {
+    outline: 'M15.75 17.25 12 21m0 0-3.75-3.75M12 21V3',
   },
 
   [IconCatalog.arrowLongLeft]: {
