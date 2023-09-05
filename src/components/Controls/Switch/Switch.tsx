@@ -1,6 +1,5 @@
 import React, { InputHTMLAttributes, useEffect, useState } from 'react';
-import cn from 'classnames';
-import { Input } from '@/common';
+import { Input, cn } from '@/common';
 
 export enum SwitchSize {
   xs = 'xs',
@@ -93,7 +92,7 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
     const [isOn, setIsOn] = useState(value);
 
     const classes = {
-      container: cn(className, 'flex items-center'),
+      container: cn('flex items-center', className),
       inputContainer: cn('relative', InnerSizes[size], {
         'opacity-60 pointer-events-none': isDisabled,
       }),

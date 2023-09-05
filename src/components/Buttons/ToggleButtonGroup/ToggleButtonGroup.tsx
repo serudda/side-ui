@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Button, type ButtonProps } from '@/components';
 import { useToggleGroup } from '@/contexts';
 
@@ -39,10 +39,11 @@ export const ToggleButtonGroup = ({
   ...restOfProps
 }: ToggleButtonGroupProps) => {
   const { value: selectedValue, onChange } = useToggleGroup();
-  const classes = cn(className, {
+  const classes = cn({
     'rounded-l-md': position === ToggleButtonGroupPosition.left,
     '-ml-px': position === ToggleButtonGroupPosition.middle,
     '-ml-px rounded-r-md': position === ToggleButtonGroupPosition.right,
+    className,
   });
 
   const handleClick = () => onChange(value);

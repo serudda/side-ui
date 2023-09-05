@@ -155,7 +155,6 @@ export const Button = ({
 
   const classes = {
     button: cn(
-      className,
       'flex items-center justify-center relative overflow-hidden',
       'text-center whitespace-nowrap',
       'transition duration-100 ease-out',
@@ -168,6 +167,7 @@ export const Button = ({
         'w-full': isFullWidth,
         'cursor-default opacity-30': isDisabled,
       },
+      className,
     ),
   };
 

@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import { cn } from '@/common';
 
 export enum IconCatalog {
   adjustmentsHorizontal = 'adjustmentsHorizontal',
@@ -449,10 +449,13 @@ export const Icon = ({ icon, iconStyle = IconStyle.light, className, onClick }: 
   const iconPath = iconStyle === IconStyle.solid ? iconPaths.solid : iconPaths.outline;
   const strokeWidth = IconStyles[iconStyle];
 
-  const classes = cn(className, {
-    'fill-current stroke-none ': iconStyle === IconStyle.solid,
-    'stroke-current fill-none': iconStyle !== IconStyle.solid,
-  });
+  const classes = cn(
+    {
+      'fill-current stroke-none ': iconStyle === IconStyle.solid,
+      'stroke-current fill-none': iconStyle !== IconStyle.solid,
+    },
+    className,
+  );
 
   if (iconStyle === IconStyle.solid && iconPath === undefined)
     console.error(`Solid icon path is undefined for icon "${icon}".`);

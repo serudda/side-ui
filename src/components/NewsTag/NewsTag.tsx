@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Icon, IconCatalog, IconStyle } from '@/components';
 
 export enum NewsTagSize {
@@ -79,7 +79,6 @@ export const NewsTag = ({
 }: NewsTagProps) => {
   const classes = {
     container: cn(
-      className,
       'flex items-center gap-3',
       'whitespace-nowrap',
       'rounded-full',
@@ -87,6 +86,7 @@ export const NewsTag = ({
       Variants[variant],
       hasEndIcon ? SizesWithEndIcon[size] : SizesWithoutEndIcon[size],
       hasBorder && Borders[variant],
+      className,
     ),
     endIcon: cn(EndIconSize[size]),
   };

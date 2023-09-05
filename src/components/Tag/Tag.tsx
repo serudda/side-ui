@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Icon, IconCatalog } from '@/components';
 
 export enum TagVariant {
@@ -98,7 +98,6 @@ export const Tag = ({
 
   const classes = {
     tag: cn(
-      className,
       'items-center rounded-md',
       tagContent.length === 0 ? VariantsWithoutContent[variant] : Variants[variant],
       tagContent.length > 1 ? Sizes[size] : 'w-1.5 h-1.5',
@@ -106,6 +105,7 @@ export const Tag = ({
         'inline-flex': tagContent.length > 1,
         'w-6 h-6 flex justify-center flex-grow-0 flex-shrink-0': tagContent.length === 1,
       },
+      className,
     ),
     text: cn('text-xs font-medium'),
     endIcon: cn('cursor-pointer', 'h-3.5 w-3.5', {

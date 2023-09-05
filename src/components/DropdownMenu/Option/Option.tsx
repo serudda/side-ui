@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 
 export interface OptionProps {
   /**
@@ -27,10 +27,16 @@ export interface OptionProps {
  * Represents an item to use in the DropdownMenu component
  */
 export const Option = ({ className, children, isDisabled = false, onClick }: OptionProps) => {
-  const classes = cn(className, 'flex select-none', 'p-2', 'rounded', {
-    'cursor-default': isDisabled,
-    'cursor-pointer hover:bg-slate-950': !isDisabled,
-  });
+  const classes = cn(
+    'flex select-none',
+    'p-2',
+    'rounded',
+    {
+      'cursor-default': isDisabled,
+      'cursor-pointer hover:bg-slate-950': !isDisabled,
+    },
+    className,
+  );
 
   const handleClick = (event: React.MouseEvent) => {
     if (isDisabled) return;

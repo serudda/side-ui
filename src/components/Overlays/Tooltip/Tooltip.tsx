@@ -1,6 +1,6 @@
 import { Children, cloneElement, useRef, useState, type ReactElement, type ReactNode } from 'react';
-import cn from 'classnames';
 import { usePopper } from 'react-popper';
+import { cn } from '@/common';
 import { Portal } from '@/components';
 
 export enum TooltipPlacement {
@@ -86,7 +86,7 @@ export const Tooltip = ({
   children,
 }: TooltipProps) => {
   const classes = {
-    container: cn(className, 'inline-flex relative w-fit-content select-none', 'shadow-md z-20'),
+    container: cn('inline-flex relative w-fit-content select-none', 'shadow-md z-20', className),
     tooltip: cn('rounded-md', Colors[color], {
       'text-xs py-1.5 px-2.5': size === TooltipSize.sm,
       'text-sm py-2 px-4': size === TooltipSize.md,

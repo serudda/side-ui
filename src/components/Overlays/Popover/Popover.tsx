@@ -8,9 +8,8 @@ import {
   type ReactElement,
   type RefObject,
 } from 'react';
-import cn from 'classnames';
 import { usePopper } from 'react-popper';
-import { hasProp } from '@/common';
+import { cn, hasProp } from '@/common';
 import { Portal } from '@/components';
 import { useOnClickOutside } from '@/hooks';
 
@@ -98,7 +97,7 @@ export const Popover = ({
   children,
 }: PopoverProps) => {
   const classes = {
-    menu: cn(menuClassName, 'shadow-lg bg-slate-900 rounded-lg z-50'),
+    menu: cn('shadow-lg bg-slate-900 rounded-lg z-50', menuClassName),
     menuContent: cn(
       'bg-slate-900 rounded-lg',
       'border border-slate-800',
