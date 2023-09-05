@@ -1,6 +1,6 @@
 import React from 'react';
-import cn from 'classnames';
 import ReactDOM from 'react-dom';
+import { cn } from '@/common';
 
 interface ModalContainerProps {
   /**

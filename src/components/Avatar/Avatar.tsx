@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Image } from '@/components';
 
 export enum AvatarSize {
@@ -51,7 +51,7 @@ export const Avatar = ({
   className,
 }: AvatarProps) => {
   const classes = {
-    avatar: cn(className, 'rounded-full relative', Sizes[size]),
+    avatar: cn('rounded-full relative', Sizes[size], className),
     image: cn('rounded-full', Sizes[size]),
   };
 

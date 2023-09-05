@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 
 export interface ImageProps {
   /**
@@ -53,11 +53,15 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     const [imageLoaded, setImageLoaded] = useState(false);
     const [isValidSrc, setIsValidSrc] = useState(Boolean(src));
 
-    const classes = cn(className, 'transition-opacity duration-500 max-w-none', {
-      'max-w-full': hasMaxWidth,
-      'opacity-0': !imageLoaded,
-      'opacity-100': imageLoaded,
-    });
+    const classes = cn(
+      'transition-opacity duration-500 max-w-none',
+      {
+        'max-w-full': hasMaxWidth,
+        'opacity-0': !imageLoaded,
+        'opacity-100': imageLoaded,
+      },
+      className,
+    );
 
     useEffect(() => {
       setIsValidSrc(Boolean(src));

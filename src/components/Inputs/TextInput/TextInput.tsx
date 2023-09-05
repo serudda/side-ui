@@ -1,6 +1,5 @@
 import React, { ChangeEvent, FocusEvent, InputHTMLAttributes, useState } from 'react';
-import cn from 'classnames';
-import { FormFieldState, Input } from '@/common';
+import { FormFieldState, Input, cn } from '@/common';
 import { Icon, IconCatalog, Spinner, SpinnerSize, SpinnerVariant } from '@/components';
 
 export interface TextInputProps
@@ -55,7 +54,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   ) => {
     const [isFocused, setIsFocused] = useState(false);
     const classes = {
-      container: cn(className, { 'w-full': isFullWidth }),
+      container: cn({ 'w-full': isFullWidth }, className),
       inputContainer: cn(
         'relative flex items-center overflow-hidden',
         'border',
