@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 
 export interface MenuProps {
   /**
@@ -17,7 +17,7 @@ export interface MenuProps {
  * Menu (Dropdown Menu)
  */
 export const Menu = ({ className, children }: MenuProps) => {
-  const classes = cn(className, 'flex-grow w-full overflow-y-auto p-1.5');
+  const classes = cn('flex-grow w-full overflow-y-auto p-1.5', className);
 
   return (
     <div className={classes} role="menu" aria-orientation="vertical" aria-labelledby="options-menu">

@@ -8,8 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import cn from 'classnames';
-import { FormFieldState, Input, SelectOption, setMaxHeightByOptions } from '@/common';
+import { FormFieldState, Input, SelectOption, cn, setMaxHeightByOptions } from '@/common';
 import {
   Icon,
   IconCatalog,
@@ -125,7 +124,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
     );
 
     const classes = {
-      container: cn(className, { 'w-full': isFullWidth }),
+      container: cn({ 'w-full': isFullWidth }, className),
       select: cn(
         'flex cursor-pointer',
         'border rounded-md appearance-none outline-none truncate',

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { useToast } from '@/contexts';
 import { Icon, IconCatalog } from '../../Icon/Icon';
 
@@ -118,10 +118,15 @@ export const Toast = ({
   onClose,
 }: ToastProps) => {
   const classes = {
-    container: cn(className, 'p-4 flex gap-5 rounded-lg max-w-sm min-h-12', Variants[variant], {
-      'items-start': description,
-      'items-center': !description,
-    }),
+    container: cn(
+      'p-4 flex gap-5 rounded-lg max-w-sm min-h-12',
+      Variants[variant],
+      {
+        'items-start': description,
+        'items-center': !description,
+      },
+      className,
+    ),
     icon: cn('w-5 h-5 shrink-0 grow-0', IconVariantColors[variant]),
     content: cn('flex items-start flex-col gap-1.5'),
   };

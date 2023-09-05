@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@/components';
 
 export interface FullScreenModalHeaderProps {

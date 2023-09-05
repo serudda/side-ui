@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@/components';
 
 export interface BasicModalHeaderProps {
@@ -40,7 +40,7 @@ export const BasicModalHeader = ({
   onClose,
 }: BasicModalHeaderProps) => {
   const classes = {
-    header: cn(className, 'flex items-center flex-shrink-0 justify-between', 'py-4 pl-6 pr-5'),
+    header: cn('flex items-center flex-shrink-0 justify-between', 'py-4 pl-6 pr-5', className),
   };
 
   const handleCloseBtnClick = () => {

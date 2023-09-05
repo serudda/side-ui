@@ -1,4 +1,4 @@
-import cn from 'classnames';
+import { cn } from '@/common';
 import { useToast } from '@/contexts';
 import { Toast } from './Toast';
 
@@ -31,7 +31,7 @@ export const ToastContainer = ({
   className,
   placement = ToastPlacement.top,
 }: ToastContainerProps) => {
-  const classes = cn(className, 'fixed z-40 min-w-128 space-y-4', Placement[placement]);
+  const classes = cn('fixed z-40 min-w-128 space-y-4', Placement[placement], className);
   const { currentToasts } = useToast();
 
   if (currentToasts.length === 0) return null;

@@ -1,6 +1,5 @@
 import { ReactNode, useEffect } from 'react';
-import cn from 'classnames';
-import { Key } from '@/common';
+import { Key, cn } from '@/common';
 import { useBodyClass, useKeyPress } from '@/hooks';
 
 export enum ModalSize {
@@ -83,13 +82,13 @@ export const BaseModal = ({
 }: BaseModalProps) => {
   const classes = {
     container: cn(
-      className,
       'transform-none transition-transform relative w-auto pointer-events-none',
       Sizes[size],
       {
         'my-7 mx-auto h-full': size !== ModalSize.fullScreen,
         'h-screen': size === ModalSize.fullScreen,
       },
+      className,
     ),
     content: cn(
       'overflow-hidden',

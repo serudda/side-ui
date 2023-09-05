@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import cn from 'classnames';
+import { cn } from '@/common';
 import { ButtonSize, ButtonVariant } from '@/components';
 import { ToggleGroupProvider } from '@/contexts';
 import { ToggleButtonGroup, ToggleButtonGroupPosition } from './ToggleButtonGroup';
@@ -49,9 +49,13 @@ const IntensityButtonGroup = ({
   className,
 }: IntensityButtonGroupProps) => {
   const classes = {
-    container: cn(className, 'isolate inline-flex', {
-      'w-full': isFullWidth,
-    }),
+    container: cn(
+      'isolate inline-flex',
+      {
+        'w-full': isFullWidth,
+      },
+      className,
+    ),
   };
   const [intensity, setIntensity] = useState<string | null>('subtle');
 

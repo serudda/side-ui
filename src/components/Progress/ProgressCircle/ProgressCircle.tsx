@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import cn from 'classnames';
+import { cn } from '@/common';
 
 export enum ProgressCircleSize {
   xs = 'xs',
@@ -91,9 +91,13 @@ export const ProgressCircle = ({
   const PERCENT_LIMIT = 92.86;
 
   const classes = {
-    progressCircle: cn(className, Sizes[size], {
-      'opacity-0': remaining <= 0,
-    }),
+    progressCircle: cn(
+      Sizes[size],
+      {
+        'opacity-0': remaining <= 0,
+      },
+      className,
+    ),
     track: cn('fill-none stroke-slate-700'),
     indicator: cn('fill-none transition-all duration-500 ease-in-out', {
       [Variants[variant]]: percent < PERCENT_LIMIT,
@@ -101,7 +105,6 @@ export const ProgressCircle = ({
       [Variants.error]: percent >= 100,
     }),
     remainingCounter: cn(
-      remainingClassName,
       'absolute inset-0 m-auto',
       'flex items-center justify-center',
       'text-xs font-semibold',
@@ -111,6 +114,7 @@ export const ProgressCircle = ({
         'text-yellow-600': percent >= PERCENT_LIMIT && percent < 100,
         'text-red-400': percent >= 100,
       },
+      remainingClassName,
     ),
   };
 
