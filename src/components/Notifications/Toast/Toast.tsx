@@ -119,7 +119,7 @@ export const Toast = ({
 }: ToastProps) => {
   const classes = {
     container: cn(
-      'p-4 flex gap-5 rounded-lg max-w-sm min-h-12',
+      'p-4 flex gap-5 rounded-lg w-96 min-h-12',
       Variants[variant],
       {
         'items-start': description,

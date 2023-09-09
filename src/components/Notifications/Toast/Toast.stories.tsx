@@ -13,7 +13,7 @@ const meta = {
         <ToastProvider>
           <>
             <StoryFn />
-            <ToastContainer placement={ToastPlacement.bottom} />
+            <ToastContainer placement={ToastPlacement.bottomEnd} />
           </>
         </ToastProvider>
       );

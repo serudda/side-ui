@@ -59,7 +59,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         'relative flex items-center overflow-hidden',
         'border',
         'h-10',
-        'text-slate-50',
+        'text-white',
         {
           'rounded-md p-2': !isRounded,
           'rounded-full px-4 py-2': isRounded,
@@ -75,8 +75,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       input: cn(
         'w-full',
         'transition duration-100 ease-out outline-none bg-transparent',
-        'placeholder:text-slate-400 text-base',
-        'disabled:cursor-not-allowed disabled:placeholder:text-slate-500',
+        'placeholder:text-slate-500 text-base',
+        'disabled:cursor-not-allowed disabled:placeholder:text-slate-600',
       ),
       assistiveText: cn('mt-2 text-xs font-medium', {
         'text-slate-200': fieldState === FormFieldState.default,
