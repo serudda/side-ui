@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FocusEvent, InputHTMLAttributes, useState } from 'react';
-import { FormFieldState, Input, cn } from '@/common';
 import { Icon, IconCatalog, Spinner, SpinnerSize, SpinnerVariant } from '@/components';
+// TODO: Something is wrong with the @/common import. In the host app, it's not working.
+import { FormFieldState, Input, cn } from '../../../common';
 
 export interface TextInputProps
   extends Input,

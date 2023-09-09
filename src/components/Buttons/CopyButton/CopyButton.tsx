@@ -1,4 +1,5 @@
 import { Children, ReactElement, cloneElement, type ReactNode } from 'react';
+import { cn } from '@/common';
 import { Tooltip, TooltipSize } from '@/components';
 import { useCopyToClipboard } from '@/hooks';
 
@@ -7,6 +8,11 @@ export interface CopyButtonProps {
    * Specify an optional className to be added to the component.
    */
   className?: string;
+
+  /**
+   * Specify an optional className to be added to the tooltip.
+   */
+  tooltipClassName?: string;
 
   /**
    * Ref to the target element
@@ -31,11 +37,15 @@ export interface CopyButtonProps {
 
 export const CopyButton = ({
   className,
+  tooltipClassName,
   withTooltip = true,
   target,
   children,
   onClick,
 }: CopyButtonProps) => {
+  const classes = {
+    tooltip: cn(tooltipClassName),
+  };
   const { copy, copied, setCopied } = useCopyToClipboard();
   const copyText = copied ? 'Copied' : 'Copy';
 
@@ -58,7 +68,7 @@ export const CopyButton = ({
   return (
     <>
       {withTooltip ? (
-        <Tooltip text={copyText} size={TooltipSize.sm}>
+        <Tooltip text={copyText} size={TooltipSize.sm} className={classes.tooltip}>
           {element}
         </Tooltip>
       ) : (
