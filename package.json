@@ -1,6 +1,6 @@
 {
   "name": "side-ui",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "type": "module",
   "packageManager": "pnpm@7.27.1",
   "repository": {
@@ -25,7 +25,7 @@
     "publish:local": "pnpm build && yalc publish",
     "push:local": "pnpm build && yalc push",
     "format": "prettier --write \"**/*.{js,cjs,mjs,ts,tsx,md,json}\" --ignore-path .gitignore",
-       "prepare": "npx husky install"
+    "prepare": "npx husky install"
   },
   "files": [
     "dist"
