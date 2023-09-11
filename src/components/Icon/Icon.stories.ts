@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { parseIconOptions } from '@/storybook/utils';
+import { parseIconOptions } from '@storybook';
 import { Icon, IconCatalog, IconStyle } from './Icon';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Icon',

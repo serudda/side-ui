@@ -1,5 +1,5 @@
 import React, { KeyboardEvent, useEffect, useState } from 'react';
-import { SelectOption, findIndexByFirstChar } from '@/common';
+import { SelectOption, findIndexByFirstChar } from '@common';
 
 export interface UsePopupMenuProps {
   options: Array<SelectOption>;

@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
-import { cn } from '@/common';
-import { Icon, IconCatalog, IconStyle } from '@/components';
+import { cn } from '@common';
+import { Icon, IconCatalog, IconStyle } from '@components';
 
 export enum NewsTagSize {
   xs = 'xs',

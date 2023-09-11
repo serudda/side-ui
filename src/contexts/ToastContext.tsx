@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useRef, useState } from 'react';
+import { ToastProps } from '@components';
 import { createId } from '@paralleldrive/cuid2';
-import { ToastProps } from '@/components';
 
 export type ToastContextType = {
   currentToasts: Array<ToastProps>;

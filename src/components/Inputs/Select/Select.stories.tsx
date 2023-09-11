@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { TextInput } from '@/components';
+import { TextInput } from '@components';
 import { Select, SelectSize } from './Select';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Inputs/Select',

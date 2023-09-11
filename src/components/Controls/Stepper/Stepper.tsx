@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FocusEvent, useEffect, useState } from 'react';
-import { cn } from '@/common';
-import { Icon, IconCatalog } from '@/components';
+import { cn } from '@common';
+import { Icon, IconCatalog } from '@components';
 
 export interface StepperProps {
   /**

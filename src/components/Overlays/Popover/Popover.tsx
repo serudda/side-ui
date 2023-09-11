@@ -8,10 +8,10 @@ import {
   type ReactElement,
   type RefObject,
 } from 'react';
+import { cn, hasProp } from '@common';
+import { Portal } from '@components';
+import { useOnClickOutside } from '@hooks';
 import { usePopper } from 'react-popper';
-import { cn, hasProp } from '@/common';
-import { Portal } from '@/components';
-import { useOnClickOutside } from '@/hooks';
 
 export enum PopoverPlacement {
   topStart = 'top-start',

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { cn } from '@/common';
+import { cn } from '@common';
 
 export interface MenuProps {
   /**

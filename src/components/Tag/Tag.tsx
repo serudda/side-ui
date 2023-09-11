@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
-import { cn } from '@/common';
-import { Icon, IconCatalog } from '@/components';
+import { cn } from '@common';
+import { Icon, IconCatalog } from '@components';
 
 export enum TagVariant {
   primary = 'primary',
