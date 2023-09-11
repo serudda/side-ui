@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Popover, PopoverPlacement, PopoverProps } from '@/components';
+import { Popover, PopoverPlacement, PopoverProps } from '@components';
 import { Menu } from './Menu/Menu';
 import { Option } from './Option/Option';
 

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
+import { Button, Popover, PopoverProps } from '@components';
 import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Popover, PopoverProps } from '@/components';
 
 const meta = {
   title: 'UI Components/Overlays/Popover',

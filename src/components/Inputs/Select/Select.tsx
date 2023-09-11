@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { FormFieldState, Input, SelectOption, cn, setMaxHeightByOptions } from '@/common';
+import { FormFieldState, Input, SelectOption, cn, setMaxHeightByOptions } from '@common';
 import {
   Icon,
   IconCatalog,
@@ -17,8 +17,8 @@ import {
   Spinner,
   SpinnerSize,
   SpinnerVariant,
-} from '@/components';
-import { usePopupMenu } from '@/hooks';
+} from '@components';
+import { usePopupMenu } from '@hooks';
 
 export enum SelectSize {
   sm = 'sm',

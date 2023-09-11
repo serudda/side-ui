@@ -1,5 +1,5 @@
-import { cn } from '@/common';
-import { Image } from '@/components';
+import { cn } from '@common';
+import { Image } from '@components';
 
 export enum AvatarSize {
   '2xs' = '2xs',

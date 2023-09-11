@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import { Breakpoint, SelectOption } from '@/common';
+import { Breakpoint, SelectOption } from '@common';
 
 /**
  * isNullOrUndefined

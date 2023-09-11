@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { cn } from '@/common';
-import { ButtonSize, ButtonVariant } from '@/components';
-import { ToggleGroupProvider } from '@/contexts';
+import { cn } from '@common';
+import { ButtonSize, ButtonVariant } from '@components';
+import { ToggleGroupProvider } from '@contexts';
 import { ToggleButtonGroup, ToggleButtonGroupPosition } from './ToggleButtonGroup';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Buttons/ToggleButtonGroup',

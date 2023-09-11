@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button } from '@/components';
-import { ToastProvider, useToast } from '@/contexts';
+import { Button } from '@components';
+import { ToastProvider, useToast } from '@contexts';
 import { Toast, ToastProps, ToastVariant } from './Toast';
 import { ToastContainer, ToastPlacement } from './ToastContainer';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Notifications/Toast',

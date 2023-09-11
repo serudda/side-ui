@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalContainer } from '@/components';
+import { ModalContainer } from '@components';
 
 /**
  * A function that takes a result of a variable type and returns nothing.

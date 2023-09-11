@@ -1,8 +1,8 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariant } from '@/components';
-import { useModal } from '@/hooks';
+import { Button, ButtonSize, ButtonVariant } from '@components';
+import { useModal } from '@hooks';
 import { BasicModalHeader, FullScreenModalHeader } from '../ModalSections';
 import { BaseModal, ModalSize, type BaseModalProps } from './BaseModal';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const ModalBodyLongSample = () => {
   return (

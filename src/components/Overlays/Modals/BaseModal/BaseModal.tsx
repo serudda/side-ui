@@ -1,6 +1,6 @@
 import { ReactNode, useEffect } from 'react';
-import { Key, cn } from '@/common';
-import { useBodyClass, useKeyPress } from '@/hooks';
+import { Key, cn } from '@common';
+import { useBodyClass, useKeyPress } from '@hooks';
 
 export enum ModalSize {
   sm = 'sm',

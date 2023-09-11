@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { cn } from '@/common';
-import { useToast } from '@/contexts';
+import { cn } from '@common';
+import { useToast } from '@contexts';
 import { Icon, IconCatalog } from '../../Icon/Icon';
 
 export type ActionType = {

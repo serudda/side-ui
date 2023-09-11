@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, Icon, IconCatalog, IconStyle, Textarea } from '@/components';
+import { Button, Icon, IconCatalog, IconStyle, Textarea } from '@components';
 import { CopyButton, CopyButtonProps } from './CopyButton';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Buttons/Copy Button',
