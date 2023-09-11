@@ -1,4 +1,4 @@
-import { resolve } from 'path';
+import path, { resolve } from 'path';
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
@@ -6,8 +6,31 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 import tsconfigPaths from 'vite-tsconfig-paths';
 import * as packageJson from './package.json';
 
+// Define the TypeScript path aliases you want to resolve
+const aliasConfig = [
+  {
+    find: /^@common$/,
+    replacement: path.resolve(__dirname, 'src/common/') + '',
+  },
+  {
+    find: /^@components$/,
+    replacement: path.resolve(__dirname, 'src/components/') + '',
+  },
+  {
+    find: /^@contexts$/,
+    replacement: path.resolve(__dirname, 'src/contexts/') + '',
+  },
+  {
+    find: /^@hooks$/,
+    replacement: path.resolve(__dirname, 'src/hooks/') + '',
+  },
+];
+
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: aliasConfig,
+  },
   plugins: [
     react(),
     tsconfigPaths(),
