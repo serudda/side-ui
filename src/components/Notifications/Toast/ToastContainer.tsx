@@ -1,5 +1,5 @@
-import { cn } from '@/common';
-import { useToast } from '@/contexts';
+import { cn } from '@common';
+import { useToast } from '@contexts';
 import { Toast } from './Toast';
 
 export enum ToastPlacement {

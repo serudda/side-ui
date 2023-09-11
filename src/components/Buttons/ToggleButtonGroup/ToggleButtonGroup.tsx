@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import { cn } from '@/common';
-import { Button, type ButtonProps } from '@/components';
-import { useToggleGroup } from '@/contexts';
+import { cn } from '@common';
+import { Button, type ButtonProps } from '@components';
+import { useToggleGroup } from '@contexts';
 
 export enum ToggleButtonGroupPosition {
   left = 'left',

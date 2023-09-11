@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes, useEffect, useState } from 'react';
-import { Input, cn } from '@/common';
+import { Input, cn } from '@common';
 
 export enum SwitchSize {
   xs = 'xs',

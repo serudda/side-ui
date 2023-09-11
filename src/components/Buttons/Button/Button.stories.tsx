@@ -1,6 +1,6 @@
-import { type Meta, type StoryObj } from '@storybook/react';
-import { Icon, IconCatalog, IconStyle, Spinner, SpinnerSize, SpinnerVariant } from '@/components';
+import { Icon, IconCatalog, IconStyle, Spinner, SpinnerSize, SpinnerVariant } from '@components';
 import { Button, ButtonSize, ButtonVariant, HtmlType } from './Button';
+import { type Meta, type StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Buttons/Button',
@@ -21,7 +21,7 @@ export const Default: Story = {
     return (
       <div className="inline-flex content-end items-end space-x-3">
         <Button {...args}>Clean Board</Button>
-        <Button size={ButtonSize.xs} invert onClick={() => {}}>
+        <Button size={ButtonSize.xs} invert>
           <Icon className="mr-2 h-4 w-4" icon={IconCatalog.broom} iconStyle={IconStyle.solid} />
           Clean Board
         </Button>

@@ -1,6 +1,6 @@
 import { type ButtonHTMLAttributes } from 'react';
-import { cn } from '@/common';
-import { Slot } from '@/components';
+import { cn } from '@common';
+import { Slot } from '@components';
 
 export enum ButtonSize {
   xs = 'xs',

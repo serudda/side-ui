@@ -1,7 +1,7 @@
 import { Children, cloneElement, useRef, useState, type ReactElement, type ReactNode } from 'react';
+import { cn } from '@common';
+import { Portal } from '@components';
 import { usePopper } from 'react-popper';
-import { cn } from '@/common';
-import { Portal } from '@/components';
 
 export enum TooltipPlacement {
   topLeft = 'top-start',

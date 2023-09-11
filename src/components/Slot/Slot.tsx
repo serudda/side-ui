@@ -1,6 +1,6 @@
 import { Children, ReactElement, ReactNode, cloneElement, forwardRef, isValidElement } from 'react';
-import { mergeReactProps } from '@/common';
-import { combinedRef } from '@/hooks';
+import { mergeReactProps } from '@common';
+import { combinedRef } from '@hooks';
 
 interface SlotProps extends React.HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;

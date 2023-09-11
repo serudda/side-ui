@@ -1,5 +1,5 @@
 import { MutableRefObject, useEffect, useRef } from 'react';
-import { FocusableMode, isFocusableElement } from '@/common';
+import { FocusableMode, isFocusableElement } from '@common';
 import { useDocumentEvent, useWindowEvent } from '..';
 
 type Container = MutableRefObject<HTMLElement | null> | HTMLElement | null;

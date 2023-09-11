@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariant, TextInput } from '@/components';
+import { Button, ButtonSize, ButtonVariant, TextInput } from '@components';
 import { Stepper } from './Stepper';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Controls/Stepper',

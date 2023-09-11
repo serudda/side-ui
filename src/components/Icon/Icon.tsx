@@ -1,4 +1,4 @@
-import { cn } from '@/common';
+import { cn } from '@common';
 
 export enum IconCatalog {
   adjustmentsHorizontal = 'adjustmentsHorizontal',

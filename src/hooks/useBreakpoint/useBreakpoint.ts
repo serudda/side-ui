@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react';
-import { Breakpoint, getDeviceSize } from '@/common';
-import { useWindowSize } from '@/hooks';
+import { Breakpoint, getDeviceSize } from '@common';
+import { useWindowSize } from '@hooks';
 
 interface useBreakpointResponse {
   breakpoint: Breakpoint;

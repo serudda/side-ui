@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { Button, ButtonSize, ButtonVariant } from '@/components';
-import { useModal } from '@/hooks';
+import { Button, ButtonSize, ButtonVariant } from '@components';
+import { useModal } from '@hooks';
 import { BasicModalHeader } from '../ModalSections';
 import { ConfirmationModal, type ConfirmationModalProps } from './ConfirmationModal';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/Overlays/Modals/ConfirmationModal',
