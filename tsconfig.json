@@ -10,7 +10,7 @@
       "@components": ["./src/components"],
       "@contexts": ["./src/contexts"],
       "@hooks": ["./src/hooks"],
-      "@storybook": ["./src/storybook"]
+      "@storybookConfig": ["./src/storybook"]
     },
 
     /* Bundler mode */
