@@ -1,4 +1,4 @@
-import { parseIconOptions } from '@storybook';
+import { parseIconOptions } from '@storybookConfig';
 import { Icon, IconCatalog, IconStyle } from './Icon';
 import type { Meta, StoryObj } from '@storybook/react';
 
