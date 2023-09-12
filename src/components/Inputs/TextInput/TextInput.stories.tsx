@@ -1,5 +1,5 @@
 import { Button, ButtonSize, ButtonVariant } from '@components';
-import { parseIconOptions } from '@storybook';
+import { parseIconOptions } from '@storybookConfig';
 import { TextInput } from './TextInput';
 import type { Meta, StoryObj } from '@storybook/react';
 
