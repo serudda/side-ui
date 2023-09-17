@@ -35,7 +35,7 @@ const Variants: Record<ButtonVariant, string> = {
   [ButtonVariant.primary]: 'bg-primary-500 hover:bg-primary-200 text-black',
   [ButtonVariant.secondary]: 'bg-secondary-500 hover:bg-secondary-400 text-white',
   [ButtonVariant.tertiary]: 'bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white',
-  [ButtonVariant.ghost]: 'bg-transparent hover:bg-slate-800 text-white',
+  [ButtonVariant.ghost]: 'bg-transparent hover:bg-slate-900 text-white',
   [ButtonVariant.destructive]: 'bg-rose-600 hover:bg-rose-500 text-white',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0] hover:bg-[#1a8cd8] text-white',
