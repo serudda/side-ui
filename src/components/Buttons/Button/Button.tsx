@@ -32,42 +32,46 @@ export enum ButtonVariant {
 }
 
 const Variants: Record<ButtonVariant, string> = {
-  [ButtonVariant.primary]: 'bg-primary-500 hover:bg-primary-200 text-black',
-  [ButtonVariant.secondary]: 'bg-secondary-500 hover:bg-secondary-400 text-white',
-  [ButtonVariant.tertiary]: 'bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white',
-  [ButtonVariant.ghost]: 'bg-transparent hover:bg-slate-900 text-white',
-  [ButtonVariant.destructive]: 'bg-rose-600 hover:bg-rose-500 text-white',
+  [ButtonVariant.primary]: 'bg-primary-500 hover:bg-primary-600 text-white',
+  [ButtonVariant.secondary]: 'bg-secondary-500 hover:bg-secondary-600 text-white',
+  [ButtonVariant.tertiary]:
+    'bg-transparent hover:dark:bg-slate-900 hover:bg-slate-100 border dark:border-slate-700 border-slate-300 dark:text-white text-black',
+  [ButtonVariant.ghost]:
+    'bg-transparent hover:dark:bg-slate-900 hover:bg-slate-100 dark:text-white text-black',
+  [ButtonVariant.destructive]: 'bg-rose-600 hover:bg-rose-700 text-white',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0] hover:bg-[#1a8cd8] text-white',
   [ButtonVariant.special]:
-    'bg-gradient-to-r from-rose-800/90 to-secondary-600/70 hover:from-rose-800/60 hover:to-secondary-600/40 text-white ring-1 ring-inset ring-secondary-500/70',
+    'bg-gradient-to-r dark:from-rose-800/90 dark:to-indigo-700/70 from-rose-800 to-indigo-700 hover:from-rose-900 hover:to-indigo-800 hover:dark:from-rose-800/60 hover:dark:to-secondary-600/40 text-white ring-1 ring-inset ring-indigo-700',
 };
 
 const ActiveVariant: Record<ButtonVariant, string> = {
-  [ButtonVariant.primary]: 'bg-primary-700 hover:bg-primary-700',
-  [ButtonVariant.secondary]: 'bg-secondary-700 hover:bg-secondary-700',
-  [ButtonVariant.tertiary]: 'bg-secondary-950 hover:bg-secondary-950',
-  [ButtonVariant.ghost]: 'bg-slate-900 hover:bg-slate-900',
-  [ButtonVariant.destructive]: 'bg-rose-800 hover:bg-rose-800',
-  [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/60',
-  [ButtonVariant.twitter]: 'bg-[#1a8cd8] hover:bg-[#1a8cd8]',
+  [ButtonVariant.primary]: 'dark:bg-primary-700 hover:dark:bg-primary-700',
+  [ButtonVariant.secondary]: 'dark:bg-secondary-700 hover:dark:bg-secondary-700',
+  [ButtonVariant.tertiary]: 'dark:bg-secondary-950 hover:dark:bg-secondary-950',
+  [ButtonVariant.ghost]: 'dark:bg-slate-900 hover:dark:bg-slate-900',
+  [ButtonVariant.destructive]: 'dark:bg-rose-800 hover:dark:bg-rose-800',
+  [ButtonVariant.discord]: 'dark:bg-[#5865f2]/60 hover:dark:bg-[#5865f2]/60',
+  [ButtonVariant.twitter]: 'dark:bg-[#1a8cd8] hover:dark:bg-[#1a8cd8]',
   [ButtonVariant.special]:
-    'bg-gradient-to-r from-rose-800/60 to-secondary-600/60 text-white ring-1 ring-inset ring-secondary-500/70',
+    'bg-gradient-to-r dark:from-rose-800/90 dark:to-indigo-700/70 from-rose-800 to-indigo-700 hover:from-rose-900 hover:to-indigo-800 hover:dark:from-rose-800/60 hover:dark:to-secondary-600/40 text-white ring-1 ring-inset ring-indigo-700',
 };
 
 const InvertVariants: Record<ButtonVariant, string> = {
   [ButtonVariant.primary]:
-    'bg-slate-950 border border-primary-900 hover:bg-primary-950 text-primary-100',
+    'bg-primary-50 text-primary-600 hover:bg-primary-100 dark:bg-slate-950 dark:border dark:border-primary-900 hover:dark:bg-primary-950 dark:text-primary-100',
   [ButtonVariant.secondary]:
-    'bg-slate-950 border border-secondary-400 hover:bg-secondary-950 text-secondary-100',
-  [ButtonVariant.tertiary]: 'bg-transparent border border-slate-700 hover:bg-slate-800 text-white',
-  [ButtonVariant.ghost]: 'bg-transparent hover:bg-slate-800 text-white',
+    'bg-secondary-50 text-secondary-600 hover:bg-secondary-100 dark:bg-slate-950 dark:border dark:border-secondary-400 hover:dark:bg-secondary-950 dark:text-secondary-100',
+  [ButtonVariant.tertiary]:
+    'bg-slate-100 hover:bg-slate-200 border-slate-300 text-black dark:bg-transparent hover:dark:bg-slate-900 dark:border dark:border-slate-700 dark:text-white',
+  [ButtonVariant.ghost]:
+    'bg-transparent hover:dark:bg-slate-900 hover:bg-slate-100 dark:text-white text-black',
   [ButtonVariant.destructive]:
-    'bg-transparent border border-rose-900 hover:bg-rose-950 text-rose-300',
+    'bg-rose-50 hover:bg-rose-100 text-rose-500 dark:bg-transparent dark:border dark:border-rose-900 hover:dark:bg-rose-950 dark:text-rose-300',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
   [ButtonVariant.twitter]: 'bg-[#1d9bf0]/60 hover:bg-[#1d9bf0]/80 text-white',
   [ButtonVariant.special]:
-    'bg-gradient-to-r from-rose-800/60 to-secondary-600/60 text-white ring-1 ring-inset ring-secondary-500/70',
+    'bg-gradient-to-r dark:from-rose-800/90 dark:to-indigo-700/70 from-rose-800 to-indigo-700 hover:from-rose-900 hover:to-indigo-800 hover:dark:from-rose-800/60 hover:dark:to-secondary-600/40 text-white ring-1 ring-inset ring-indigo-700',
 };
 
 export enum HtmlType {
