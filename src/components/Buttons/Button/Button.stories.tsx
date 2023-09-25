@@ -73,6 +73,9 @@ export const Variants: Story = {
         <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.twitter}>
           Clean Board
         </Button>
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.special}>
+          Clean Board
+        </Button>
       </div>
     );
   },
@@ -101,6 +104,9 @@ export const InvertVariants: Story = {
           Clean Board
         </Button>
         <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.twitter} invert>
+          Clean Board
+        </Button>
+        <Button {...args} size={ButtonSize.sm} variant={ButtonVariant.special}>
           Clean Board
         </Button>
       </div>
