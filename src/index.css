@@ -9,13 +9,21 @@
 /*                 CSS RESETS                   */
 /************************************************/
 
+html.dark {
+  @apply bg-slate-950;
+  @apply text-slate-50;
+}
+
+html.light {
+  @apply bg-white;
+  @apply text-black;
+}
+
 /* Resets */
 html,
 body,
 #root {
-  @apply bg-slate-900;
   @apply font-sans;
-  @apply text-slate-50;
   height: 100%;
 }
 * {
