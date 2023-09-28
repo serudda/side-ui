@@ -33,7 +33,7 @@ export const Option = ({ className, children, isDisabled = false, onClick }: Opt
     'rounded',
     {
       'cursor-default': isDisabled,
-      'cursor-pointer hover:bg-slate-950': !isDisabled,
+      'cursor-pointer hover:dark:bg-slate-950 hover:bg-slate-200': !isDisabled,
     },
     className,
   );

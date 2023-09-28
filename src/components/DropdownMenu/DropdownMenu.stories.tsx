@@ -14,20 +14,22 @@ const meta = {
     menu: (
       <DropdownMenu.Menu>
         <DropdownMenu.Option onClick={() => console.log('clicked: 1')}>
-          <span className="text-sm text-slate-50">Feature request</span>
+          <span className="text-sm text-slate-950 dark:text-slate-50">Feature request</span>
         </DropdownMenu.Option>
         <DropdownMenu.Option onClick={() => console.log('clicked: 2')}>
           <span className="flex w-full items-center">
-            <span className="text-sm text-slate-50">What's new</span>
+            <span className="text-sm text-slate-950 dark:text-slate-50">What's new</span>
             <Tag className="ml-auto" variant={TagVariant.error} />
           </span>
         </DropdownMenu.Option>
         <DropdownMenu.Option onClick={() => console.log('clicked: 3')}>
-          <span className="text-sm text-slate-50">Report issue</span>
+          <span className="text-sm text-slate-950 dark:text-slate-50">Report issue</span>
         </DropdownMenu.Option>
-        <hr className="my-1.5 border border-slate-800" />
+        <hr className="my-1.5 border border-slate-200 dark:border-slate-800" />
         <DropdownMenu.Option onClick={() => console.log('clicked: 4')} isDisabled>
-          <span className="text-sm font-semibold text-slate-50">Twitter @serudda</span>
+          <span className="text-sm font-semibold text-slate-950 dark:text-slate-50">
+            Twitter @serudda
+          </span>
         </DropdownMenu.Option>
       </DropdownMenu.Menu>
     ),
