@@ -97,20 +97,20 @@ export const Popover = ({
   children,
 }: PopoverProps) => {
   const classes = {
-    menu: cn('shadow-lg bg-slate-900 rounded-lg z-50', menuClassName),
+    menu: cn('shadow-lg rounded-lg z-50 bg-white dark:bg-slate-900', menuClassName),
     menuContent: cn(
-      'bg-slate-900 rounded-lg',
-      'border border-slate-800',
-      'text-base-white text-caption text-center',
+      'dark:bg-slate-900 bg-white rounded-lg',
+      'border border-slate-300 dark:border-slate-800',
+      'dark:text-white text-slate-950 text-caption text-center',
       'transition duration-100 ease-out',
     ),
-    arrowContainer: cn('absolute w-2 h-2 bg-slate-900 invisible', {
+    arrowContainer: cn('absolute w-2 h-2 dark:bg-slate-900 bg-white invisible', {
       '-bottom-1': placement.includes(PopoverPlacement.top),
       '-top-1': placement.includes(PopoverPlacement.bottom),
       '-right-0': placement.includes(PopoverPlacement.left),
       '-left-2': placement.includes(PopoverPlacement.right),
     }),
-    arrow: cn('w-2 h-2', 'bg-slate-900 absolute', 'transform rotate-45', 'visible'),
+    arrow: cn('w-2 h-2', 'dark:bg-slate-900 bg-white absolute', 'transform rotate-45', 'visible'),
   };
 
   const [popoverElement, setPopoverElement] = useState<RefObject<HTMLElement> | HTMLElement | null>(
