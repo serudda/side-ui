@@ -26,7 +26,7 @@ export const CountAvatar = ({
   const classes = {
     container: cn('flex items-center justify-center relative overflow-hidden', className),
     countContainer: cn(
-      'absolute z-[1] flex items-center justify-center bg-black/70 rounded-full',
+      'absolute z-[1] flex items-center justify-center bg-black rounded-full',
       AvatarSizes[size],
     ),
     count: cn('text-slate-50 font-semibold', LabelSizes[size]),
