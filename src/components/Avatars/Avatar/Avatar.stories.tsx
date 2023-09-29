@@ -1,4 +1,4 @@
-import { Avatar } from './Avatar';
+import { Avatar, AvatarBorder } from './Avatar';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    imgUrl: 'assets/images/default-avatar.svg',
+    imgUrl: 'https://pbs.twimg.com/profile_images/1645933911514681345/zrDbFWCT_400x400.jpg',
+    border: AvatarBorder.primary,
   },
 };

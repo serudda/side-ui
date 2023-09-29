@@ -7,7 +7,8 @@ const meta = {
   component: StackedAvatar,
   tags: ['autodocs'],
   args: {
-    maxAvatars: 2,
+    maxAvatars: 5,
+    border: undefined,
   },
 } satisfies Meta<typeof StackedAvatar>;
 
@@ -17,7 +18,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <StackedAvatar maxAvatars={2} {...args}>
+      <StackedAvatar maxAvatars={5} {...args}>
         <Avatar imgUrl="assets/images/default-avatar.svg" />
         <Avatar imgUrl="assets/images/default-avatar.svg" />
         <Avatar imgUrl="assets/images/default-avatar.svg" />
