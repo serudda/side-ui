@@ -1,5 +1,4 @@
-export * from './Avatar/Avatar';
-export * from './Avatar/default-avatar.svg';
+export * from './Avatars';
 export * from './Buttons';
 export * from './Controls';
 export * from './DropdownMenu/DropdownMenu';

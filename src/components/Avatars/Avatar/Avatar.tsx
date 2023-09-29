@@ -10,7 +10,7 @@ export enum AvatarSize {
   xl = 'xl',
 }
 
-const Sizes: Record<AvatarSize, string> = {
+export const Sizes: Record<AvatarSize, string> = {
   [AvatarSize['2xs']]: 'w-5 h-5',
   [AvatarSize.xs]: 'w-6 h-6',
   [AvatarSize.sm]: 'w-7 h-7',
