@@ -26,7 +26,7 @@ export interface CollapsibleProps {
   /**
    * The starting color of the gradient (dark mode)
    */
-  darkGradientToColor?: `from-${TailwindColorString}` | `from-[#${string}]`;
+  darkGradientToColor?: `dark:from-${TailwindColorString}` | `dark:from-[#${string}]`;
 
   /**
    * The content to display in the collapsible section
@@ -57,7 +57,7 @@ export const Collapsible = ({
   maxHeight = 50,
   blurSectionHeight = 30,
   lightGradientToColor = 'from-white',
-  darkGradientToColor = 'from-slate-950',
+  darkGradientToColor = 'dark:from-slate-950',
   isExpandable = true,
   children,
   onCollapse,
@@ -73,9 +73,7 @@ export const Collapsible = ({
       'flex items-end justify-center',
       'bg-gradient-to-t to-transparent',
       lightGradientToColor,
-      {
-        [`dark:${darkGradientToColor}`]: true,
-      },
+      darkGradientToColor,
     ),
   };
 
