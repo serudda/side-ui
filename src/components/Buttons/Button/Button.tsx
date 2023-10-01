@@ -6,18 +6,21 @@ export enum ButtonSize {
   xs = 'xs',
   sm = 'sm',
   base = 'base',
+  lg = 'lg',
 }
 
 const Sizes: Record<ButtonSize, string> = {
-  [ButtonSize.xs]: 'py-1.5 px-3 text-sm font-semibold h-8',
-  [ButtonSize.sm]: 'py-2 px-4 text-sm font-semibold h-10',
-  [ButtonSize.base]: 'py-3 px-5 text-base font-semibold h-12',
+  [ButtonSize.xs]: 'py-1 px-2 text-xs font-semibold h-6',
+  [ButtonSize.sm]: 'py-1.5 px-3 text-sm font-semibold h-8',
+  [ButtonSize.base]: 'py-2 px-4 text-sm font-semibold h-10',
+  [ButtonSize.lg]: 'py-3 px-5 text-base font-semibold h-12',
 };
 
 const SizesOnlyIcon: Record<ButtonSize, string> = {
-  [ButtonSize.xs]: 'w-8 h-8',
-  [ButtonSize.sm]: 'w-10 h-10',
-  [ButtonSize.base]: 'w-12 h-12',
+  [ButtonSize.xs]: 'w-6 h-6',
+  [ButtonSize.sm]: 'w-8 h-8',
+  [ButtonSize.base]: 'w-10 h-10',
+  [ButtonSize.lg]: 'w-12 h-12',
 };
 
 export enum ButtonVariant {
@@ -59,13 +62,13 @@ const ActiveVariant: Record<ButtonVariant, string> = {
 
 const InvertVariants: Record<ButtonVariant, string> = {
   [ButtonVariant.primary]:
-    'bg-primary-50 text-primary-600 hover:bg-primary-100 dark:bg-slate-950 dark:border dark:border-primary-900 hover:dark:bg-primary-950 dark:text-primary-100',
+    'bg-primary-100/75 text-primary-600 hover:bg-primary-200/75 dark:bg-slate-950 dark:border dark:border-primary-900 hover:dark:bg-primary-950 dark:text-primary-100',
   [ButtonVariant.secondary]:
     'bg-secondary-50 text-secondary-600 hover:bg-secondary-100 dark:bg-slate-950 dark:border dark:border-secondary-400 hover:dark:bg-secondary-950 dark:text-secondary-100',
   [ButtonVariant.tertiary]:
-    'bg-slate-100 hover:bg-slate-200 border-slate-300 text-black dark:bg-transparent hover:dark:bg-slate-900 dark:border dark:border-slate-700 dark:text-white',
+    'bg-slate-200/75 hover:bg-slate-300/75 text-black dark:bg-slate-800 hover:dark:bg-slate-900 dark:text-white',
   [ButtonVariant.ghost]:
-    'bg-transparent hover:dark:bg-slate-900 hover:bg-slate-100 dark:text-white text-black',
+    'bg-transparent hover:dark:bg-slate-900 hover:bg-slate-200 dark:text-white text-black',
   [ButtonVariant.destructive]:
     'bg-rose-50 hover:bg-rose-100 text-rose-500 dark:bg-transparent dark:border dark:border-rose-900 hover:dark:bg-rose-950 dark:text-rose-300',
   [ButtonVariant.discord]: 'bg-[#5865f2]/60 hover:bg-[#5865f2]/80 text-white',
@@ -167,7 +170,7 @@ export const Button = ({
       invert && !isActive ? InvertVariants[variant] : Variants[variant],
       isActive && ActiveVariant[variant],
       {
-        'rounded-md': !isSquare,
+        rounded: !isSquare,
         'w-full': isFullWidth,
         'cursor-default opacity-30': isDisabled,
       },

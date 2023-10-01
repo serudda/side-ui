@@ -1,5 +1,6 @@
 export * from './Avatars';
 export * from './Buttons';
+export * from './Collapsible/Collapsible';
 export * from './Controls';
 export * from './DropdownMenu/DropdownMenu';
 export * from './Icon/Icon';
