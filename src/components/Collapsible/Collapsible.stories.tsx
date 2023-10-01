@@ -9,7 +9,7 @@ const meta = {
     maxHeight: 300,
     blurSectionHeight: 20,
     lightGradientToColor: 'from-white',
-    darkGradientToColor: 'from-slate-950',
+    darkGradientToColor: 'dark:from-slate-950',
     isExpandable: true,
   },
 } satisfies Meta<typeof Collapsible>;
