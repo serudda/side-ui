@@ -65,11 +65,14 @@ export const Collapsible = ({
 }: CollapsibleProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const classes = {
-    container: cn(className, {
-      'overflow-visible': isExpanded,
-    }),
+    container: cn(
+      {
+        'overflow-visible': isExpanded,
+      },
+      className,
+    ),
     blurSection: cn(
-      'absolute -inset-x-2.5 bottom-0',
+      'absolute inset-x-0 bottom-0',
       'flex items-end justify-center',
       'bg-gradient-to-t to-transparent',
       lightGradientToColor,
@@ -86,7 +89,7 @@ export const Collapsible = ({
   return (
     <div className={classes.container}>
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-y-hidden"
         style={{ maxHeight: isExpanded ? 'none' : `${maxHeight}px` }}
       >
         {/* COLLAPSABLE SECTION */}
