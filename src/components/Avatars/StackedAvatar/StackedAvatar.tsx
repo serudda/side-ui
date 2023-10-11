@@ -34,12 +34,24 @@ export interface StackedAvatarProps {
    */
   className?: string;
 
+  /**
+   * Specify an optional border to be added to the component
+   */
   border?: AvatarBorder;
 
+  /**
+   * Specify an optional max number of avatars to be displayed
+   */
   maxAvatars?: number;
 
+  /**
+   * Specify an optional size of each avatar
+   */
   size?: AvatarSize;
 
+  /**
+   * Set the avatar's children
+   */
   children?: React.ReactNode;
 }
 
@@ -65,7 +77,6 @@ export const StackedAvatar = ({
 
   const renderRemaining = () => {
     const remaining = childrenArray.length - maxAvatars;
-
     if (remaining < 1) return null;
 
     return <CountAvatar count={remaining} size={size} className={classes.count} />;
