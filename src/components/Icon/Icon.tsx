@@ -23,6 +23,7 @@ export enum IconCatalog {
   chevronDown = 'chevronDown',
   chevronRight = 'chevronRight',
   chevronUp = 'chevronUp',
+  circleHalf = 'circleHalf',
   clipboard = 'clipboard',
   cog6Tooth = 'cog6Tooth',
   discord = 'discord',
@@ -180,6 +181,13 @@ const Icons: Record<IconCatalog, IconType> = {
   [IconCatalog.chevronRight]: { outline: 'm9 6 6 6-6 6' },
 
   [IconCatalog.chevronUp]: { outline: 'm6 15 6-6 6 6' },
+
+  [IconCatalog.circleHalf]: {
+    outline:
+      'M12 4a8 8 0 1 0 8 8 8.009 8.009 0 0 0-8-8Zm.32.647a7.326 7.326 0 0 1 1.92.342V19.01a7.327 7.327 0 0 1-1.92.342V4.647Zm2.56.58a7.377 7.377 0 0 1 1.92 1.2v11.148a7.377 7.377 0 0 1-1.92 1.2V5.227ZM4.64 12a7.369 7.369 0 0 1 7.04-7.353v14.706A7.369 7.369 0 0 1 4.64 12Zm12.8 4.952V7.048a7.347 7.347 0 0 1 0 9.904Z',
+    solid:
+      'M12 3a9 9 0 1 0 9 9 9.01 9.01 0 0 0-9-9Zm-7.615 9A7.624 7.624 0 0 1 12 4.385v15.23A7.624 7.624 0 0 1 4.385 12Z',
+  },
 
   [IconCatalog.clipboard]: {
     outline:
