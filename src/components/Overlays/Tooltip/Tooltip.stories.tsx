@@ -9,6 +9,8 @@ const meta = {
   args: {
     text: 'Enter a description',
     placement: TooltipPlacement.top,
+    delayShow: 0,
+    delayHide: 0,
   },
 } satisfies Meta<typeof Tooltip>;
 
