@@ -1,4 +1,12 @@
-import { Children, cloneElement, useRef, useState, type ReactElement, type ReactNode } from 'react';
+import {
+  Children,
+  cloneElement,
+  useCallback,
+  useRef,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
 import { cn } from '@common';
 import { Portal } from '@components';
 import { usePopper } from 'react-popper';
@@ -60,6 +68,16 @@ export interface TooltipProps {
   placement?: TooltipPlacement;
 
   /**
+   * Delay in ms before the Tooltip appears.
+   */
+  delayShow?: number;
+
+  /**
+   * Delay in ms before the Tooltip disappears.
+   */
+  delayHide?: number;
+
+  /**
    * Whether the Tooltip has an arrow or not.
    */
   hasArrow?: boolean;
@@ -81,6 +99,8 @@ export const Tooltip = ({
   color = TooltipColor.black,
   placement = TooltipPlacement.top,
   size = TooltipSize.md,
+  delayShow = 0,
+  delayHide = 0,
   hasArrow = true,
   className,
   children,
@@ -103,6 +123,7 @@ export const Tooltip = ({
   const [arrowElement, setArrowElement] = useState<HTMLDivElement | null>(null);
   const refTriggerNode = useRef<HTMLSpanElement>(null);
   const [open, setOpen] = useState<boolean>(false);
+  const timer = useRef<number>();
 
   /* Popper config */
   const { styles, attributes } = usePopper(refTriggerNode.current, tooltipElement, {
@@ -113,8 +134,19 @@ export const Tooltip = ({
     ],
   });
 
-  const handleMouseOver = (): void => setOpen(true);
-  const handleMouseOut = (): void => setOpen(false);
+  const showTooltip = useCallback(() => {
+    clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(true), delayShow);
+  }, [delayShow, setOpen]);
+
+  const hideTooltip = useCallback(() => {
+    clearTimeout(timer.current);
+    timer.current = window.setTimeout(() => setOpen(false), delayHide);
+  }, [delayHide, setOpen]);
+
+  const handleMouseOver = (): void => showTooltip();
+
+  const handleMouseOut = (): void => hideTooltip();
 
   const child = Children.only(children) as ReactElement; //[1]
 
