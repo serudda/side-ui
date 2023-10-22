@@ -113,7 +113,7 @@ devDependencies:
     specifier: ^0.6.11
     version: 0.6.11(eslint@8.39.0)(typescript@5.0.4)
   husky:
-    specifier: ^8.0.3
+    specifier: ^8.0.2
     version: 8.0.3
   lint-staged:
     specifier: ^13.2.1
