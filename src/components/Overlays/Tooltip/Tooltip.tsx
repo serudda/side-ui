@@ -10,6 +10,7 @@ import {
 import { cn } from '@common';
 import { Portal } from '@components';
 import { usePopper } from 'react-popper';
+import { Trigger } from './Trigger/Trigger';
 
 export enum TooltipPlacement {
   topLeft = 'top-start',
@@ -189,6 +190,8 @@ export const Tooltip = ({
     </>
   );
 };
+
+Tooltip.Trigger = Trigger;
 
 /**
  * [1]

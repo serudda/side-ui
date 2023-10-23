@@ -1,3 +1,4 @@
+import { forwardRef } from 'react';
 import { cn } from '@common';
 import { Image } from '@components';
 
@@ -61,28 +62,33 @@ export interface AvatarProps {
 /**
  * Avatars are used to show a thumbnail representation of an individual or business in the interface.
  */
-export const Avatar = ({
-  size = AvatarSize.sm,
-  altText = 'avatar image',
-  imgUrl = './default-avatar.svg',
-  border,
-  className,
-}: AvatarProps) => {
-  const classes = {
-    avatar: cn(
-      'flex items-center whitespace-nowrap overflow-hidden relative shrink-0 rounded-full',
-      AvatarSizes[size],
+export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
+  (
+    {
+      size = AvatarSize.sm,
+      altText = 'avatar image',
+      imgUrl = './default-avatar.svg',
+      border,
       className,
-      {
-        [AvatarBorders[border || AvatarBorder.white]]: border,
-      },
-    ),
-    image: cn('rounded-full inline-block -indent-96 align-middle', AvatarSizes[size]),
-  };
+    },
+    ref,
+  ) => {
+    const classes = {
+      avatar: cn(
+        'flex items-center whitespace-nowrap overflow-hidden relative shrink-0 rounded-full',
+        AvatarSizes[size],
+        className,
+        {
+          [AvatarBorders[border || AvatarBorder.white]]: border,
+        },
+      ),
+      image: cn('rounded-full inline-block -indent-96 align-middle', AvatarSizes[size]),
+    };
 
-  return (
-    <div className={classes.avatar}>
-      <Image className={classes.image} src={imgUrl} alt={altText} noImg={<></>} />
-    </div>
-  );
-};
+    return (
+      <span ref={ref} className={classes.avatar}>
+        <Image className={classes.image} src={imgUrl} alt={altText} noImg={<></>} />
+      </span>
+    );
+  },
+);
