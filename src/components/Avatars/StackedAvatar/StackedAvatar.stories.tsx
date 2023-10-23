@@ -9,7 +9,9 @@ const meta = {
   args: {
     maxAvatars: 5,
     border: undefined,
-    hasTooltip: false,
+    tooltipProps: {
+      delayShow: 100,
+    },
   },
 } satisfies Meta<typeof StackedAvatar>;
 
