@@ -9,6 +9,7 @@ const meta = {
   args: {
     maxAvatars: 5,
     border: undefined,
+    hasTooltip: false,
   },
 } satisfies Meta<typeof StackedAvatar>;
 
@@ -19,8 +20,6 @@ export const Default: Story = {
   render: (args) => {
     return (
       <StackedAvatar maxAvatars={5} {...args}>
-        <Avatar imgUrl="assets/images/default-avatar.svg" />
-        <Avatar imgUrl="assets/images/default-avatar.svg" />
         <Avatar imgUrl="assets/images/default-avatar.svg" />
         <Avatar imgUrl="assets/images/default-avatar.svg" />
         <Avatar imgUrl="assets/images/default-avatar.svg" />
