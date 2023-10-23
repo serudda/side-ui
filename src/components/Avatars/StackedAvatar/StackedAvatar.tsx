@@ -1,13 +1,6 @@
 import { Children, cloneElement, isValidElement } from 'react';
 import { cn } from '@common';
-import {
-  AvatarBorder,
-  AvatarSize,
-  CountAvatar,
-  Tooltip,
-  TooltipPlacement,
-  TooltipSize,
-} from '@components';
+import { AvatarBorder, AvatarSize, CountAvatar, Tooltip, TooltipProps } from '@components';
 
 const DEFAULT_MAX_AVATARS = 5;
 
@@ -57,9 +50,9 @@ export interface StackedAvatarProps {
   size?: AvatarSize;
 
   /**
-   * Specify whether the avatar has a tooltip
+   * Specify an optional tooltip props
    */
-  hasTooltip?: boolean;
+  tooltipProps?: Omit<TooltipProps, 'text'>;
 
   /**
    * Set the avatar's children
@@ -72,7 +65,7 @@ export interface StackedAvatarProps {
  */
 export const StackedAvatar = ({
   className,
-  hasTooltip = false,
+  tooltipProps,
   border,
   maxAvatars = DEFAULT_MAX_AVATARS,
   size = AvatarSize.base,
@@ -105,15 +98,10 @@ export const StackedAvatar = ({
       ...child.props,
     });
 
-    if (!hasTooltip) return element;
+    if (!tooltipProps) return element;
 
     return (
-      <Tooltip
-        placement={TooltipPlacement.top}
-        text={child.props.altText || 'avatar image'}
-        size={TooltipSize.sm}
-        delayShow={500}
-      >
+      <Tooltip {...tooltipProps} text={child.props.altText || 'avatar image'}>
         <Tooltip.Trigger>{element}</Tooltip.Trigger>
       </Tooltip>
     );
