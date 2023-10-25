@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { cn } from '@common';
 import {
   Button,
   ButtonSize,
@@ -19,24 +18,11 @@ export enum ModalSize {
   xl = 'xl',
 }
 
-const Sizes: Record<ModalSize, string> = {
-  [ModalSize.sm]: 'max-w-md',
-  [ModalSize.base]: 'max-w-lg',
-  [ModalSize.lg]: 'max-w-xl',
-  [ModalSize.xl]: 'max-w-2xl',
-};
-
 export enum ModalBgColor {
   transparent = 'transparent',
   slate = 'slate',
   black = 'black',
 }
-
-const BgColors: Record<ModalBgColor, string> = {
-  [ModalBgColor.transparent]: 'bg-transparent',
-  [ModalBgColor.slate]: 'bg-slate-900',
-  [ModalBgColor.black]: 'bg-black',
-};
 
 /* --------------------  END: VARIANTS  ---------------------- */
 
@@ -74,11 +60,6 @@ export interface ModalProps {
    */
   body: ReactNode;
 
-  /*
-   * Whether the modal should be full width or not
-   */
-  isFullWidth?: boolean;
-
   /**
    * Elements to display inside the Footer.
    */
@@ -105,10 +86,6 @@ export interface ModalProps {
  * one task or piece of information via a window that sits on top of the page content.
  */
 export const Modal = ({
-  className,
-  size = ModalSize.base,
-  isFullWidth = false,
-  bgColor = ModalBgColor.slate,
   title,
   subtitle,
   hasCloseBtn = true,
@@ -116,48 +93,23 @@ export const Modal = ({
   footer,
   onClose,
 }: ModalProps) => {
-  /* Classes */
-  const classes = {
-    container: cn(
-      'transform-none transition-transform relative w-auto pointer-events-none my-7 mx-auto h-full',
-      Sizes[size],
-      className,
-      {
-        'w-full': isFullWidth,
-      },
-    ),
-    content: cn(
-      'overflow-hidden',
-      'relative flex flex-col w-full pointer-events-auto bg-clip-padding outline-0 rounded-2xl max-h-full',
-      BgColors[bgColor],
-    ),
-    header: {
-      container: cn('p-5 pt-20 relative'),
-      title: cn('font-semi-bold line-clamp-3 text-lg text-slate-50 mb-1'),
-      subtitle: cn('font-regular line-clamp-3 text-sm text-slate-400'),
-      closeBtn: cn('absolute top-4 right-4 text-neutral-300'),
-    },
-    body: cn('relative flex-auto px-6'),
-    footer: cn('flex flex-wrap flex-shrink-0 items-center w-full p-6'),
-  };
-
   /* Handlers */
   const handleCloseBtnClick = () => onClose && onClose();
 
   /* Renders */
   return (
-    <div className={classes.container}>
-      <div className={classes.content}>
+    <div className="pointer-events-none relative mx-auto my-7 h-full w-auto max-w-md transform-none transition-transform">
+      <div className="pointer-events-auto relative flex max-h-full w-full flex-col overflow-hidden rounded-2xl bg-slate-900 bg-clip-padding outline-0">
         <Image src="assets/images/pattern-icon.svg" className="absolute left-0 top-0 z-0" />
 
         {/* HEADER */}
-        <div className={classes.header.container}>
-          <h2 className={classes.header.title}>{title}</h2>
-          <h3 className={classes.header.subtitle}>{subtitle}</h3>
+        <div className="relative p-5 pt-20">
+          <h2 className="font-semi-bold mb-1 line-clamp-3 text-lg text-slate-50">{title}</h2>
+          <h3 className="font-regular line-clamp-3 text-sm text-slate-400">{subtitle}</h3>
 
           {hasCloseBtn && (
             <Button
-              className={classes.header.closeBtn}
+              className="absolute right-4 top-4 text-neutral-300"
               variant={ButtonVariant.ghost}
               size={ButtonSize.xs}
               onClick={handleCloseBtnClick}
@@ -169,10 +121,10 @@ export const Modal = ({
         </div>
 
         {/* BODY */}
-        <div className={classes.body}>{body}</div>
+        <div className="relative flex-auto px-6">{body}</div>
 
         {/* FOOTER */}
-        <div className={classes.footer}>{footer}</div>
+        <div className="flex w-full flex-shrink-0 flex-wrap items-center p-6">{footer}</div>
       </div>
     </div>
   );

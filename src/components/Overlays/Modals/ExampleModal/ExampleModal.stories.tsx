@@ -15,6 +15,7 @@ const meta = {
     size: ModalSize.base,
     title: 'Share with people',
     subtitle: 'The following users have access to this project:',
+    isFullWidth: false,
     body: <ModalBodyLongSample />,
     footer: (
       <div className="flex w-full items-center justify-end space-x-4">

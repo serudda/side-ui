@@ -20,6 +20,7 @@ export enum ModalSize {
 }
 
 const Sizes: Record<ModalSize, string> = {
+  // key, value
   [ModalSize.sm]: 'max-w-md',
   [ModalSize.base]: 'max-w-lg',
   [ModalSize.lg]: 'max-w-xl',
@@ -74,11 +75,6 @@ export interface ModalProps {
    */
   body: ReactNode;
 
-  /*
-   * Whether the modal should be full width or not
-   */
-  isFullWidth?: boolean;
-
   /**
    * Elements to display inside the Footer.
    */
@@ -106,11 +102,10 @@ export interface ModalProps {
  */
 export const Modal = ({
   className,
-  size = ModalSize.base,
-  isFullWidth = false,
-  bgColor = ModalBgColor.slate,
   title,
   subtitle,
+  size = ModalSize.base,
+  bgColor = ModalBgColor.slate,
   hasCloseBtn = true,
   body,
   footer,
@@ -119,26 +114,29 @@ export const Modal = ({
   /* Classes */
   const classes = {
     container: cn(
-      'transform-none transition-transform relative w-auto pointer-events-none my-7 mx-auto h-full',
+      'relative',
+      'h-full w-auto max-w-md',
+      'mx-auto my-7',
+      'pointer-events-none transform-none transition-transform',
       Sizes[size],
       className,
-      {
-        'w-full': isFullWidth,
-      },
     ),
     content: cn(
-      'overflow-hidden',
-      'relative flex flex-col w-full pointer-events-auto bg-clip-padding outline-0 rounded-2xl max-h-full',
+      'relative flex flex-col',
+      'max-h-full w-full',
+      'bg-slate-900 bg-clip-padding',
+      'pointer-events-auto rounded-2xl outline-0 overflow-hidden',
       BgColors[bgColor],
     ),
+    pattern: cn('absolute left-0 top-0 z-0'),
     header: {
-      container: cn('p-5 pt-20 relative'),
-      title: cn('font-semi-bold line-clamp-3 text-lg text-slate-50 mb-1'),
+      container: cn('relative p-5 pt-20'),
+      title: cn('mb-1', 'font-semi-bold line-clamp-3 text-lg text-slate-50'),
       subtitle: cn('font-regular line-clamp-3 text-sm text-slate-400'),
-      closeBtn: cn('absolute top-4 right-4 text-neutral-300'),
+      closeBtn: cn('absolute right-4 top-4', 'text-neutral-300'),
     },
     body: cn('relative flex-auto px-6'),
-    footer: cn('flex flex-wrap flex-shrink-0 items-center w-full p-6'),
+    footer: cn('flex flex-shrink-0 flex-wrap items-center', 'w-full p-6'),
   };
 
   /* Handlers */
@@ -148,7 +146,7 @@ export const Modal = ({
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        <Image src="assets/images/pattern-icon.svg" className="absolute left-0 top-0 z-0" />
+        <Image src="assets/images/pattern-icon.svg" className={classes.pattern} />
 
         {/* HEADER */}
         <div className={classes.header.container}>
