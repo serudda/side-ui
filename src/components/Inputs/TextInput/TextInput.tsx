@@ -58,11 +58,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       inputContainer: cn(
         'relative flex items-center overflow-hidden',
         'group',
-        'border',
+        'border border-slate-500 dark:border-slate-400',
         'h-10',
         'text-white',
-        'bg-slate-100 dark:bg-slate-950',
-        'hover:bg-slate-200 dark:hover:bg-slate-900',
+        'bg-white dark:bg-slate-900',
+        'hover:bg-slate-100 dark:hover:bg-slate-900',
         'transition-colors duration-300',
         {
           'rounded-md p-2': !isRounded,
@@ -74,16 +74,18 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             fieldState === FormFieldState.error && !isDisabled,
           'border-green-500 dark:border-green-500':
             fieldState === FormFieldState.success && !isDisabled,
-          'bg-slate-200 dark:bg-slate-900 border-slate-400 dark:border-slate-600':
+          'bg-white hover:bg-white dark:bg-slate-800 dark:hover:bg-slate-800 border-slate-800 dark:border-slate-200':
             fieldState === FormFieldState.default && isFocused,
         },
       ),
       input: cn(
         'w-full',
         'outline-none bg-transparent',
-        'placeholder:text-slate-300 focus:placeholder:text-slate-500 ',
-        'dark:placeholder:text-slate-800 dark:focus:placeholder:text-slate-500 ',
-        'dark:hover:placeholder:text-slate-700',
+        'text-slate-800 dark:text-slate-100',
+        'placeholder:text-slate-300 focus:placeholder:text-slate-400 ',
+        'dark:placeholder:text-slate-800 dark:focus:placeholder:text-slate-300 ',
+        'hover:placeholder:text-slate-600',
+        'dark:hover:placeholder:text-slate-500',
         'text-base',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-600',
       ),
