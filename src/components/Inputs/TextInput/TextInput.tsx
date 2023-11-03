@@ -57,34 +57,54 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       container: cn({ 'w-full': isFullWidth }, className),
       inputContainer: cn(
         'relative flex items-center overflow-hidden',
+        'group',
         'border',
         'h-10',
         'text-white',
+        'bg-slate-100 dark:bg-slate-950',
+        'hover:bg-slate-200 dark:hover:bg-slate-900',
+        'transition-colors duration-300',
         {
           'rounded-md p-2': !isRounded,
           'rounded-full px-4 py-2': isRounded,
           'w-full': isFullWidth,
-          'border-slate-700': fieldState === FormFieldState.default,
-          'border-rose-600': fieldState === FormFieldState.error && !isDisabled,
-          'border-green-500': fieldState === FormFieldState.success && !isDisabled,
-          'border-primary-800': fieldState === FormFieldState.default && isFocused,
-          'bg-slate-900': !isDisabled,
-          'bg-slate-900 border-transparent': isDisabled,
+          ['bg-slate-500 dark:bg-slate-900 border-transparent']: isDisabled,
+          'border-slate-300 dark:border-slate-800': fieldState === FormFieldState.default,
+          'border-rose-600 dark:border-rose-600':
+            fieldState === FormFieldState.error && !isDisabled,
+          'border-green-500 dark:border-green-500':
+            fieldState === FormFieldState.success && !isDisabled,
+          'bg-slate-200 dark:bg-slate-900 border-slate-400 dark:border-slate-600':
+            fieldState === FormFieldState.default && isFocused,
         },
       ),
       input: cn(
         'w-full',
-        'transition duration-100 ease-out outline-none bg-transparent',
-        'placeholder:text-slate-500 text-base',
+        'outline-none bg-transparent',
+        'placeholder:text-slate-300 focus:placeholder:text-slate-500 ',
+        'dark:placeholder:text-slate-800 dark:focus:placeholder:text-slate-500 ',
+        'dark:hover:placeholder:text-slate-700',
+        'text-base',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-600',
       ),
       assistiveText: cn('mt-2 text-xs font-medium', {
-        'text-slate-200': fieldState === FormFieldState.default,
-        'text-rose-400': fieldState === FormFieldState.error,
-        'text-green-400': fieldState === FormFieldState.success,
+        'text-slate-600 dark:text-slate-200': fieldState === FormFieldState.default,
+        'text-rose-500 dark:text-rose-400': fieldState === FormFieldState.error,
+        'text-green-600 dark:text-green-400': fieldState === FormFieldState.success,
       }),
-      startIcon: cn('flex items-center justify-center w-5 h-5 mr-1'),
-      endIcon: cn('flex items-center justify-center w-5 h-5 ml-1'),
+      startIcon: cn(
+        'flex items-center justify-center w-5 h-5 mr-4 transition-colors duration-100',
+        {
+          'stroke-slate-300 dark:stroke-slate-800 dark:group-hover:stroke-slate-500': !isFocused,
+          'group-hover:stroke-slate-400': !isFocused,
+          'stroke-slate-800 dark:stroke-slate-200': isFocused,
+        },
+      ),
+      endIcon: cn('flex items-center justify-center w-5 h-5 mr-4 transition-colors duration-100', {
+        'stroke-slate-300 dark:stroke-slate-800 dark:group-hover:stroke-slate-500': !isFocused,
+        'group-hover:stroke-slate-400': !isFocused,
+        'stroke-slate-800 dark:stroke-slate-200': isFocused,
+      }),
     };
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -135,9 +155,12 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <div className={classes.container}>
         {label && (
-          <label className="mb-2 block text-sm font-semibold leading-4 text-slate-400" htmlFor={id}>
+          <label
+            className="mb-2 block text-sm font-semibold leading-4 text-slate-500 dark:bg-slate-400"
+            htmlFor={id}
+          >
             {label}
-            {isRequired && <span className="ml-1 text-rose-400">*</span>}
+            {isRequired && <span className="ml-1 text-rose-500 dark:text-rose-400">*</span>}
           </label>
         )}
         <div className={classes.inputContainer}>
