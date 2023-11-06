@@ -1,6 +1,7 @@
+import { useState } from 'react';
 import { Button, ButtonSize, ButtonVariant } from '@components';
 import { parseIconOptions } from '@storybookConfig';
-import { TextInput } from './TextInput';
+import { TextInput, TextInputProps } from './TextInput';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
@@ -43,15 +44,23 @@ export const Default: Story = {
   },
 };
 
+export const TextInputExample = (args: TextInputProps) => {
+  const [value, setValue] = useState('');
+  return (
+    <div className="inline-flex content-end items-end space-x-3">
+      <TextInput
+        {...args}
+        className="w-96"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+      <Button size={ButtonSize.base} variant={ButtonVariant.primary}>
+        Get early Access
+      </Button>
+    </div>
+  );
+};
+
 export const TextInputWithButton: Story = {
-  render: (args) => {
-    return (
-      <div className="inline-flex content-end items-end space-x-3">
-        <TextInput className="w-96" {...args} />
-        <Button size={ButtonSize.sm} variant={ButtonVariant.primary}>
-          Get early Access
-        </Button>
-      </div>
-    );
-  },
+  render: (args) => <TextInputExample {...args} />,
 };
