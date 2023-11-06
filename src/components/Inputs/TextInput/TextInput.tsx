@@ -60,30 +60,28 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
         'group',
         'border',
         'h-10',
-        'text-white',
-        'bg-slate-100 dark:bg-slate-950',
-        'hover:bg-slate-200 dark:hover:bg-slate-900',
+        'text-black dark:text-white',
+        'bg-white dark:bg-slate-950',
         'transition-colors duration-300',
         {
-          'rounded-md p-2': !isRounded,
+          'rounded p-2': !isRounded,
           'rounded-full px-4 py-2': isRounded,
           'w-full': isFullWidth,
           ['bg-slate-500 dark:bg-slate-900 border-transparent']: isDisabled,
-          'border-slate-300 dark:border-slate-800': fieldState === FormFieldState.default,
+          'border-slate-300 dark:border-slate-700': fieldState === FormFieldState.default,
           'border-rose-600 dark:border-rose-600':
             fieldState === FormFieldState.error && !isDisabled,
           'border-green-500 dark:border-green-500':
             fieldState === FormFieldState.success && !isDisabled,
-          'bg-slate-200 dark:bg-slate-900 border-slate-400 dark:border-slate-600':
+          'border-slate-400 dark:border-slate-500':
             fieldState === FormFieldState.default && isFocused,
         },
       ),
       input: cn(
         'w-full',
         'outline-none bg-transparent',
-        'placeholder:text-slate-300 focus:placeholder:text-slate-500 ',
-        'dark:placeholder:text-slate-800 dark:focus:placeholder:text-slate-500 ',
-        'dark:hover:placeholder:text-slate-700',
+        'placeholder:text-slate-500',
+        'dark:placeholder:text-slate-400',
         'text-base',
         'disabled:cursor-not-allowed disabled:placeholder:text-slate-600',
       ),
