@@ -60,7 +60,3 @@ export const TextInputExample = (args: TextInputProps) => {
     </div>
   );
 };
-
-export const TextInputWithButton: Story = {
-  render: (args) => <TextInputExample {...args} />,
-};
