@@ -1,6 +1,6 @@
 {
   "name": "side-ui",
-  "version": "0.16.9",
+  "version": "0.16.10",
   "type": "module",
   "packageManager": "pnpm@7.27.1",
   "repository": {
