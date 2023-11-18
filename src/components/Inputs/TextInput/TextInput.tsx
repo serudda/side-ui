@@ -154,7 +154,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       <div className={classes.container}>
         {label && (
           <label
-            className="mb-2 block text-sm font-semibold leading-4 text-slate-500 dark:bg-slate-400"
+            className="mb-2 block text-sm font-semibold leading-4 text-slate-950 dark:text-slate-400"
             htmlFor={id}
           >
             {label}
