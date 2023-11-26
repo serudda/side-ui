@@ -24,14 +24,18 @@ enum EndIconSize {
 
 export enum NewsTagVariant {
   secondary = 'secondary',
+  indigo = 'indigo',
 }
 
 const Variants: Record<NewsTagVariant, string> = {
   [NewsTagVariant.secondary]: 'bg-secondary-600/50 hover:bg-secondary-600/70 text-secondary-100',
+  [NewsTagVariant.indigo]:
+    'bg-indigo-200 dark:bg-indigo-600/50 hover:bg-indigo-600/20 hover:dark:bg-indigo-600/70 text-indigo-800 dark:text-indigo-100',
 };
 
 const Borders: Record<NewsTagVariant, string> = {
   [NewsTagVariant.secondary]: 'ring-1 ring-inset ring-secondary-300/30',
+  [NewsTagVariant.indigo]: 'ring-1 ring-inset ring-indigo-300/30',
 };
 
 export interface NewsTagProps {
@@ -72,9 +76,9 @@ export interface NewsTagProps {
 export const NewsTag = ({
   children,
   size = NewsTagSize.sm,
-  variant = NewsTagVariant.secondary,
+  variant = NewsTagVariant.indigo,
   hasEndIcon = true,
-  hasBorder = false,
+  hasBorder = true,
   className,
 }: NewsTagProps) => {
   const classes = {

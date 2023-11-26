@@ -1,6 +1,6 @@
-import type { Meta, StoryObj } from '@storybook/react';
 import { Icon, IconCatalog, IconStyle } from '..';
 import { NewsTag, NewsTagSize, NewsTagVariant } from './NewsTag';
+import type { Meta, StoryObj } from '@storybook/react';
 
 const meta = {
   title: 'UI Components/NewsTag',
@@ -8,7 +8,7 @@ const meta = {
   tags: ['autodocs'],
   args: {
     size: NewsTagSize.sm,
-    variant: NewsTagVariant.secondary,
+    variant: NewsTagVariant.indigo,
     hasEndIcon: true,
     hasBorder: false,
   },
@@ -22,7 +22,7 @@ export const Default: Story = {
     return (
       <div className="flex flex-col gap-5">
         <div className="inline-flex content-end items-end space-x-3">
-          <NewsTag {...args} size={NewsTagSize.xs} variant={NewsTagVariant.secondary}>
+          <NewsTag {...args} size={NewsTagSize.xs}>
             <span className="flex items-center gap-1">
               <Icon
                 icon={IconCatalog.sparkles}
@@ -32,7 +32,7 @@ export const Default: Story = {
               <span>Last update 2 days ago</span>
             </span>
           </NewsTag>
-          <NewsTag {...args} size={NewsTagSize.sm} variant={NewsTagVariant.secondary}>
+          <NewsTag {...args} size={NewsTagSize.sm}>
             Last updated 2 days ago
           </NewsTag>
         </div>
