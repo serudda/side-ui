@@ -21,12 +21,12 @@ export const ToggleGroupContext = createContext<ToggleGroupContextType<any>>({
 });
 
 /* PROVIDER DEFINITION */
-export function ToggleGroupProvider<T>({
+export const ToggleGroupProvider = <T,>({
   value,
   onChange,
   children,
   ...props
-}: ToggleGroupProps<T>): JSX.Element {
+}: ToggleGroupProps<T>): JSX.Element => {
   const toggleGroupProviderValue = useMemo(
     () => ({
       value,
@@ -40,11 +40,11 @@ export function ToggleGroupProvider<T>({
       <div {...props}>{children}</div>
     </ToggleGroupContext.Provider>
   );
-}
+};
 
 /*   EXPORT USE METHOD   */
-export function useToggleGroup<T>(): ToggleGroupContextType<T> {
+export const useToggleGroup = <T,>(): ToggleGroupContextType<T> => {
   const context = useContext(ToggleGroupContext);
   if (!context) throw new Error('useToggleGroup must be wrapped within ToggleGroupProvider');
   return context;
-}
+};
