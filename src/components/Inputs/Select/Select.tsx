@@ -135,8 +135,8 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           'border-rose-600': fieldState === FormFieldState.error && !isDisabled,
           'border-green-500': fieldState === FormFieldState.success && !isDisabled,
           'border-primary-500': fieldState === FormFieldState.default && isFocused,
-          'bg-slate-900 text-neutral-50': !isDisabled,
-          'bg-slate-900 border-transparent cursor-default': isDisabled,
+          'bg-slate-100 text-neutral-900 dark:bg-slate-900 dark:text-neutral-50': !isDisabled,
+          'bg-slate-100 dark:bg-slate-900 border-transparent cursor-default': isDisabled,
         },
       ),
       menu: cn(menuClassName),
@@ -144,13 +144,14 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         cn('flex items-center space-x-3', 'rounded', {
           'p-1.5 px-2 text-sm': size === SelectSize.sm,
           'p-2 text-base': size === SelectSize.base,
-          'bg-slate-950': index === cursor || item.value === selectedOption?.value,
-          'hover:bg-slate-800': index !== cursor && item.value !== selectedOption?.value,
+          'bg-gray-200 dark:bg-slate-950': index === cursor || item.value === selectedOption?.value,
+          'hover:bg-gray-300 dark:hover:bg-slate-800':
+            index !== cursor && item.value !== selectedOption?.value,
         }),
       placeholder: cn('flex flex-wrap items-center truncate', {
         'text-sm': size === SelectSize.sm,
         'text-base leading-[22px]': size === SelectSize.base,
-        'text-slate-400': !selectedOption?.label,
+        'text-slate-200 dark:text-slate-400': !selectedOption?.label,
       }),
       endContainer: cn('flex items-center space-x-2 self-stretch flex-shrink-0 pl-1 ml-auto'),
       chevronDownIcon: cn({
@@ -222,7 +223,9 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         className={classes.option(option, index)}
         onClick={handleOptionClick(option)}
       >
-        <div className="flex w-full cursor-default truncate text-slate-50">{option.label}</div>
+        <div className="flex w-full cursor-pointer truncate text-slate-900 dark:text-slate-50">
+          {option.label}
+        </div>
       </div>
     ));
 
@@ -235,7 +238,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           maxOptions: size === SelectSize.base ? 7 : 6,
           maxHeight: size === SelectSize.base ? '300px' : '172px',
         })}
-        className="w-full flex-grow overflow-y-auto p-1.5 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-700 scrollbar-track-slate-950"
+        className="flex w-full flex-grow flex-col gap-2 overflow-y-auto p-1.5 scrollbar-w-2 scrollbar-thumb-rounded-lg scrollbar-thumb-slate-700 scrollbar-track-slate-950"
       >
         {renderOptions}
       </div>
