@@ -1,38 +1,32 @@
-import {
-  ComponentPropsWithoutRef,
-  createContext,
-  useContext,
-  useMemo,
-  type ReactNode,
-} from 'react';
+import { ReactNode, createContext, useContext, useMemo } from 'react';
 
-export type ToggleGroupContextType = {
-  value: string | null;
-  onChange: (value: string) => void;
+type ToggleGroupContextType<T> = {
+  value: T | null;
+  onChange: (value: T) => void;
 };
 
-interface ToggleGroupProviderProps {
+interface ToggleGroupProviderProps<T> {
   children: ReactNode | Array<ReactNode>;
-  value: string | null;
-  onChange: (value: string) => void;
+  value: T | null;
+  onChange: (value: T) => void;
 }
 
-export type ToogleGroupProps = ToggleGroupProviderProps &
-  Omit<ComponentPropsWithoutRef<'div'>, keyof ToggleGroupProviderProps>;
+export type ToggleGroupProps<T> = ToggleGroupProviderProps<T> &
+  Omit<React.HTMLProps<HTMLDivElement>, keyof ToggleGroupProviderProps<T>>;
 
 /*  CONTEXT DEFINITION  */
-export const ToggleGroupContext = createContext<ToggleGroupContextType>({
+export const ToggleGroupContext = createContext<ToggleGroupContextType<any>>({
   value: null,
   onChange: () => {},
 });
 
 /* PROVIDER DEFINITION */
-export const ToggleGroupProvider = ({
+export function ToggleGroupProvider<T>({
   value,
   onChange,
   children,
   ...props
-}: ToogleGroupProps): JSX.Element => {
+}: ToggleGroupProps<T>): JSX.Element {
   const toggleGroupProviderValue = useMemo(
     () => ({
       value,
@@ -46,11 +40,11 @@ export const ToggleGroupProvider = ({
       <div {...props}>{children}</div>
     </ToggleGroupContext.Provider>
   );
-};
+}
 
 /*   EXPORT USE METHOD   */
-export const useToggleGroup = (): ToggleGroupContextType => {
+export function useToggleGroup<T>(): ToggleGroupContextType<T> {
   const context = useContext(ToggleGroupContext);
   if (!context) throw new Error('useToggleGroup must be wrapped within ToggleGroupProvider');
   return context;
-};
+}
