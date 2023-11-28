@@ -154,9 +154,10 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
         'text-slate-200 dark:text-slate-400': !selectedOption?.label,
       }),
       endContainer: cn('flex items-center space-x-2 self-stretch flex-shrink-0 pl-1 ml-auto'),
-      chevronDownIcon: cn({
+      chevronDownIcon: cn('transition-transform duration-300', {
         'h-4 w-4': size === SelectSize.sm,
         'h-5 w-5': size === SelectSize.base,
+        '-rotate-180': isFocused,
       }),
       assistiveText: cn('mt-2 text-xs font-medium', {
         'text-slate-200': fieldState === FormFieldState.default,
@@ -288,10 +289,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               {isLoading && <Spinner size={SpinnerSize.xs} variant={SpinnerVariant.primary} />}
 
               {/* CHEVRON ICON */}
-              <Icon
-                className={classes.chevronDownIcon}
-                icon={isFocused ? IconCatalog.chevronUp : IconCatalog.chevronDown}
-              />
+              <Icon className={classes.chevronDownIcon} icon={IconCatalog.chevronDown} />
             </div>
           </div>
         </Popover>
