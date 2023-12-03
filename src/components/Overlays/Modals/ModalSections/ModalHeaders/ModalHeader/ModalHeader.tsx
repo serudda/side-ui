@@ -1,13 +1,8 @@
-import { ReactNode } from 'react';
-import { cn } from '@common';
+import React from 'react';
 import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@components';
+import cn from 'classnames';
 
-export interface BasicModalHeaderProps {
-  /**
-   * Specify an optional className to be added to the component
-   */
-  className?: string;
-
+export interface ModalHeaderProps {
   /**
    * Title for modal header
    */
@@ -21,37 +16,29 @@ export interface BasicModalHeaderProps {
   /**
    * Set an extra action on the modal header
    */
-  action?: ReactNode;
+  action?: React.ReactNode;
 
   /**
-   * The callback to get notified when the modal was closed
+   * Callback to execute when clicking on the close button
    */
   onClose?: () => void;
 }
 
 /**
- * This component is used to render a basic modal header
+ * `ModalHeader` represents the header section of a modal
  */
-export const BasicModalHeader = ({
-  className,
-  title,
-  action,
-  hasCloseBtn,
-  onClose,
-}: BasicModalHeaderProps) => {
+export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeaderProps) => {
   const classes = {
-    header: cn('flex items-center flex-shrink-0 justify-between', 'py-4 pl-6 pr-5', className),
+    header: cn('flex items-center flex-shrink-0 justify-between pt-6 pb-4 px-6'),
   };
 
-  const handleCloseBtnClick = () => {
-    if (onClose) onClose();
-  };
+  const handleCloseBtnClick = () => onClose?.();
 
   return (
     <div className={classes.header}>
       {title && <h2 className="font-semi-bold line-clamp-3 text-xl text-neutral-50">{title}</h2>}
 
-      <div className="flex items-center">
+      <div className="ml-auto flex items-center">
         {action}
         {hasCloseBtn && (
           <Button

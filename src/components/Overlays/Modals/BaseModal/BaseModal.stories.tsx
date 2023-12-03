@@ -1,7 +1,6 @@
-import { Button, ButtonSize, ButtonVariant } from '@components';
+import { Button, ButtonSize, ButtonVariant, ModalSize } from '@components';
 import { useModal } from '@hooks';
-import { BasicModalHeader, FullScreenModalHeader } from '../ModalSections';
-import { BaseModal, ModalSize, type BaseModalProps } from './BaseModal';
+import { BaseModal, type BaseModalProps } from './BaseModal';
 import type { Meta, StoryObj } from '@storybook/react';
 
 const ModalBodyLongSample = () => {
@@ -28,10 +27,15 @@ const meta = {
   component: BaseModal,
   tags: ['autodocs'],
   args: {
+    size: ModalSize.fullScreen,
     body: <ModalBodyLongSample />,
+    header: {
+      title: '¿Deseas cancelar?',
+      hasCloseBtn: true,
+    },
     footer: (
       <div className="flex w-full items-center justify-end space-x-4">
-        <Button variant={ButtonVariant.tertiary} size={ButtonSize.sm} invert>
+        <Button variant={ButtonVariant.tertiary} size={ButtonSize.sm}>
           Cancelar
         </Button>
         <Button variant={ButtonVariant.primary} size={ButtonSize.sm}>
@@ -54,7 +58,7 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
       <BaseModal
         className="text-base-white"
         body={args.body}
-        header={<BasicModalHeader title="Modal Title" hasCloseBtn onClose={() => close(null)} />}
+        header={args.header}
         footer={args.footer}
         size={args.size}
         onClose={() => close(true)}
@@ -74,45 +78,4 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
 
 export const Default: Story = {
   render: (args) => <TemplateImperativeExample {...args} />,
-};
-
-const TemplateFullScreenModalExample = (args: BaseModalProps) => {
-  const { modalNode, openModal } = useModal();
-
-  const handleClick = async () => {
-    await openModal<boolean | null>((close) => (
-      <BaseModal
-        className="text-base-white"
-        body={args.body}
-        header={
-          <FullScreenModalHeader
-            title="Modal Title"
-            hasGoBackBtn
-            onClose={() => close(null)}
-            action={
-              <Button variant={ButtonVariant.primary} size={ButtonSize.xs}>
-                Primary Action
-              </Button>
-            }
-          />
-        }
-        footer={args.footer}
-        size={ModalSize.fullScreen}
-        onClose={() => close(true)}
-      />
-    ));
-  };
-
-  return (
-    <>
-      <Button size={ButtonSize.xs} onClick={handleClick} invert>
-        Open Modal
-      </Button>
-      {modalNode}
-    </>
-  );
-};
-
-export const FullScreenModal: Story = {
-  render: (args) => <TemplateFullScreenModalExample {...args} />,
 };
