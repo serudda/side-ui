@@ -74,7 +74,7 @@ export const ConfirmationModal = ({
         <div className="ml-auto flex items-center space-x-4">
           <Button
             onClick={handleCancelButtonClick}
-            size={ButtonSize.xs}
+            size={ButtonSize.sm}
             variant={ButtonVariant.tertiary}
             invert
           >
@@ -82,7 +82,7 @@ export const ConfirmationModal = ({
           </Button>
           <Button
             onClick={handleConfirmButtonClick}
-            size={ButtonSize.xs}
+            size={ButtonSize.sm}
             variant={confirmBtnVariant}
           >
             {confirmBtnLabel}

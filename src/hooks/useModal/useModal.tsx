@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ModalContainer } from '@components';
+import { ModalRoot } from '@components';
 
 /**
  * A function that takes a result of a variable type and returns nothing.
@@ -32,7 +32,7 @@ export const useModal = () => {
         setModalNode(null);
       };
 
-      const modal = <ModalContainer>{modalFactory(close)}</ModalContainer>;
+      const modal = <ModalRoot>{modalFactory(close)}</ModalRoot>;
 
       // To open the dialog, we store the resulting jsx in our state
       setModalNode(modal);
