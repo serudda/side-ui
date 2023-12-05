@@ -36,7 +36,11 @@ export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeader
 
   return (
     <div className={classes.header}>
-      {title && <h2 className="font-semi-bold line-clamp-3 text-xl text-neutral-50">{title}</h2>}
+      {title && (
+        <h2 className="line-clamp-3 text-xl font-semibold text-neutral-900 dark:text-neutral-50">
+          {title}
+        </h2>
+      )}
 
       <div className="ml-auto flex items-center">
         {action}
