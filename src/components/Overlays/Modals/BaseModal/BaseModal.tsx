@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import cn from 'classnames';
+import { cn } from '@common';
 import { ModalContent, ModalSize } from '../ModalSections';
 import { ModalBodyProps } from '../ModalSections/ModalBody/ModalBody';
 import { ModalFooterProps } from '../ModalSections/ModalFooter/ModalFooter';
@@ -87,10 +87,12 @@ export const BaseModal = ({
     >
       {/* HEADER */}
       {header && <ModalContent.Header {...header} onClose={handleCancelBtnClick} />}
+
       {/* BODY */}
       <ModalContent.Body className={bodyClassName} isBodyScrollable={isBodyScrollable}>
         {body}
       </ModalContent.Body>
+
       {/* FOOTER */}
       {showFooter && <ModalContent.Footer>{footer}</ModalContent.Footer>}
     </ModalContent>

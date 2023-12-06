@@ -1,5 +1,5 @@
 import { ReactNode, isValidElement } from 'react';
-import classNames from 'classnames';
+import { cn } from '@common';
 
 export interface ModalFooterProps {
   /**
@@ -20,7 +20,7 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
   const isValidChildren = isValidElement(children);
 
   const classes = {
-    footer: classNames(
+    footer: cn(
       'flex flex-wrap flex-shrink-0 items-center w-full',
       {
         'p-6': isValidChildren,
