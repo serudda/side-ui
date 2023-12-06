@@ -88,7 +88,7 @@ export const StackedAvatar = ({
     return <CountAvatar count={remaining} size={size} className={classes.count} />;
   };
 
-  const newChildren = childrenArray.slice(0, maxAvatars).map((child) => {
+  const newChildren = childrenArray.slice(0, maxAvatars).map((child, index) => {
     if (!isValidElement(child)) return null;
 
     const element = cloneElement(child, {
@@ -101,7 +101,7 @@ export const StackedAvatar = ({
     if (!tooltipProps) return element;
 
     return (
-      <Tooltip {...tooltipProps} text={child.props.altText || 'avatar image'}>
+      <Tooltip key={index} {...tooltipProps} text={child.props.altText || 'avatar image'}>
         <Tooltip.Trigger>{element}</Tooltip.Trigger>
       </Tooltip>
     );

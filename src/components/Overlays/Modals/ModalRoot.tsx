@@ -18,7 +18,9 @@ export const ModalRoot = ({ children }: ModalRootProps) => {
       'fixed top-0 left-0 bottom-0 right-0 z-30 overflow-x-hidden overflow-y-auto outline-0 transition-opacity',
     ),
     container: cn('flex min-h-full justify-center p-4 items-center'),
-    overlay: cn('fixed inset-0 bg-slate-800/75 transition-opacity backdrop-blur-sm'),
+    overlay: cn(
+      'fixed inset-0 bg-slate-300/75 dark:bg-slate-800/75 transition-opacity backdrop-blur-sm',
+    ),
   };
 
   // it's needed to get the 70% of the screen height
