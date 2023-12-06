@@ -1,6 +1,6 @@
 import React from 'react';
+import { cn } from '@common';
 import { Scrollable } from '@components';
-import cn from 'classnames';
 
 export interface ModalBodyProps {
   /**

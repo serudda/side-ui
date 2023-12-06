@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { Key } from '@common';
+import { Key, cn } from '@common';
 import { useBodyClass, useKeyPress } from '@hooks';
-import cn from 'classnames';
 import { ModalBody } from './ModalBody/ModalBody';
 import { ModalFooter } from './ModalFooter/ModalFooter';
 import { ModalHeader } from './ModalHeaders';
@@ -17,6 +16,7 @@ export enum ModalSize {
   '3xl' = '3xl',
   '4xl' = '4xl',
   '5xl' = '5xl',
+  '6xl' = '6xl',
   fullScreen = 'fullScreen',
 }
 
@@ -29,6 +29,7 @@ const Sizes: Record<ModalSize, string> = {
   [ModalSize['3xl']]: 'max-w-4xl',
   [ModalSize['4xl']]: 'max-w-5xl',
   [ModalSize['5xl']]: 'max-w-6xl',
+  [ModalSize['6xl']]: 'max-w-7xl',
   [ModalSize.fullScreen]: 'max-w-full',
 };
 
@@ -83,12 +84,13 @@ export const ModalContent = ({
       'bg-slate-50 dark:bg-slate-950',
       'shadow-xl rounded-2xl',
       'overflow-hidden',
-      'relative flex flex-col w-full pointer-events-auto bg-clip-padding outline-0',
-      className,
+      'relative flex flex-col w-full',
+      'pointer-events-auto bg-clip-padding outline-0',
       Sizes[size],
       {
         'max-h-[90%]': !isFullScreen,
       },
+      className,
     ),
   };
 
