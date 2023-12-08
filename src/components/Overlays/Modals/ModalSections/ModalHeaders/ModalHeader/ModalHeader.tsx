@@ -1,6 +1,6 @@
 import React from 'react';
+import { cn } from '@common';
 import { Button, ButtonSize, ButtonVariant, Icon, IconCatalog, IconStyle } from '@components';
-import cn from 'classnames';
 
 export interface ModalHeaderProps {
   /**
@@ -30,7 +30,9 @@ export interface ModalHeaderProps {
 export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeaderProps) => {
   const classes = {
     header: cn(
-      'flex items-center flex-shrink-0 justify-between p-4 pl-5 border-b border-slate-200 dark:border-slate-900',
+      'flex items-center flex-shrink-0 justify-between',
+      'border-b border-slate-200 dark:border-slate-900',
+      'p-4 pl-5',
     ),
   };
 
