@@ -24,7 +24,7 @@ export interface ModalBodyProps {
  */
 export const ModalBody = ({ className, isBodyScrollable = true, children }: ModalBodyProps) => {
   const classes = {
-    body: cn('px-6 relative flex-auto', className),
+    body: cn('relative flex-auto', className),
   };
 
   if (isBodyScrollable) return <Scrollable className={classes.body}>{children}</Scrollable>;
