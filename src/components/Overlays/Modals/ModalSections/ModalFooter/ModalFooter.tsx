@@ -24,11 +24,12 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
       'flex flex-wrap flex-shrink-0 items-center w-full',
       {
         'p-6': isValidChildren,
-        'p-3': !isValidChildren,
       },
       className,
     ),
   };
+
+  if (!isValidChildren) return null;
 
   return <div className={classes.footer}>{children}</div>;
 };

@@ -29,7 +29,9 @@ export interface ModalHeaderProps {
  */
 export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeaderProps) => {
   const classes = {
-    header: cn('flex items-center flex-shrink-0 justify-between pt-6 pb-4 px-6'),
+    header: cn(
+      'flex items-center flex-shrink-0 justify-between p-4 pl-5 border-b border-slate-200 dark:border-slate-900',
+    ),
   };
 
   const handleCloseBtnClick = () => onClose?.();
@@ -37,9 +39,9 @@ export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeader
   return (
     <div className={classes.header}>
       {title && (
-        <h2 className="line-clamp-3 text-xl font-medium text-slate-400 dark:text-slate-500">
+        <div className="line-clamp-3 text-base font-semibold text-slate-500 dark:text-slate-500">
           {title}
-        </h2>
+        </div>
       )}
 
       <div className="ml-auto flex items-center">
@@ -47,7 +49,7 @@ export const ModalHeader = ({ title, action, hasCloseBtn, onClose }: ModalHeader
         {hasCloseBtn && (
           <Button
             variant={ButtonVariant.ghost}
-            size={ButtonSize.sm}
+            size={ButtonSize.xs}
             onClick={handleCloseBtnClick}
             isOnlyIcon
           >
