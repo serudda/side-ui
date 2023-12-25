@@ -52,7 +52,7 @@ const ActiveVariant: Record<ButtonVariant, string> = {
   [ButtonVariant.primary]: 'dark:bg-primary-700 hover:dark:bg-primary-700',
   [ButtonVariant.secondary]: 'dark:bg-secondary-700 hover:dark:bg-secondary-700',
   [ButtonVariant.tertiary]:
-    'bg-slate-200 hover:bg-slate-200 dark:bg-slate-900 hover:dark:bg-slate-900',
+    'bg-slate-200 hover:bg-slate-200 dark:bg-slate-800 hover:dark:bg-slate-800',
   [ButtonVariant.ghost]: 'dark:bg-slate-900 hover:dark:bg-slate-900',
   [ButtonVariant.destructive]: 'dark:bg-rose-800 hover:dark:bg-rose-800',
   [ButtonVariant.discord]: 'dark:bg-[#5865f2]/60 hover:dark:bg-[#5865f2]/60',
