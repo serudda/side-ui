@@ -6,6 +6,11 @@ export interface TextInputProps
   extends Input,
     Omit<InputHTMLAttributes<HTMLInputElement>, 'required'> {
   /**
+   * Specify an optional className to be added to the InputContainer
+   */
+  inputContainerClassName?: string;
+
+  /**
    * The icon to display on the left side.
    */
   startIcon?: IconCatalog;
@@ -39,6 +44,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       assistiveText,
       autoComplete = 'off',
       className,
+      inputContainerClassName,
       dataTestId,
       startIcon,
       endIcon,
@@ -76,6 +82,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           'border-slate-400 dark:border-slate-500':
             fieldState === FormFieldState.default && isFocused,
         },
+        inputContainerClassName,
       ),
       input: cn(
         'w-full',
