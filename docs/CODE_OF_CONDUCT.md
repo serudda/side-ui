@@ -14,7 +14,7 @@ identity and orientation.
 We pledge to act and interact in ways that contribute to an open, welcoming,
 diverse, inclusive, and healthy community.
 
-## Our Standards
+## Our Standards.
 
 Examples of behavior that contributes to a positive environment for our
 community include:
@@ -59,7 +59,9 @@ posting via an official social media account, or acting as an appointed
 representative at an online or offline event.
 
 ## Enforcement
+
 <!-- TODO: Change INSERT CONTACT METHOD -->
+
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
 reported to the community leaders responsible for enforcement at
 [INSERT CONTACT METHOD].
