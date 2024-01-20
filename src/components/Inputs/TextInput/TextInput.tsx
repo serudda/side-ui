@@ -79,7 +79,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             fieldState === FormFieldState.error && !isDisabled,
           'border-green-500 dark:border-green-500':
             fieldState === FormFieldState.success && !isDisabled,
-          'border-primary-400 dark:border-primary-500':
+          'border-primary-300 dark:border-primary-800':
             fieldState === FormFieldState.default && isFocused,
         },
         inputContainerClassName,
