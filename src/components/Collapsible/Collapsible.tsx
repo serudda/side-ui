@@ -39,6 +39,11 @@ export interface CollapsibleProps {
   isExpandable?: boolean;
 
   /**
+   * Whether the collapsible section has locked expand state
+   */
+  hasExpandLock?: boolean;
+
+  /**
    * Callback fired when the collapsible section is collapsed
    */
   onCollapse?: () => void;
@@ -59,6 +64,7 @@ export const Collapsible = ({
   lightGradientToColor = 'from-white',
   darkGradientToColor = 'dark:from-slate-950',
   isExpandable = true,
+  hasExpandLock = false,
   children,
   onCollapse,
   onExpand,
@@ -81,6 +87,11 @@ export const Collapsible = ({
   };
 
   const handleClick = () => {
+    if (hasExpandLock) {
+      onExpand?.();
+      return;
+    }
+
     setIsExpanded((prev) => !prev);
     if (isExpanded) onCollapse?.();
     else onExpand?.();
