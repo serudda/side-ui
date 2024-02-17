@@ -1,12 +1,6 @@
 import { ReactNode, cloneElement, isValidElement } from 'react';
 import { cn } from '@common';
-import {
-  AccentVariants,
-  BreadcrumbVariant,
-  CollapseMode,
-  ItemsVariants,
-  SeparatorVariants,
-} from '@components';
+import { CollapseMode } from '@components';
 
 export enum ItemIdentifier {
   before = 'before',
@@ -15,11 +9,6 @@ export enum ItemIdentifier {
 }
 
 interface ProcessBreadcrumbItemProps {
-  /**
-   * Optional CSS class for styling accent items.
-   */
-  accentVariant: BreadcrumbVariant;
-
   /**
    * Determines if the breadcrumb item should be collapsed.
    */
@@ -59,14 +48,8 @@ interface ProcessBreadcrumbItemProps {
    * Custom separator to be used between breadcrumb items.
    */
   separator: string | ReactNode;
-
-  /**
-   * Specifies the visual variant of the breadcrumb item.
-   */
-  variant: BreadcrumbVariant;
 }
 export const processBreadcrumbItem = ({
-  accentVariant,
   collapse,
   collapseMode,
   collapseItemsVisible,
@@ -75,13 +58,12 @@ export const processBreadcrumbItem = ({
   isFirst = false,
   isLast = false,
   separator,
-  variant,
 }: ProcessBreadcrumbItemProps) => {
   if (!isValidElement(item)) return null;
 
   const classes = {
     firstSeparator: cn(
-      [SeparatorVariants[variant]],
+      'text-gray-400 dark:text-gray-600',
       {
         hidden:
           collapseItemsVisible &&
@@ -91,7 +73,7 @@ export const processBreadcrumbItem = ({
       'select-none',
     ),
     secondSeparator: cn(
-      [SeparatorVariants[variant]],
+      'text-gray-400 dark:text-gray-600',
       {
         hidden: isLast && isFirst,
       },
@@ -99,13 +81,7 @@ export const processBreadcrumbItem = ({
     ),
   };
 
-  const className =
-    (isFirst && identifier !== ItemIdentifier.after) || isLast
-      ? AccentVariants[accentVariant]
-      : ItemsVariants[variant];
-
   const element = cloneElement(item, {
-    className,
     isLast,
     ...item.props,
   });
