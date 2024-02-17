@@ -15,15 +15,6 @@ const meta: Meta<typeof Breadcrumb> = {
   component: Breadcrumb,
   tags: ['autodocs'],
   args: {
-    body: [
-      <BreadcrumbItem href="javascript:void(0)">
-        <Icon icon={IconCatalog.home} className="h-4 w-4" />
-      </BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Pricing</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>,
-    ],
     accentVariant: BreadcrumbVariant.neutral,
     className: '',
     collapseMode: CollapseMode.spread,
@@ -41,10 +32,24 @@ const meta: Meta<typeof Breadcrumb> = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  render: (args) => {
+    return (
+      <Breadcrumb {...args}>
+        <BreadcrumbItem href="javascript:void(0)">
+          <Icon icon={IconCatalog.home} className="h-4 w-4" />
+        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+      </Breadcrumb>
+    );
+  },
+};
 
 export const BreadcrumbSizesDemo: Story = {
-  render: (arg) => {
+  render: (args) => {
     const sizes = Object.values(BreadcrumbSize);
     return (
       <div>
@@ -52,7 +57,15 @@ export const BreadcrumbSizesDemo: Story = {
           {sizes.map((size) => (
             <div key={size}>
               <p>Size {size}</p>
-              <Breadcrumb size={size} body={arg.body} />
+              <Breadcrumb size={size} {...args}>
+                <BreadcrumbItem href="javascript:void(0)">
+                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
+                </BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+              </Breadcrumb>
             </div>
           ))}
         </div>
@@ -61,8 +74,8 @@ export const BreadcrumbSizesDemo: Story = {
   },
 };
 
-export const AllVariantsDemo: Story = {
-  render: (arg) => {
+export const AllVariants: Story = {
+  render: (args) => {
     const variants = Object.values(BreadcrumbVariant);
 
     return (
@@ -71,14 +84,15 @@ export const AllVariantsDemo: Story = {
           {variants.map((variant) => (
             <div key={variant}>
               <p>Variant: {variant}</p>
-              <Breadcrumb
-                accentVariant={variant}
-                variant={variant}
-                body={arg.body}
-                separator="/"
-                itemsBeforeCollapse={1}
-                itemsAfterCollapse={2}
-              />
+              <Breadcrumb {...args} accentVariant={variant} variant={variant}>
+                <BreadcrumbItem href="javascript:void(0)">
+                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
+                </BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+              </Breadcrumb>
             </div>
           ))}
         </div>
@@ -88,7 +102,7 @@ export const AllVariantsDemo: Story = {
 };
 
 export const AllSpacing: Story = {
-  render: (arg) => {
+  render: (args) => {
     const spacing = Object.values(BreadcrumbSpacing);
 
     return (
@@ -97,13 +111,15 @@ export const AllSpacing: Story = {
           {spacing.map((spacing) => (
             <div key={spacing}>
               <p>Spacing: {spacing}</p>
-              <Breadcrumb
-                spacing={spacing}
-                body={arg.body}
-                separator="/"
-                itemsBeforeCollapse={1}
-                itemsAfterCollapse={2}
-              />
+              <Breadcrumb {...args} spacing={spacing}>
+                <BreadcrumbItem href="javascript:void(0)">
+                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
+                </BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+              </Breadcrumb>
             </div>
           ))}
         </div>
@@ -113,7 +129,7 @@ export const AllSpacing: Story = {
 };
 
 export const AllVariantsWithBorder: Story = {
-  render: (arg) => {
+  render: (args) => {
     const variants = Object.values(BreadcrumbVariant);
 
     return (
@@ -122,15 +138,15 @@ export const AllVariantsWithBorder: Story = {
           {variants.map((variant) => (
             <div key={variant}>
               <p>Variant: {variant}</p>
-              <Breadcrumb
-                accentVariant={variant}
-                variant={variant}
-                body={arg.body}
-                separator="/"
-                hasBorder={true}
-                itemsBeforeCollapse={1}
-                itemsAfterCollapse={2}
-              />
+              <Breadcrumb {...args} accentVariant={variant} variant={variant}>
+                <BreadcrumbItem href="javascript:void(0)">
+                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
+                </BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+              </Breadcrumb>
             </div>
           ))}
         </div>
@@ -149,12 +165,15 @@ export const CustomSeparators: Story = {
           {separators.map((separators) => (
             <div key={separators}>
               <p>Custom Separators: {separators}</p>
-              <Breadcrumb
-                body={arg.body}
-                separator={separators}
-                itemsBeforeCollapse={1}
-                itemsAfterCollapse={2}
-              />
+              <Breadcrumb {...arg} separator={separators}>
+                <BreadcrumbItem href="javascript:void(0)">
+                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
+                </BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+              </Breadcrumb>
             </div>
           ))}
         </div>
@@ -164,45 +183,86 @@ export const CustomSeparators: Story = {
 };
 
 export const CollapseDropdown: Story = {
-  args: {
-    isCollapse: true,
-    collapseMode: CollapseMode.dropdown,
+  render: (args) => {
+    return (
+      <Breadcrumb {...args} isCollapse={true} collapseMode={CollapseMode.dropdown}>
+        <BreadcrumbItem href="javascript:void(0)">
+          <Icon icon={IconCatalog.home} className="h-4 w-4" />
+        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+      </Breadcrumb>
+    );
   },
 };
 
 export const CollapsedSpread: Story = {
-  args: { isCollapse: true, collapseMode: CollapseMode.spread },
+  render: (args) => {
+    return (
+      <Breadcrumb {...args} isCollapse={true} collapseMode={CollapseMode.spread}>
+        <BreadcrumbItem href="javascript:void(0)">
+          <Icon icon={IconCatalog.home} className="h-4 w-4" />
+        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+      </Breadcrumb>
+    );
+  },
 };
 
 export const MoreItemsBeforeCollapse: Story = {
-  args: {
-    isCollapse: true,
-    itemsBeforeCollapse: 2,
-    itemsAfterCollapse: 1,
+  render: (args) => {
+    return (
+      <Breadcrumb {...args} isCollapse={true} itemsBeforeCollapse={2} itemsAfterCollapse={1}>
+        <BreadcrumbItem href="javascript:void(0)">
+          <Icon icon={IconCatalog.home} className="h-4 w-4" />
+        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+      </Breadcrumb>
+    );
   },
 };
 
 export const MoreItemsAfterCollapse: Story = {
-  args: {
-    isCollapse: true,
-    itemsBeforeCollapse: 1,
-    itemsAfterCollapse: 2,
+  render: (args) => {
+    return (
+      <Breadcrumb {...args} isCollapse={true} itemsBeforeCollapse={1} itemsAfterCollapse={2}>
+        <BreadcrumbItem href="javascript:void(0)">
+          <Icon icon={IconCatalog.home} className="h-4 w-4" />
+        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+      </Breadcrumb>
+    );
   },
 };
 
 export const LotOfItems: Story = {
-  args: {
-    body: [
-      <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Dashboard</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Profile</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Help</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>,
-      <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>,
-    ],
+  render: (args) => {
+    return (
+      <div>
+        <Breadcrumb {...args}>
+          <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Dashboard</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Profile</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Help</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
+          <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>
+        </Breadcrumb>
+      </div>
+    );
   },
 };
