@@ -95,9 +95,13 @@ interface BreadcrumbProps {
 
   /**
    * Determines whether a border is displayed around the breadcrumb.
-   * If true, displays a border around the breadcrumb.
    */
   hasBorder?: boolean;
+
+  /**
+   * Determines whether the collapse button is implement
+   */
+  isCollapse?: boolean;
 
   /**
    * The number of items to display after the collapsed items.
@@ -144,6 +148,7 @@ export const Breadcrumb = ({
   className,
   collapseMode = CollapseMode.spread,
   hasBorder = false,
+  isCollapse = false,
   itemsBeforeCollapse = 1,
   itemsAfterCollapse = 1,
   separator = '/',
@@ -261,7 +266,10 @@ export const Breadcrumb = ({
     const effectiveItemsBeforeCollapse = Math.max(1, itemsBeforeCollapse);
     const effectiveItemsAfterCollapse = Math.max(1, itemsAfterCollapse);
 
-    if (allItems.length <= effectiveItemsBeforeCollapse + effectiveItemsAfterCollapse) {
+    if (
+      !isCollapse ||
+      allItems.length <= effectiveItemsBeforeCollapse + effectiveItemsAfterCollapse
+    ) {
       return <ol className={classes.list}>{allItems}</ol>;
     }
 
