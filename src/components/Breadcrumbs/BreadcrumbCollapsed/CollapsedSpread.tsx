@@ -29,8 +29,9 @@ export const CollapsedSpread = ({
       hidden: isActive,
     }),
     expandTrigger: cn(
-      'cursor-pointer text-slate-400 dark:text-slate-400 hover:text-slate-400 transition-colors dark:hover:text-slate-600',
-      'focus:ring-2 focus:ring-white rounded-sm flex gap-2 items-center',
+      'text-slate-400  hover:text-slate-400',
+      'dark:text-slate-400 dark:hover:text-slate-600',
+      'cursor-pointer transition-colors',
     ),
     collapsedContainer: cn('flex items-center gap-2', '-translate-x-full transition-all', {
       'absolute left-0 last:left-20 whitespace-nowrap opacity-0 invisible': !isActive,

@@ -6,7 +6,7 @@ import {
   CollapseMode,
   ItemsVariants,
   SeparatorVariants,
-} from '../Breadcrumb';
+} from '@components';
 
 export enum ItemIdentifier {
   before = 'before',
@@ -16,11 +16,6 @@ export enum ItemIdentifier {
 
 interface ProcessBreadcrumbItemProps {
   /**
-   * Indicates whether the breadcrumb item should be visually marked as active in a collapse scenario.
-   */
-  collapseActive?: boolean;
-
-  /**
    * Determines if the breadcrumb item should be collapsed.
    */
   collapse?: boolean;
@@ -29,6 +24,11 @@ interface ProcessBreadcrumbItemProps {
    * Specifies the collapse mode, affecting how breadcrumb items are displayed in a collapsed state.
    */
   collapseMode?: CollapseMode;
+
+  /**
+   * Indicates whether the breadcrumb item should be visually marked as active in a collapse scenario.
+   */
+  collapseItemsVisible?: boolean;
 
   /**
    * Identifies the position of the breadcrumb item in relation to the collapse logic.
@@ -61,15 +61,15 @@ interface ProcessBreadcrumbItemProps {
   variant: BreadcrumbVariant;
 }
 export const processBreadcrumbItem = ({
+  collapse,
+  collapseMode,
+  collapseItemsVisible,
+  identifier,
   item,
   isFirst = false,
   isLast = false,
-  variant,
-  collapse,
   separator,
-  identifier,
-  collapseActive,
-  collapseMode,
+  variant,
 }: ProcessBreadcrumbItemProps) => {
   if (!isValidElement(item)) return null;
 
@@ -78,7 +78,7 @@ export const processBreadcrumbItem = ({
       [SeparatorVariants[variant]],
       {
         hidden:
-          collapseActive &&
+          collapseItemsVisible &&
           identifier === ItemIdentifier.after &&
           collapseMode === CollapseMode.spread,
       },
@@ -113,7 +113,7 @@ export const processBreadcrumbItem = ({
       </>
     );
 
-  if (isLast || collapse) return <>{element}</>;
+  if (isLast || collapse) return element;
 
   return (
     <>

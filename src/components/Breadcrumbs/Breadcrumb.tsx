@@ -1,6 +1,6 @@
 import { Children, ReactNode, useState } from 'react';
 import { cn } from '@common';
-import { CollapseDropdown, CollapsedSpread } from './BreadcrumbCollapsed';
+import { CollapseDropdown, CollapsedSpread } from '@components';
 import { ItemIdentifier, processBreadcrumbItem } from './utils/helper';
 
 export enum CollapseMode {
@@ -82,10 +82,6 @@ export const AccentVariants: Record<BreadcrumbVariant, string> = {
     'text-slate-800 hover:text-slate-400 dark:text-slate-300  dark:hover:text-slate-600 last:hover:text-slate-800 last:hover:dark:text-slate-300',
 };
 
-/**
- * Breadcrumbs provide a navigation trail for users to follow back to the starting or entry point of a website or application.
- * They offer a hierarchical structure of the current page in relation to the website's structure and help users understand their current location.
- */
 interface BreadcrumbProps {
   /**
    * An array of ReactNode elements representing the breadcrumb items.
@@ -139,6 +135,10 @@ interface BreadcrumbProps {
   size?: BreadcrumbSize;
 }
 
+/**
+ * Breadcrumbs provide a navigation trail for users to follow back to the starting or entry point of a website or application.
+ * They offer a hierarchical structure of the current page in relation to the website's structure and help users understand their current location.
+ */
 export const Breadcrumb = ({
   body: children,
   className,
@@ -167,6 +167,10 @@ export const Breadcrumb = ({
       : itemsAfterCollapse <= 0
       ? childrenArray.slice(-1)
       : childrenArray.slice(-Math.max(1, itemsAfterCollapse));
+  const collapsedChildren = childrenArray.slice(
+    childrenBeforeCollapse.length,
+    -childrenAfterCollapse.length,
+  );
 
   const firstItem = childrenArray[0];
   const lastItem = childrenArray[childrenArray.length - 1];
@@ -194,32 +198,30 @@ export const Breadcrumb = ({
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
-      variant,
       separator,
+      variant,
     }),
   );
 
-  const collapseItems = childrenArray
-    .slice(childrenBeforeCollapse.length, -childrenAfterCollapse.length)
-    .map((item) =>
-      processBreadcrumbItem({
-        item,
-        variant,
-        collapse: collapseMode === CollapseMode.dropdown,
-        separator,
-      }),
-    );
+  const collapseItems = collapsedChildren.map((item) =>
+    processBreadcrumbItem({
+      collapse: collapseMode === CollapseMode.dropdown,
+      item,
+      separator,
+      variant,
+    }),
+  );
 
   const endItems = childrenAfterCollapse.map((item) =>
     processBreadcrumbItem({
+      collapseMode,
+      collapseItemsVisible,
+      identifier: ItemIdentifier.after,
       item,
       isFirst: item === childrenAfterCollapse[0],
       isLast: item === lastItem,
-      variant,
       separator,
-      identifier: ItemIdentifier.after,
-      collapseActive: collapseItemsVisible,
-      collapseMode: collapseMode,
+      variant,
     }),
   );
 
@@ -228,8 +230,8 @@ export const Breadcrumb = ({
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
-      variant,
       separator,
+      variant,
     }),
   );
 
