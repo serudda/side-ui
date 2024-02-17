@@ -26,31 +26,30 @@ export const CollapseDropdown = ({
 }: CollapseDropdownProps) => {
   const classes = {
     listItem: cn(
-      'cursor-pointer text-slate-400 dark:text-slate-400 hover:text-slate-600 transition-colors dark:hover:text-slate-600',
-      'focus:ring-2 focus:ring-white rounded-sm flex gap-2 items-center',
+      'text-slate-400 hover:text-slate-600',
+      'dark:text-slate-400 dark:hover:text-slate-600',
+      'cursor-pointer transition-colors',
     ),
   };
 
   return (
-    <>
-      <DropdownMenu
-        isOpen={collapseItemsVisible}
-        menuPlacement={PopoverPlacement.bottom}
-        trigger={
-          <li className={classes.listItem}>
-            <button onClick={handleCollapseItemsToggle}>...</button>
-          </li>
-        }
-        menu={
-          <DropdownMenu.Menu>
-            {collapsedItems.map((item, index) => (
-              <DropdownMenu.Option className="group/dropdown" key={index}>
-                {item}
-              </DropdownMenu.Option>
-            ))}
-          </DropdownMenu.Menu>
-        }
-      />
-    </>
+    <DropdownMenu
+      isOpen={collapseItemsVisible}
+      menuPlacement={PopoverPlacement.bottom}
+      trigger={
+        <li className={classes.listItem}>
+          <button onClick={handleCollapseItemsToggle}>...</button>
+        </li>
+      }
+      menu={
+        <DropdownMenu.Menu>
+          {collapsedItems.map((item, index) => (
+            <DropdownMenu.Option className="group/dropdown" key={index}>
+              {item}
+            </DropdownMenu.Option>
+          ))}
+        </DropdownMenu.Menu>
+      }
+    />
   );
 };
