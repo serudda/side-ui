@@ -16,6 +16,11 @@ export enum ItemIdentifier {
 
 interface ProcessBreadcrumbItemProps {
   /**
+   * Optional CSS class for styling accent items.
+   */
+  accentVariant: BreadcrumbVariant;
+
+  /**
    * Determines if the breadcrumb item should be collapsed.
    */
   collapse?: boolean;
@@ -61,6 +66,7 @@ interface ProcessBreadcrumbItemProps {
   variant: BreadcrumbVariant;
 }
 export const processBreadcrumbItem = ({
+  accentVariant,
   collapse,
   collapseMode,
   collapseItemsVisible,
@@ -95,7 +101,7 @@ export const processBreadcrumbItem = ({
 
   const className =
     (isFirst && identifier !== ItemIdentifier.after) || isLast
-      ? AccentVariants[variant]
+      ? AccentVariants[accentVariant]
       : ItemsVariants[variant];
 
   const element = cloneElement(item, {
