@@ -25,7 +25,7 @@ export const CollapseDropdown = ({
   handleCollapseItemsToggle,
 }: CollapseDropdownProps) => {
   const classes = {
-    listItem: cn('cursor-pointer transition-colors'),
+    listItem: cn('text-gray-400 hover:text-gray-700', 'cursor-pointer transition-colors'),
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 import { cn } from '@common';
 
 interface CollapsedSpreadProps {
@@ -40,9 +40,9 @@ export const CollapsedSpread = ({
   };
   const renderCollapsibleItems = () =>
     collapsedItems.map((item, index) => (
-      <React.Fragment key={index}>
+      <Fragment key={index}>
         <div className={classes.collapsedContainer}>{item}</div>
-      </React.Fragment>
+      </Fragment>
     ));
 
   return (

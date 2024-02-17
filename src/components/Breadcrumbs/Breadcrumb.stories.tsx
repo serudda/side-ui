@@ -1,9 +1,7 @@
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbSize,
   BreadcrumbSpacing,
-  BreadcrumbVariant,
   CollapseMode,
   Icon,
   IconCatalog,
@@ -15,17 +13,13 @@ const meta: Meta<typeof Breadcrumb> = {
   component: Breadcrumb,
   tags: ['autodocs'],
   args: {
-    accentVariant: BreadcrumbVariant.neutral,
     className: '',
     collapseMode: CollapseMode.spread,
     itemsAfterCollapse: 1,
     itemsBeforeCollapse: 2,
-    hasBorder: false,
     isCollapse: false,
     spacing: BreadcrumbSpacing.normal,
     separator: '/',
-    size: BreadcrumbSize.base,
-    variant: BreadcrumbVariant.neutral,
   },
 };
 
@@ -36,67 +30,12 @@ export const Default: Story = {
   render: (args) => {
     return (
       <Breadcrumb {...args}>
-        <BreadcrumbItem href="javascript:void(0)">
-          <Icon icon={IconCatalog.home} className="h-4 w-4" />
-        </BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
       </Breadcrumb>
-    );
-  },
-};
-
-export const BreadcrumbSizesDemo: Story = {
-  render: (args) => {
-    const sizes = Object.values(BreadcrumbSize);
-    return (
-      <div>
-        <div className="grid gap-4">
-          {sizes.map((size) => (
-            <div key={size}>
-              <p>Size {size}</p>
-              <Breadcrumb size={size} {...args}>
-                <BreadcrumbItem href="javascript:void(0)">
-                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
-                </BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-};
-
-export const AllVariants: Story = {
-  render: (args) => {
-    const variants = Object.values(BreadcrumbVariant);
-
-    return (
-      <div>
-        <div className="grid gap-4">
-          {variants.map((variant) => (
-            <div key={variant}>
-              <p>Variant: {variant}</p>
-              <Breadcrumb {...args} accentVariant={variant} variant={variant}>
-                <BreadcrumbItem href="javascript:void(0)">
-                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
-                </BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          ))}
-        </div>
-      </div>
     );
   },
 };
@@ -112,33 +51,6 @@ export const AllSpacing: Story = {
             <div key={spacing}>
               <p>Spacing: {spacing}</p>
               <Breadcrumb {...args} spacing={spacing}>
-                <BreadcrumbItem href="javascript:void(0)">
-                  <Icon icon={IconCatalog.home} className="h-4 w-4" />
-                </BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  },
-};
-
-export const AllVariantsWithBorder: Story = {
-  render: (args) => {
-    const variants = Object.values(BreadcrumbVariant);
-
-    return (
-      <div>
-        <div className="grid gap-4">
-          {variants.map((variant) => (
-            <div key={variant}>
-              <p>Variant: {variant}</p>
-              <Breadcrumb {...args} accentVariant={variant} variant={variant}>
                 <BreadcrumbItem href="javascript:void(0)">
                   <Icon icon={IconCatalog.home} className="h-4 w-4" />
                 </BreadcrumbItem>
@@ -185,7 +97,7 @@ export const CustomSeparators: Story = {
 export const CollapseDropdown: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse={true} collapseMode={CollapseMode.dropdown}>
+      <Breadcrumb {...args} isCollapse collapseMode={CollapseMode.dropdown}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -201,7 +113,7 @@ export const CollapseDropdown: Story = {
 export const CollapsedSpread: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse={true} collapseMode={CollapseMode.spread}>
+      <Breadcrumb {...args} isCollapse collapseMode={CollapseMode.spread}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -217,7 +129,7 @@ export const CollapsedSpread: Story = {
 export const MoreItemsBeforeCollapse: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse={true} itemsBeforeCollapse={2} itemsAfterCollapse={1}>
+      <Breadcrumb {...args} isCollapse itemsBeforeCollapse={2} itemsAfterCollapse={1}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -233,7 +145,7 @@ export const MoreItemsBeforeCollapse: Story = {
 export const MoreItemsAfterCollapse: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse={true} itemsBeforeCollapse={1} itemsAfterCollapse={2}>
+      <Breadcrumb {...args} isCollapse itemsBeforeCollapse={1} itemsAfterCollapse={2}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
