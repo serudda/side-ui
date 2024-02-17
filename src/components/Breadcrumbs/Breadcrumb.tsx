@@ -112,7 +112,7 @@ interface BreadcrumbProps {
   /**
    * An array of ReactNode elements representing the breadcrumb items.
    */
-  body: Array<ReactNode>;
+  children: Array<ReactNode>;
 
   /**
    * Optional CSS class for additional styling.
@@ -171,7 +171,7 @@ interface BreadcrumbProps {
  */
 export const Breadcrumb = ({
   accentVariant = BreadcrumbVariant.neutral,
-  body: children,
+  children,
   className,
   collapseMode = CollapseMode.spread,
   hasBorder = false,
