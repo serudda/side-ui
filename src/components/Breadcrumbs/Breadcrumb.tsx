@@ -27,7 +27,7 @@ export enum BreadcrumbSpacing {
 export enum BreadcrumbVariant {
   primary = 'primary',
   secondary = 'secondary',
-  tertiary = 'tertiary',
+  neutral = 'neutral',
 }
 
 export const BreadcrumbSpacings: Record<BreadcrumbSpacing, string> = {
@@ -48,41 +48,68 @@ export const BreadcrumbSizes: Record<BreadcrumbSize, string> = {
 
 export const ItemsVariants: Record<BreadcrumbVariant, Array<string>> = {
   [BreadcrumbVariant.primary]: [
-    'text-primary-400  dark:text-primary-400 hover:text-primary-600 hover:dark-text-primary-200',
-    'group-hover/dropdown:text-primary-600 group-hover/dropdown:dark:text-primary-200',
+    'text-primary-500 hover:text-primary-300 ',
+    'dark:text-primary-400 dark:hover:text-primary-700',
+    'group-hover/dropdown:text-primary-600',
+    'dark:group-hover/dropdown:text-primary-200',
   ],
   [BreadcrumbVariant.secondary]: [
-    'text-secondary-400 hover:text-secondary-600 dark:text-secondary-400 dark:hover:text-secondary-200',
-    'group-hover/dropdown:text-secondary-600 group-hover/dropdown:dark:text-secondary-200',
+    'text-secondary-200 hover:text-secondary-400',
+    'dark:text-secondary-400 dark:hover:text-secondary-700',
+    'group-hover/dropdown:text-secondary-600',
+    'dark:group-hover/dropdown:text-secondary-700',
   ],
-  [BreadcrumbVariant.tertiary]: [
-    'text-slate-400 hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-200',
-    'group-hover/dropdown:text-slate-600 group-hover/dropdown:dark:text-slate-200',
+  [BreadcrumbVariant.neutral]: [
+    'text-gray-400 hover:text-gray-700',
+    'dark:text-gray-600 dark:hover:text-gray-300',
+    'group-hover/dropdown:text-gray-600',
+    'dark:group-hover/dropdown:text-gray-200',
   ],
 };
 
 export const SeparatorVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]: 'text-primary-400  dark:text-primary-400',
-  [BreadcrumbVariant.secondary]: 'text-secondary-400 dark:text-secondary-400',
-  [BreadcrumbVariant.tertiary]: 'text-slate-400 dark:text-slate-400',
+  [BreadcrumbVariant.primary]: 'text-primary-400 dark:text-primary-400',
+  [BreadcrumbVariant.secondary]: 'text-secondary-200 dark:text-secondary-400',
+  [BreadcrumbVariant.neutral]: 'text-gray-400 dark:text-gray-600',
 };
 
 export const BorderVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]: 'ring-primary-200 dark:ring-primary-300',
-  [BreadcrumbVariant.secondary]: 'ring-secondary-200 dark:ring-secondary-300',
-  [BreadcrumbVariant.tertiary]: 'ring-slate-200 dark:ring-slate-300',
+  [BreadcrumbVariant.primary]: 'ring-primary-500/30 dark:ring-primary-500/20',
+  [BreadcrumbVariant.secondary]: 'ring-secondary-500/30 dark:ring-secondary-500/20',
+  [BreadcrumbVariant.neutral]: 'ring-gray-500/30 dark:ring-gray-500/20',
 };
 
-export const AccentVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]:
-    'text-primary-500 dark:text-primary-500 hover:text-primary-900 last:hover:text-primary-500',
-  [BreadcrumbVariant.secondary]:
-    'text-secondary-500 dark:text-secondary-500 hover:text-secondary-900 last:hover:text-secondary-500',
-  [BreadcrumbVariant.tertiary]:
-    'text-slate-800 hover:text-slate-400 dark:text-slate-300  dark:hover:text-slate-600 last:hover:text-slate-800 last:hover:dark:text-slate-300',
+export const AccentVariants: Record<BreadcrumbVariant, Array<string>> = {
+  [BreadcrumbVariant.primary]: [
+    'text-primary-600 hover:text-primary-300',
+    'dark:text-primary-500 dark:hover:text-primary-800',
+    'last:hover:text-primary-600 last:dark:hover:text-primary-500',
+  ],
+  [BreadcrumbVariant.secondary]: [
+    'text-secondary-500 hover:text-secondary-900 ',
+    'dark:text-secondary-700 last:hover:text-secondary-400',
+    'last:hover:text-secondary-500 last:dark:hover:text-secondary-700',
+  ],
+
+  [BreadcrumbVariant.neutral]: [
+    'text-gray-800 hover:text-gray-400 ',
+    'dark:text-gray-300 dark:hover:text-gray-600',
+    'last:hover:text-gray-800 last:dark:hover:text-gray-300',
+  ],
+};
+
+export const SolidVariants: Record<BreadcrumbVariant, string> = {
+  [BreadcrumbVariant.primary]: 'bg-primary-500 dark:bg-primary-800',
+  [BreadcrumbVariant.secondary]: 'bg-secondary-500 dark:bg-secondary-800',
+  [BreadcrumbVariant.neutral]: 'bg-gray-500 dark:bg-gray-800',
 };
 
 interface BreadcrumbProps {
+  /**
+   * Optional CSS class for styling accent items.
+   */
+  accentVariant?: BreadcrumbVariant;
+
   /**
    * An array of ReactNode elements representing the breadcrumb items.
    */
@@ -144,6 +171,7 @@ interface BreadcrumbProps {
  * They offer a hierarchical structure of the current page in relation to the website's structure and help users understand their current location.
  */
 export const Breadcrumb = ({
+  accentVariant = BreadcrumbVariant.neutral,
   body: children,
   className,
   collapseMode = CollapseMode.spread,
@@ -154,7 +182,7 @@ export const Breadcrumb = ({
   separator = '/',
   size = BreadcrumbSize.lg,
   spacing = BreadcrumbSpacing.normal,
-  variant = BreadcrumbVariant.primary,
+  variant = BreadcrumbVariant.neutral,
 }: BreadcrumbProps) => {
   const childrenArray = Children.toArray(children);
   const childrenBeforeCollapse = childrenArray.slice(
@@ -190,8 +218,8 @@ export const Breadcrumb = ({
         'ring-1': hasBorder,
         [BorderVariants[variant]]: hasBorder,
       },
+      AccentVariants[accentVariant],
       BreadcrumbSizes[size],
-      AccentVariants[variant],
       BreadcrumbSpacings[spacing],
       className,
     ),
@@ -200,6 +228,7 @@ export const Breadcrumb = ({
 
   const startItems = childrenBeforeCollapse.map((item) =>
     processBreadcrumbItem({
+      accentVariant,
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
@@ -210,6 +239,7 @@ export const Breadcrumb = ({
 
   const collapseItems = collapsedChildren.map((item) =>
     processBreadcrumbItem({
+      accentVariant,
       collapse: collapseMode === CollapseMode.dropdown,
       item,
       separator,
@@ -219,6 +249,7 @@ export const Breadcrumb = ({
 
   const endItems = childrenAfterCollapse.map((item) =>
     processBreadcrumbItem({
+      accentVariant,
       collapseMode,
       collapseItemsVisible,
       identifier: ItemIdentifier.after,
@@ -232,6 +263,7 @@ export const Breadcrumb = ({
 
   const allItems = childrenArray.map((item) =>
     processBreadcrumbItem({
+      accentVariant,
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
