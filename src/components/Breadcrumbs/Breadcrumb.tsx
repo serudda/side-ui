@@ -8,26 +8,12 @@ export enum CollapseMode {
   spread = 'spread',
 }
 
-export enum BreadcrumbSize {
-  xs = 'xs',
-  sm = 'sm',
-  base = 'base',
-  lg = 'lg',
-  xl = 'xl',
-}
-
 export enum BreadcrumbSpacing {
   tight = 'tight',
   snug = 'snug',
   normal = 'normal',
   relaxed = 'relaxed',
   loose = 'loose',
-}
-
-export enum BreadcrumbVariant {
-  primary = 'primary',
-  secondary = 'secondary',
-  neutral = 'neutral',
 }
 
 export const BreadcrumbSpacings: Record<BreadcrumbSpacing, string> = {
@@ -38,77 +24,7 @@ export const BreadcrumbSpacings: Record<BreadcrumbSpacing, string> = {
   [BreadcrumbSpacing.loose]: 'gap-5',
 };
 
-export const BreadcrumbSizes: Record<BreadcrumbSize, string> = {
-  [BreadcrumbSize.xs]: 'text-xs',
-  [BreadcrumbSize.sm]: 'text-sm',
-  [BreadcrumbSize.base]: 'text-base',
-  [BreadcrumbSize.lg]: 'text-lg',
-  [BreadcrumbSize.xl]: 'text-xl',
-};
-
-export const ItemsVariants: Record<BreadcrumbVariant, Array<string>> = {
-  [BreadcrumbVariant.primary]: [
-    'text-primary-500 hover:text-primary-300 ',
-    'dark:text-primary-400 dark:hover:text-primary-700',
-    'group-hover/dropdown:text-primary-600',
-    'dark:group-hover/dropdown:text-primary-200',
-  ],
-  [BreadcrumbVariant.secondary]: [
-    'text-secondary-200 hover:text-secondary-400',
-    'dark:text-secondary-400 dark:hover:text-secondary-700',
-    'group-hover/dropdown:text-secondary-600',
-    'dark:group-hover/dropdown:text-secondary-700',
-  ],
-  [BreadcrumbVariant.neutral]: [
-    'text-gray-400 hover:text-gray-700',
-    'dark:text-gray-600 dark:hover:text-gray-300',
-    'group-hover/dropdown:text-gray-600',
-    'dark:group-hover/dropdown:text-gray-200',
-  ],
-};
-
-export const SeparatorVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]: 'text-primary-400 dark:text-primary-400',
-  [BreadcrumbVariant.secondary]: 'text-secondary-200 dark:text-secondary-400',
-  [BreadcrumbVariant.neutral]: 'text-gray-400 dark:text-gray-600',
-};
-
-export const BorderVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]: 'ring-primary-500/30 dark:ring-primary-500/20',
-  [BreadcrumbVariant.secondary]: 'ring-secondary-500/30 dark:ring-secondary-500/20',
-  [BreadcrumbVariant.neutral]: 'ring-gray-500/30 dark:ring-gray-500/20',
-};
-
-export const AccentVariants: Record<BreadcrumbVariant, Array<string>> = {
-  [BreadcrumbVariant.primary]: [
-    'text-primary-600 hover:text-primary-300',
-    'dark:text-primary-500 dark:hover:text-primary-800',
-    'last:hover:text-primary-600 last:dark:hover:text-primary-500',
-  ],
-  [BreadcrumbVariant.secondary]: [
-    'text-secondary-500 hover:text-secondary-900 ',
-    'dark:text-secondary-700 last:hover:text-secondary-400',
-    'last:hover:text-secondary-500 last:dark:hover:text-secondary-700',
-  ],
-  [BreadcrumbVariant.neutral]: [
-    'text-gray-800 hover:text-gray-400 ',
-    'dark:text-gray-300 dark:hover:text-gray-600',
-    'last:hover:text-gray-800 last:dark:hover:text-gray-300',
-  ],
-};
-
-export const SolidVariants: Record<BreadcrumbVariant, string> = {
-  [BreadcrumbVariant.primary]: 'bg-primary-500 dark:bg-primary-800',
-  [BreadcrumbVariant.secondary]: 'bg-secondary-500 dark:bg-secondary-800',
-  [BreadcrumbVariant.neutral]: 'bg-gray-500 dark:bg-gray-800',
-};
-
 interface BreadcrumbProps {
-  /**
-   * Optional CSS class for styling accent items.
-   */
-  accentVariant?: BreadcrumbVariant;
-
   /**
    * An array of ReactNode elements representing the breadcrumb items.
    */
@@ -118,11 +34,6 @@ interface BreadcrumbProps {
    * Optional CSS class for additional styling.
    */
   className?: string;
-
-  /**
-   * Determines whether a border is displayed around the breadcrumb.
-   */
-  hasBorder?: boolean;
 
   /**
    * Determines whether the collapse button is implement
@@ -145,11 +56,6 @@ interface BreadcrumbProps {
   collapseMode?: CollapseMode;
 
   /**
-   * Optional CSS class for styling the Breadcrumb Items.
-   */
-  variant?: BreadcrumbVariant;
-
-  /**
    * Custom separator between breadcrumb items.
    */
   separator?: string | ReactNode;
@@ -158,11 +64,6 @@ interface BreadcrumbProps {
    * Defines the spacing between breadcrumb items.
    */
   spacing?: BreadcrumbSpacing;
-
-  /**
-   * Sets the size of the breadcrumb text.
-   */
-  size?: BreadcrumbSize;
 }
 
 /**
@@ -170,18 +71,14 @@ interface BreadcrumbProps {
  * They offer a hierarchical structure of the current page in relation to the website's structure and help users understand their current location.
  */
 export const Breadcrumb = ({
-  accentVariant = BreadcrumbVariant.neutral,
   children,
   className,
   collapseMode = CollapseMode.spread,
-  hasBorder = false,
   isCollapse = false,
   itemsBeforeCollapse = 1,
   itemsAfterCollapse = 1,
   separator = '/',
-  size = BreadcrumbSize.lg,
   spacing = BreadcrumbSpacing.normal,
-  variant = BreadcrumbVariant.neutral,
 }: BreadcrumbProps) => {
   const childrenArray = Children.toArray(children);
   const childrenBeforeCollapse = childrenArray.slice(
@@ -213,12 +110,6 @@ export const Breadcrumb = ({
       'flex items-center',
       'px-4 py-2 w-fit overflow-scroll',
       'rounded-xl',
-      {
-        'ring-1': hasBorder,
-        [BorderVariants[variant]]: hasBorder,
-      },
-      AccentVariants[accentVariant],
-      BreadcrumbSizes[size],
       BreadcrumbSpacings[spacing],
       className,
     ),
@@ -227,28 +118,23 @@ export const Breadcrumb = ({
 
   const startItems = childrenBeforeCollapse.map((item) =>
     processBreadcrumbItem({
-      accentVariant,
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
       separator,
-      variant,
     }),
   );
 
   const collapseItems = collapsedChildren.map((item) =>
     processBreadcrumbItem({
-      accentVariant,
       collapse: collapseMode === CollapseMode.dropdown,
       item,
       separator,
-      variant,
     }),
   );
 
   const endItems = childrenAfterCollapse.map((item) =>
     processBreadcrumbItem({
-      accentVariant,
       collapseMode,
       collapseItemsVisible,
       identifier: ItemIdentifier.after,
@@ -256,18 +142,15 @@ export const Breadcrumb = ({
       isFirst: item === childrenAfterCollapse[0],
       isLast: item === lastItem,
       separator,
-      variant,
     }),
   );
 
   const allItems = childrenArray.map((item) =>
     processBreadcrumbItem({
-      accentVariant,
       item,
       isFirst: item === firstItem,
       isLast: item === lastItem,
       separator,
-      variant,
     }),
   );
 
