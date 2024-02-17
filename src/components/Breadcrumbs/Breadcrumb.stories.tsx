@@ -24,13 +24,16 @@ const meta: Meta<typeof Breadcrumb> = {
       <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>,
       <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>,
     ],
-    itemsBeforeCollapse: 2,
-    itemsAfterCollapse: 1,
-    separator: '/',
+    className: '',
     collapseMode: CollapseMode.spread,
+    itemsAfterCollapse: 1,
+    itemsBeforeCollapse: 2,
+    hasBorder: false,
+    hasCollapse: false,
+    spacing: BreadcrumbSpacing.normal,
+    separator: '/',
     size: BreadcrumbSize.base,
     variant: BreadcrumbVariant.primary,
-    className: '',
   },
 };
 
@@ -142,7 +145,7 @@ export const CustomSeparators: Story = {
         <div className="grid gap-4">
           {separators.map((separators) => (
             <div key={separators}>
-              <p>Variant: {separators}</p>
+              <p>Custom Separators: {separators}</p>
               <Breadcrumb
                 body={arg.body}
                 separator={separators}
@@ -157,33 +160,34 @@ export const CustomSeparators: Story = {
   },
 };
 
-export const DropdownCollapse: Story = {
+export const CollapseDropdown: Story = {
   args: {
+    hasCollapse: true,
     collapseMode: CollapseMode.dropdown,
   },
 };
 
-export const SpreadCollapse: Story = {
-  args: {
-    collapseMode: CollapseMode.spread,
-  },
+export const CollapsedSpread: Story = {
+  args: { hasCollapse: true, collapseMode: CollapseMode.spread },
 };
 
-export const MoreItemsBefore: Story = {
+export const MoreItemsBeforeCollapse: Story = {
   args: {
+    hasCollapse: true,
     itemsBeforeCollapse: 3,
     itemsAfterCollapse: 1,
   },
 };
 
-export const MoreItemsAfter: Story = {
+export const MoreItemsAfterCollapse: Story = {
   args: {
+    hasCollapse: true,
     itemsBeforeCollapse: 1,
     itemsAfterCollapse: 3,
   },
 };
 
-export const MoreItems: Story = {
+export const LotOfItems: Story = {
   args: {
     body: [
       <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>,
