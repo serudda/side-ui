@@ -24,16 +24,17 @@ const meta: Meta<typeof Breadcrumb> = {
       <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>,
       <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>,
     ],
+    accentVariant: BreadcrumbVariant.neutral,
     className: '',
     collapseMode: CollapseMode.spread,
     itemsAfterCollapse: 1,
     itemsBeforeCollapse: 2,
     hasBorder: false,
-    hasCollapse: false,
+    isCollapse: false,
     spacing: BreadcrumbSpacing.normal,
     separator: '/',
     size: BreadcrumbSize.base,
-    variant: BreadcrumbVariant.primary,
+    variant: BreadcrumbVariant.neutral,
   },
 };
 
@@ -71,6 +72,7 @@ export const AllVariantsDemo: Story = {
             <div key={variant}>
               <p>Variant: {variant}</p>
               <Breadcrumb
+                accentVariant={variant}
                 variant={variant}
                 body={arg.body}
                 separator="/"
@@ -121,6 +123,7 @@ export const AllVariantsWithBorder: Story = {
             <div key={variant}>
               <p>Variant: {variant}</p>
               <Breadcrumb
+                accentVariant={variant}
                 variant={variant}
                 body={arg.body}
                 separator="/"
@@ -162,28 +165,28 @@ export const CustomSeparators: Story = {
 
 export const CollapseDropdown: Story = {
   args: {
-    hasCollapse: true,
+    isCollapse: true,
     collapseMode: CollapseMode.dropdown,
   },
 };
 
 export const CollapsedSpread: Story = {
-  args: { hasCollapse: true, collapseMode: CollapseMode.spread },
+  args: { isCollapse: true, collapseMode: CollapseMode.spread },
 };
 
 export const MoreItemsBeforeCollapse: Story = {
   args: {
-    hasCollapse: true,
-    itemsBeforeCollapse: 3,
+    isCollapse: true,
+    itemsBeforeCollapse: 2,
     itemsAfterCollapse: 1,
   },
 };
 
 export const MoreItemsAfterCollapse: Story = {
   args: {
-    hasCollapse: true,
+    isCollapse: true,
     itemsBeforeCollapse: 1,
-    itemsAfterCollapse: 3,
+    itemsAfterCollapse: 2,
   },
 };
 

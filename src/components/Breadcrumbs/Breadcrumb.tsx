@@ -90,7 +90,6 @@ export const AccentVariants: Record<BreadcrumbVariant, Array<string>> = {
     'dark:text-secondary-700 last:hover:text-secondary-400',
     'last:hover:text-secondary-500 last:dark:hover:text-secondary-700',
   ],
-
   [BreadcrumbVariant.neutral]: [
     'text-gray-800 hover:text-gray-400 ',
     'dark:text-gray-300 dark:hover:text-gray-600',
