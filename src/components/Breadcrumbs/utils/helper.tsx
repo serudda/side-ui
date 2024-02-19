@@ -23,8 +23,9 @@ export const calculateChildrenBeforeCollapse = (
   childrenArray: Array<ReactNode>,
 ) => {
   let childrenBeforeCollapse: Array<ReactNode> = [];
+  const hasChildren = childrenArray.length > 0;
 
-  if (childrenArray.length > 0) {
+  if (hasChildren) {
     /**
      * Calculate the maximum number of items that can be shown before
      * the collapse, ensuring that at least one item is always displayed.
@@ -51,11 +52,6 @@ export const calculateChildrenBeforeCollapse = (
      * children before the collapse.
      */
     childrenBeforeCollapse = childrenArray.slice(0, sliceIndex);
-  } else {
-    /**
-     * If there are no children, no items are shown before the collapse.
-     */
-    childrenBeforeCollapse = [];
   }
 
   return childrenBeforeCollapse;
@@ -76,29 +72,32 @@ export const calculateChildrenAfterCollapse = (
   itemsAfterCollapse: number,
   childrenArray: Array<ReactNode>,
 ) => {
-  let childrenAfterCollapse;
+  let childrenAfterCollapse: Array<ReactNode> = [];
 
-  /**
-   * If itemsAfterCollapse is greater than or equal
-   * to the length of the array,
-   * show all elements except the first one.
-   */
-  if (itemsAfterCollapse >= childrenArray.length) {
-    childrenAfterCollapse = childrenArray.slice(1);
+  switch (true) {
+    /**
+     * If itemsAfterCollapse is greater than or equal
+     * to the length of the array,
+     * show all elements except the first one.
+     */
+    case itemsAfterCollapse >= childrenArray.length:
+      childrenAfterCollapse = childrenArray.slice(1);
+      break;
 
     /**
      * If itemsAfterCollapse is less than or equal to 0,
      * only show the last element of the array.
      */
-  } else if (itemsAfterCollapse <= 0) {
-    childrenAfterCollapse = childrenArray.slice(-1);
+    case itemsAfterCollapse <= 0:
+      childrenAfterCollapse = childrenArray.slice(-1);
+      break;
 
     /**
      * Otherwise, show the last N elements of the array,
      * where N is the greater of 1 and itemsAfterCollapse.
      */
-  } else {
-    childrenAfterCollapse = childrenArray.slice(-Math.max(1, itemsAfterCollapse));
+    default:
+      childrenAfterCollapse = childrenArray.slice(-Math.max(1, itemsAfterCollapse));
   }
 
   return childrenAfterCollapse;

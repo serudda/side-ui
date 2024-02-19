@@ -32,7 +32,7 @@ export const Default: Story = {
       <Breadcrumb {...args}>
         <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
+        <BreadcrumbItem href="javascript:void(0)">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
       </Breadcrumb>
