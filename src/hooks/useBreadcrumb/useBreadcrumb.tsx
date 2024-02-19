@@ -1,5 +1,6 @@
 import { ReactNode, cloneElement, isValidElement, useCallback } from 'react';
-import { breadcrumbItemIdentifier, cn } from '@common';
+import { cn } from '@common';
+import { BreadcrumbItemIdentifier } from '@components';
 
 interface ProcessBreadcrumbItemProps {
   /**
@@ -10,7 +11,7 @@ interface ProcessBreadcrumbItemProps {
   /**
    * Identifies the position of the breadcrumb item in relation to the collapse logic.
    */
-  identifier?: breadcrumbItemIdentifier;
+  identifier?: BreadcrumbItemIdentifier;
 
   /**
    * The content of the breadcrumb item, typically a React element.
@@ -34,7 +35,7 @@ interface ProcessBreadcrumbItemProps {
 }
 
 export const useBreadcrumb = () => {
-  const processItem = useCallback(
+  const processBreadcrumbItem = useCallback(
     ({
       collapse,
       identifier,
@@ -47,16 +48,15 @@ export const useBreadcrumb = () => {
 
       const classes = {
         separator: cn('text-gray-400 dark:text-gray-600', 'select-none', {
-          'last:hidden': isLast && identifier === breadcrumbItemIdentifier.after,
+          'last:hidden': isLast && identifier === BreadcrumbItemIdentifier.after,
         }),
       };
 
       const element = cloneElement(item, { isLast, identifier, ...item.props });
-
-      const result: ReactNode[] = [element];
+      const result: Array<ReactNode> = [element];
 
       switch (true) {
-        case isFirst && identifier === breadcrumbItemIdentifier.after:
+        case isFirst && identifier === BreadcrumbItemIdentifier.after:
           result.unshift(
             <span key="first-separator" className={classes.separator}>
               {separator}
@@ -68,7 +68,6 @@ export const useBreadcrumb = () => {
               {separator}
             </span>,
           );
-
           break;
 
         case !isLast && !collapse:
@@ -79,11 +78,10 @@ export const useBreadcrumb = () => {
           );
           break;
       }
-
       return <>{result}</>;
     },
     [],
   );
 
-  return processItem;
+  return { processBreadcrumbItem };
 };

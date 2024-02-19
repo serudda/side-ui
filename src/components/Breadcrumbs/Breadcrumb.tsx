@@ -1,5 +1,5 @@
 import { Children, ReactNode, useState } from 'react';
-import { breadcrumbItemIdentifier, cn } from '@common';
+import { cn } from '@common';
 import { CollapseDropdown, CollapsedSpread } from '@components';
 import { useBreadcrumb } from '@hooks';
 import {
@@ -11,6 +11,12 @@ import {
 export enum CollapseMode {
   dropdown = 'dropdown',
   spread = 'spread',
+}
+
+export enum BreadcrumbItemIdentifier {
+  before = 'before',
+  collapse = 'collapse',
+  after = 'after',
 }
 
 export enum BreadcrumbSpacing {
@@ -103,7 +109,7 @@ export const Breadcrumb = ({
   const collapseLastItem: ReactNode = collapsedChildren[collapsedChildren.length - 1];
   const afterCollapseFirstItem: ReactNode = childrenAfterCollapse[0];
   const [collapseItemsVisible, setCollapseItemsVisible] = useState(false);
-  const processBreadcrumbItem = useBreadcrumb();
+  const { processBreadcrumbItem } = useBreadcrumb();
 
   const classes = {
     container: cn(
@@ -111,26 +117,25 @@ export const Breadcrumb = ({
       'px-4 py-2 w-fit overflow-scroll',
       'rounded-xl',
       'scrollbar-track-transparent scrollbar-w-0',
-      BreadcrumbSpacings[spacing],
       className,
     ),
     list: cn('flex items-center', [BreadcrumbSpacings[spacing]]),
   };
 
-  const beforeCollapseItems = childrenBeforeCollapse.map((item) =>
+  const beforeCollapseItems: Array<ReactNode> = childrenBeforeCollapse.map((item) =>
     processBreadcrumbItem({
       item,
-      identifier: breadcrumbItemIdentifier.before,
+      identifier: BreadcrumbItemIdentifier.before,
       isFirst: item === firstItem,
       isLast: false,
       separator,
     }),
   );
 
-  const collapseItems = collapsedChildren.map((item) =>
+  const collapseItems: Array<ReactNode> = collapsedChildren.map((item) =>
     processBreadcrumbItem({
       collapse: collapseMode === CollapseMode.dropdown,
-      identifier: breadcrumbItemIdentifier.collapse,
+      identifier: BreadcrumbItemIdentifier.collapse,
       isFirst: item === collapseFirstItem,
       isLast: item === collapseLastItem,
       item,
@@ -138,9 +143,9 @@ export const Breadcrumb = ({
     }),
   );
 
-  const afterCollapseItems = childrenAfterCollapse.map((item) =>
+  const afterCollapseItems: Array<ReactNode> = childrenAfterCollapse.map((item) =>
     processBreadcrumbItem({
-      identifier: breadcrumbItemIdentifier.after,
+      identifier: BreadcrumbItemIdentifier.after,
       item,
       isFirst: item === afterCollapseFirstItem,
       isLast: item === lastItem,
@@ -148,7 +153,7 @@ export const Breadcrumb = ({
     }),
   );
 
-  const allItems = childrenArray.map((item) =>
+  const allItems: Array<ReactNode> = childrenArray.map((item) =>
     processBreadcrumbItem({
       item,
       isFirst: item === firstItem,
@@ -167,6 +172,7 @@ export const Breadcrumb = ({
             collapsedItems={item}
             collapseItemsVisible={collapseItemsVisible}
             handleCollapseItemsToggle={handleCollapseItemsToggle}
+            isActive={collapseItemsVisible}
           />
         );
 
@@ -213,7 +219,7 @@ export const Breadcrumb = ({
         {beforeCollapseItems}
 
         {/* Collapsible items */}
-        {renderCollapsedItems(collapseItems)}
+        <div className="relative">{renderCollapsedItems(collapseItems)}</div>
 
         {/* Items after the collapse */}
         {afterCollapseItems}
@@ -222,7 +228,11 @@ export const Breadcrumb = ({
   };
 
   return (
-    <nav className={classes.container} onMouseLeave={() => setCollapseItemsVisible(false)}>
+    <nav
+      className={classes.container}
+      onMouseLeave={() => setCollapseItemsVisible(false)}
+      onKeyDown={(event) => event.key === 'Escape' && setCollapseItemsVisible(false)}
+    >
       {renderBreadcrumbs()}
     </nav>
   );

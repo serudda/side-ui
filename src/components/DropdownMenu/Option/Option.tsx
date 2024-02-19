@@ -18,6 +18,11 @@ export interface OptionProps {
   isDisabled?: boolean;
 
   /**
+   * Whether the option can be focused or not.
+   */
+  isFocusable?: boolean;
+
+  /**
    * Callback when the option was clicked
    */
   onClick?: (event: React.MouseEvent) => void;
@@ -26,7 +31,10 @@ export interface OptionProps {
 /**
  * Represents an item to use in the DropdownMenu component
  */
-export const Option = ({ className, children, isDisabled = false, onClick }: OptionProps) => {
+export const Option = (
+  { className, children, isDisabled = false, onClick }: OptionProps,
+  isFocusable = true,
+) => {
   const classes = cn(
     'flex select-none',
     'p-2',
@@ -43,9 +51,16 @@ export const Option = ({ className, children, isDisabled = false, onClick }: Opt
     if (onClick) onClick(event);
   };
 
+  const handleFocus = (isFocusable: boolean) => (isFocusable ? -1 : 0);
+
   /* Render JSX */
   return (
-    <div role="option" tabIndex={0} className={classes} onClick={handleClick}>
+    <div
+      role="option"
+      tabIndex={handleFocus(isFocusable)}
+      className={classes}
+      onClick={handleClick}
+    >
       {children}
     </div>
   );
