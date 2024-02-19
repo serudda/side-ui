@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
-import { breadcrumbItemIdentifier, cn } from '@common';
+import { cn } from '@common';
+import { BreadcrumbItemIdentifier } from '../Breadcrumb';
 
 export interface BreadcrumbItemProps {
   /**
@@ -21,7 +22,7 @@ export interface BreadcrumbItemProps {
    * Identifies the position of the breadcrumb item in relation
    * to the collapse logic.
    */
-  identifier?: breadcrumbItemIdentifier;
+  identifier?: BreadcrumbItemIdentifier;
 
   /**
    * Marks if this item is the last in the breadcrumb trail.
@@ -41,7 +42,7 @@ export const BreadcrumbItem = ({
       'flex items-center gap-2',
       'text-gray-400 hover:text-gray-700',
       'dark:text-gray-600 dark:hover:text-gray-300',
-      'has-[span]:text-gray-700 dark:has-[span]:text-gray-400',
+      'has-[span]:text-gray-700 dark:has-[span]:text-gray-300',
       'has-[span]:select-none',
       'group-hover/dropdown:text-gray-700 dark:group-hover/dropdown:text-gray-300',
       'transition-colors',
@@ -50,7 +51,7 @@ export const BreadcrumbItem = ({
   };
 
   const renderItem = () => {
-    if (isLast && identifier !== breadcrumbItemIdentifier.collapse)
+    if (isLast && identifier !== BreadcrumbItemIdentifier.collapse)
       return (
         <li className={classes.container}>
           <span>{children}</span>

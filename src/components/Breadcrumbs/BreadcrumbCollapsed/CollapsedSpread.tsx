@@ -24,12 +24,15 @@ export const CollapsedSpread = ({
   handleCollapseItemsToggle,
 }: CollapsedSpreadProps) => {
   const classes = {
-    container: cn('relative flex items-center gap-2 overflow-hidden'),
-    expandTriggerContainer: cn('flex gap-2', {
-      hidden: isActive,
-    }),
+    container: cn(
+      'relative flex items-center gap-2 overflow-hidden',
+      'focus-within:outline-blue-700 focus-within:outline-2 focus-within:outline-double',
+      {
+        hidden: isActive,
+      },
+    ),
     expandTrigger: cn(
-      'text-slate-400  hover:text-slate-400',
+      'text-slate-400 hover:text-slate-400',
       'dark:text-slate-400 dark:hover:text-slate-600',
       'cursor-pointer transition-colors',
     ),
@@ -37,23 +40,45 @@ export const CollapsedSpread = ({
       'absolute left-0 last:left-20 whitespace-nowrap opacity-0 invisible': !isActive,
       'opacity-100 translate-x-0': isActive,
     }),
+    itemsContainer: cn('flex items-center gap-2', {
+      'absolute inset-0 -z-10 invisible': !isActive,
+    }),
   };
-  const renderCollapsibleItems = () =>
-    collapsedItems.map((item, index) => (
-      <Fragment key={index}>
-        <div className={classes.collapsedContainer}>{item}</div>
-      </Fragment>
-    ));
+
+  const handleCollapseKeyPress = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      handleCollapseItemsToggle();
+    }
+  };
+
+  const renderCollapsibleItems = () => (
+    <div id="breadcrumbCollapse" className={classes.itemsContainer}>
+      {collapsedItems.map((item, index) => (
+        <Fragment key={index}>
+          <li className={classes.collapsedContainer}>{item}</li>
+        </Fragment>
+      ))}
+    </div>
+  );
 
   return (
-    <li className={classes.container}>
-      <div className={classes.expandTriggerContainer}>
-        <button className={classes.expandTrigger} onMouseEnter={handleCollapseItemsToggle}>
+    <>
+      <li className={classes.container}>
+        <button
+          className={classes.expandTrigger}
+          onMouseEnter={handleCollapseItemsToggle}
+          tabIndex={0}
+          onKeyDown={(event) => handleCollapseKeyPress(event)}
+          aria-haspopup="true"
+          aria-controls="breadcrumbCollapse"
+          aria-expanded={isActive ? 'true' : 'false'}
+        >
           ...
         </button>
-      </div>
+      </li>
 
       {renderCollapsibleItems()}
-    </li>
+    </>
   );
 };
