@@ -1,7 +1,12 @@
 import { Children, ReactNode, useState } from 'react';
-import { cn } from '@common';
+import { breadcrumbItemIdentifier, cn } from '@common';
 import { CollapseDropdown, CollapsedSpread } from '@components';
-import { ItemIdentifier, processBreadcrumbItem } from './utils/helper';
+import { useBreadcrumb } from '@hooks';
+import {
+  calculateChildrenAfterCollapse,
+  calculateChildrenBeforeCollapse,
+  calculateCollapsedChildren,
+} from './utils/helper';
 
 export enum CollapseMode {
   dropdown = 'dropdown',
@@ -81,46 +86,43 @@ export const Breadcrumb = ({
   spacing = BreadcrumbSpacing.normal,
 }: BreadcrumbProps) => {
   const childrenArray = Children.toArray(children);
-  const childrenBeforeCollapse = childrenArray.slice(
-    0,
-    childrenArray.length > 0
-      ? Math.min(
-          Math.max(1, itemsBeforeCollapse),
-          Math.max(0, childrenArray.length - itemsAfterCollapse),
-        )
-      : 0,
+  const childrenBeforeCollapse = calculateChildrenBeforeCollapse(
+    itemsBeforeCollapse,
+    itemsAfterCollapse,
+    childrenArray,
   );
-  const childrenAfterCollapse =
-    itemsAfterCollapse >= childrenArray.length
-      ? childrenArray.slice(1)
-      : itemsAfterCollapse <= 0
-      ? childrenArray.slice(-1)
-      : childrenArray.slice(-Math.max(1, itemsAfterCollapse));
-  const collapsedChildren = childrenArray.slice(
-    childrenBeforeCollapse.length,
-    -childrenAfterCollapse.length,
+  const childrenAfterCollapse = calculateChildrenAfterCollapse(itemsAfterCollapse, childrenArray);
+  const collapsedChildren = calculateCollapsedChildren(
+    childrenArray,
+    childrenBeforeCollapse,
+    childrenAfterCollapse,
   );
-
-  const firstItem = childrenArray[0];
-  const lastItem = childrenArray[childrenArray.length - 1];
+  const firstItem: ReactNode = childrenArray[0];
+  const lastItem: ReactNode = childrenArray[childrenArray.length - 1];
+  const collapseFirstItem: ReactNode = collapsedChildren[0];
+  const collapseLastItem: ReactNode = collapsedChildren[collapsedChildren.length - 1];
+  const afterCollapseFirstItem: ReactNode = childrenAfterCollapse[0];
   const [collapseItemsVisible, setCollapseItemsVisible] = useState(false);
+  const processBreadcrumbItem = useBreadcrumb();
 
   const classes = {
     container: cn(
       'flex items-center',
       'px-4 py-2 w-fit overflow-scroll',
       'rounded-xl',
+      'scrollbar-track-transparent scrollbar-w-0',
       BreadcrumbSpacings[spacing],
       className,
     ),
     list: cn('flex items-center', [BreadcrumbSpacings[spacing]]),
   };
 
-  const startItems = childrenBeforeCollapse.map((item) =>
+  const beforeCollapseItems = childrenBeforeCollapse.map((item) =>
     processBreadcrumbItem({
       item,
+      identifier: breadcrumbItemIdentifier.before,
       isFirst: item === firstItem,
-      isLast: item === lastItem,
+      isLast: false,
       separator,
     }),
   );
@@ -128,18 +130,19 @@ export const Breadcrumb = ({
   const collapseItems = collapsedChildren.map((item) =>
     processBreadcrumbItem({
       collapse: collapseMode === CollapseMode.dropdown,
+      identifier: breadcrumbItemIdentifier.collapse,
+      isFirst: item === collapseFirstItem,
+      isLast: item === collapseLastItem,
       item,
       separator,
     }),
   );
 
-  const endItems = childrenAfterCollapse.map((item) =>
+  const afterCollapseItems = childrenAfterCollapse.map((item) =>
     processBreadcrumbItem({
-      collapseMode,
-      collapseItemsVisible,
-      identifier: ItemIdentifier.after,
+      identifier: breadcrumbItemIdentifier.after,
       item,
-      isFirst: item === childrenAfterCollapse[0],
+      isFirst: item === afterCollapseFirstItem,
       isLast: item === lastItem,
       separator,
     }),
@@ -157,46 +160,63 @@ export const Breadcrumb = ({
   const handleCollapseItemsToggle = () => setCollapseItemsVisible(!collapseItemsVisible);
 
   const renderCollapsedItems = (item: Array<ReactNode>) => {
-    if (collapseMode === CollapseMode.dropdown) {
-      return (
-        <CollapseDropdown
-          collapsedItems={item}
-          collapseItemsVisible={collapseItemsVisible}
-          handleCollapseItemsToggle={handleCollapseItemsToggle}
-        />
-      );
-    } else {
-      return (
-        <CollapsedSpread
-          collapsedItems={item}
-          handleCollapseItemsToggle={handleCollapseItemsToggle}
-          isActive={collapseItemsVisible}
-        />
-      );
+    switch (collapseMode) {
+      case CollapseMode.dropdown:
+        return (
+          <CollapseDropdown
+            collapsedItems={item}
+            collapseItemsVisible={collapseItemsVisible}
+            handleCollapseItemsToggle={handleCollapseItemsToggle}
+          />
+        );
+
+      default:
+        return (
+          <CollapsedSpread
+            collapsedItems={item}
+            handleCollapseItemsToggle={handleCollapseItemsToggle}
+            isActive={collapseItemsVisible}
+          />
+        );
     }
   };
-
   const renderBreadcrumbs = () => {
+    /**
+     * Calculates the effective number of items to display before the collapse.
+     * Ensures that at least one item is displayed by
+     * selecting the maximum between
+     */
     const effectiveItemsBeforeCollapse = Math.max(1, itemsBeforeCollapse);
+
+    /**
+     * Calculates the effective number of items to display after the collapse.
+     * Ensures that at least one item is displayed by selecting
+     * the maximum between
+     */
     const effectiveItemsAfterCollapse = Math.max(1, itemsAfterCollapse);
 
+    /**
+     * Checks if the list should not collapse or if the
+     * total number of items does not exceed the sum of effective items to
+     * be display before and after collapse. In such cases, it renders
+     * the full list without collapsing.
+     */
     if (
       !isCollapse ||
       allItems.length <= effectiveItemsBeforeCollapse + effectiveItemsAfterCollapse
-    ) {
+    )
       return <ol className={classes.list}>{allItems}</ol>;
-    }
 
     return (
       <ol className={classes.list}>
         {/* Items before the collapse */}
-        {startItems}
+        {beforeCollapseItems}
 
         {/* Collapsible items */}
         {renderCollapsedItems(collapseItems)}
 
         {/* Items after the collapse */}
-        {endItems}
+        {afterCollapseItems}
       </ol>
     );
   };
