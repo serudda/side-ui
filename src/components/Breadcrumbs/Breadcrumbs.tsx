@@ -35,7 +35,7 @@ export const BreadcrumbSpacings: Record<BreadcrumbSpacing, string> = {
   [BreadcrumbSpacing.loose]: 'gap-5',
 };
 
-interface BreadcrumbProps {
+interface BreadcrumbsProps {
   /**
    * An array of ReactNode elements representing the breadcrumb items.
    */
@@ -78,10 +78,12 @@ interface BreadcrumbProps {
 }
 
 /**
- * Breadcrumbs provide a navigation trail for users to follow back to the starting or entry point of a website or application.
- * They offer a hierarchical structure of the current page in relation to the website's structure and help users understand their current location.
+ * Breadcrumbs provide a navigation trail for users to
+ * follow back to the starting or entry point of a website or application.
+ * They offer a hierarchical structure of the current page in
+ * relation to the website's structure and help users understand their current location.
  */
-export const Breadcrumb = ({
+export const Breadcrumbs = ({
   children,
   className,
   collapseMode = CollapseMode.spread,
@@ -90,7 +92,7 @@ export const Breadcrumb = ({
   itemsAfterCollapse = 1,
   separator = '/',
   spacing = BreadcrumbSpacing.normal,
-}: BreadcrumbProps) => {
+}: BreadcrumbsProps) => {
   const childrenArray = Children.toArray(children);
   const childrenBeforeCollapse = calculateChildrenBeforeCollapse(
     itemsBeforeCollapse,
