@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { cn } from '@common';
-import { BreadcrumbItemIdentifier } from '../Breadcrumb';
+import { BreadcrumbItemIdentifier } from '../Breadcrumbs';
 
 export interface BreadcrumbItemProps {
   /**
