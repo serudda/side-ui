@@ -43,7 +43,6 @@ export const Default: Story = {
 export const SpacingExamples: Story = {
   render: (args) => {
     const spacing = Object.values(BreadcrumbSpacing);
-
     return (
       <div>
         <div className="grid gap-4">
@@ -70,7 +69,6 @@ export const SpacingExamples: Story = {
 export const CustomSeparators: Story = {
   render: (arg) => {
     const separators = ['/', '>', '|', '-', '→', '•', '~', '\\', '⇒'];
-
     return (
       <div>
         <div className="grid gap-4">
