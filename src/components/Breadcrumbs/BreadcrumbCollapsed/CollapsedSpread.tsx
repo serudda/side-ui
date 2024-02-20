@@ -1,5 +1,6 @@
 import { Fragment, ReactNode } from 'react';
 import { cn } from '@common';
+import { BreadcrumbSpacing, BreadcrumbSpacings } from '@components';
 
 interface CollapsedSpreadProps {
   /**
@@ -13,6 +14,11 @@ interface CollapsedSpreadProps {
   isActive?: boolean;
 
   /**
+   * Defines the spacing between breadcrumb items.
+   */
+  spacing?: BreadcrumbSpacing;
+
+  /**
    * Function to toggle the visibility of collapsed items.
    */
   handleCollapseItemsToggle: () => void;
@@ -21,28 +27,32 @@ interface CollapsedSpreadProps {
 export const CollapsedSpread = ({
   collapsedItems,
   isActive,
+  spacing = BreadcrumbSpacing.normal,
   handleCollapseItemsToggle,
 }: CollapsedSpreadProps) => {
   const classes = {
     container: cn(
       'relative flex items-center gap-2 overflow-hidden',
-      'focus-within:outline-blue-700 focus-within:outline-2 focus-within:outline-double',
+      'focus-within:outline-blue-700 focus-within:outline-2 focus-within:outline',
       {
         hidden: isActive,
       },
     ),
-    expandTrigger: cn(
+    collapsedContainer: cn(
+      'flex items-center',
+      '-translate-x-full transition-all',
+      {
+        'absolute inset-y-0 left-0 -z-10 last:left-20 whitespace-nowrap opacity-0 invisible select-none':
+          !isActive,
+        'opacity-100 translate-x-0': isActive,
+      },
+      [BreadcrumbSpacings[spacing]],
+    ),
+    trigger: cn(
       'text-slate-400 hover:text-slate-400',
       'dark:text-slate-400 dark:hover:text-slate-600',
       'cursor-pointer transition-colors',
     ),
-    collapsedContainer: cn('flex items-center gap-2', '-translate-x-full transition-all', {
-      'absolute left-0 last:left-20 whitespace-nowrap opacity-0 invisible': !isActive,
-      'opacity-100 translate-x-0': isActive,
-    }),
-    itemsContainer: cn('flex items-center gap-2', {
-      'absolute inset-0 -z-10 invisible': !isActive,
-    }),
   };
 
   const handleCollapseKeyPress = (event: React.KeyboardEvent) => {
@@ -53,11 +63,9 @@ export const CollapsedSpread = ({
   };
 
   const renderCollapsibleItems = () => (
-    <div id="breadcrumbCollapse" className={classes.itemsContainer}>
+    <div id="breadcrumbCollapse" className={classes.collapsedContainer}>
       {collapsedItems.map((item, index) => (
-        <Fragment key={index}>
-          <li className={classes.collapsedContainer}>{item}</li>
-        </Fragment>
+        <Fragment key={index}>{item}</Fragment>
       ))}
     </div>
   );
@@ -66,7 +74,7 @@ export const CollapsedSpread = ({
     <>
       <li className={classes.container}>
         <button
-          className={classes.expandTrigger}
+          className={classes.trigger}
           onMouseEnter={handleCollapseItemsToggle}
           tabIndex={0}
           onKeyDown={(event) => handleCollapseKeyPress(event)}

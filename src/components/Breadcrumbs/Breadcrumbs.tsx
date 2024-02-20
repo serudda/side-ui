@@ -221,6 +221,7 @@ export const Breadcrumbs = ({
             collapsedItems={item}
             handleCollapseItemsToggle={handleCollapseItemsToggle}
             isActive={collapseItemsVisible}
+            spacing={spacing}
           />
         );
     }

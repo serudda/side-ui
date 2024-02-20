@@ -40,7 +40,7 @@ export const CollapseDropdown = ({
       'cursor-pointer transition-colors relative',
 
       // Accessibility Option
-      'focus-within:outline-blue-700 focus-within:outline-2 focus-within:outline-double',
+      'focus-within:outline-blue-700 focus-within:outline-2 focus-within:outline',
     ),
   };
   const handleCollapseKeyPress = (event: KeyboardEvent) => {
