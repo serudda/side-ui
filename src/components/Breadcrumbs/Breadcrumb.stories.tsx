@@ -1,16 +1,16 @@
 import {
-  Breadcrumb,
   BreadcrumbItem,
   BreadcrumbSpacing,
+  Breadcrumbs,
   CollapseMode,
   Icon,
   IconCatalog,
 } from '@components';
 import { type Meta, type StoryObj } from '@storybook/react';
 
-const meta: Meta<typeof Breadcrumb> = {
+const meta: Meta<typeof Breadcrumbs> = {
   title: 'UI Components/Breadcrumb',
-  component: Breadcrumb,
+  component: Breadcrumbs,
   tags: ['autodocs'],
   args: {
     className: '',
@@ -29,13 +29,13 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args}>
+      <Breadcrumbs {...args}>
         <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-      </Breadcrumb>
+      </Breadcrumbs>
     );
   },
 };
@@ -50,7 +50,7 @@ export const AllSpacing: Story = {
           {spacing.map((spacing) => (
             <div key={spacing}>
               <p>Spacing: {spacing}</p>
-              <Breadcrumb {...args} spacing={spacing}>
+              <Breadcrumbs {...args} spacing={spacing}>
                 <BreadcrumbItem href="javascript:void(0)">
                   <Icon icon={IconCatalog.home} className="h-4 w-4" />
                 </BreadcrumbItem>
@@ -58,7 +58,7 @@ export const AllSpacing: Story = {
                 <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
                 <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
                 <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-              </Breadcrumb>
+              </Breadcrumbs>
             </div>
           ))}
         </div>
@@ -77,7 +77,7 @@ export const CustomSeparators: Story = {
           {separators.map((separators) => (
             <div key={separators}>
               <p>Custom Separators: {separators}</p>
-              <Breadcrumb {...arg} separator={separators}>
+              <Breadcrumbs {...arg} separator={separators}>
                 <BreadcrumbItem href="javascript:void(0)">
                   <Icon icon={IconCatalog.home} className="h-4 w-4" />
                 </BreadcrumbItem>
@@ -85,7 +85,7 @@ export const CustomSeparators: Story = {
                 <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
                 <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
                 <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-              </Breadcrumb>
+              </Breadcrumbs>
             </div>
           ))}
         </div>
@@ -97,7 +97,7 @@ export const CustomSeparators: Story = {
 export const CollapseDropdown: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse collapseMode={CollapseMode.dropdown}>
+      <Breadcrumbs {...args} isCollapse collapseMode={CollapseMode.dropdown}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -105,7 +105,7 @@ export const CollapseDropdown: Story = {
         <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-      </Breadcrumb>
+      </Breadcrumbs>
     );
   },
 };
@@ -113,7 +113,7 @@ export const CollapseDropdown: Story = {
 export const CollapsedSpread: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse collapseMode={CollapseMode.spread}>
+      <Breadcrumbs {...args} isCollapse collapseMode={CollapseMode.spread}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -121,7 +121,7 @@ export const CollapsedSpread: Story = {
         <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-      </Breadcrumb>
+      </Breadcrumbs>
     );
   },
 };
@@ -129,7 +129,7 @@ export const CollapsedSpread: Story = {
 export const MoreItemsBeforeCollapse: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse itemsBeforeCollapse={2} itemsAfterCollapse={1}>
+      <Breadcrumbs {...args} isCollapse itemsBeforeCollapse={2} itemsAfterCollapse={1}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -137,7 +137,7 @@ export const MoreItemsBeforeCollapse: Story = {
         <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-      </Breadcrumb>
+      </Breadcrumbs>
     );
   },
 };
@@ -145,7 +145,7 @@ export const MoreItemsBeforeCollapse: Story = {
 export const MoreItemsAfterCollapse: Story = {
   render: (args) => {
     return (
-      <Breadcrumb {...args} isCollapse itemsBeforeCollapse={1} itemsAfterCollapse={2}>
+      <Breadcrumbs {...args} isCollapse itemsBeforeCollapse={1} itemsAfterCollapse={2}>
         <BreadcrumbItem href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
         </BreadcrumbItem>
@@ -153,7 +153,7 @@ export const MoreItemsAfterCollapse: Story = {
         <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
         <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
-      </Breadcrumb>
+      </Breadcrumbs>
     );
   },
 };
@@ -162,7 +162,7 @@ export const LotOfItems: Story = {
   render: (args) => {
     return (
       <div>
-        <Breadcrumb {...args}>
+        <Breadcrumbs {...args}>
           <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
           <BreadcrumbItem href="javascript:void(0)">Dashboard</BreadcrumbItem>
           <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
@@ -173,7 +173,7 @@ export const LotOfItems: Story = {
           <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>
           <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
           <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>
-        </Breadcrumb>
+        </Breadcrumbs>
       </div>
     );
   },
