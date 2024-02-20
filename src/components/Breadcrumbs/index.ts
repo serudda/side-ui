@@ -1,3 +1,3 @@
 export * from './Breadcrumbs';
 export * from './BreadcrumbCollapsed';
-export * from './BreadcrumbItem/BreadcrumbItem';
+export * from './Breadcrumb/Breadcrumb';

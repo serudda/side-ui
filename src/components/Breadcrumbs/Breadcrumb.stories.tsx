@@ -1,5 +1,5 @@
 import {
-  BreadcrumbItem,
+  Breadcrumb,
   BreadcrumbSpacing,
   Breadcrumbs,
   CollapseMode,
@@ -30,17 +30,17 @@ export const Default: Story = {
   render: (args) => {
     return (
       <Breadcrumbs {...args}>
-        <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Pricing</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+        <Breadcrumb href="javascript:void(0)">Home</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Pricing</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
       </Breadcrumbs>
     );
   },
 };
 
-export const AllSpacing: Story = {
+export const SpacingExamples: Story = {
   render: (args) => {
     const spacing = Object.values(BreadcrumbSpacing);
 
@@ -51,13 +51,13 @@ export const AllSpacing: Story = {
             <div key={spacing}>
               <p>Spacing: {spacing}</p>
               <Breadcrumbs {...args} spacing={spacing}>
-                <BreadcrumbItem href="javascript:void(0)">
+                <Breadcrumb href="javascript:void(0)">
                   <Icon icon={IconCatalog.home} className="h-4 w-4" />
-                </BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+                </Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+                <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
               </Breadcrumbs>
             </div>
           ))}
@@ -78,13 +78,13 @@ export const CustomSeparators: Story = {
             <div key={separators}>
               <p>Custom Separators: {separators}</p>
               <Breadcrumbs {...arg} separator={separators}>
-                <BreadcrumbItem href="javascript:void(0)">
+                <Breadcrumb href="javascript:void(0)">
                   <Icon icon={IconCatalog.home} className="h-4 w-4" />
-                </BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-                <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+                </Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+                <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+                <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
               </Breadcrumbs>
             </div>
           ))}
@@ -98,13 +98,13 @@ export const CollapseDropdown: Story = {
   render: (args) => {
     return (
       <Breadcrumbs {...args} isCollapse collapseMode={CollapseMode.dropdown}>
-        <BreadcrumbItem href="javascript:void(0)">
+        <Breadcrumb href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
-        </BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+        </Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+        <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
       </Breadcrumbs>
     );
   },
@@ -114,13 +114,13 @@ export const CollapsedSpread: Story = {
   render: (args) => {
     return (
       <Breadcrumbs {...args} isCollapse collapseMode={CollapseMode.spread}>
-        <BreadcrumbItem href="javascript:void(0)">
+        <Breadcrumb href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
-        </BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+        </Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+        <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
       </Breadcrumbs>
     );
   },
@@ -130,13 +130,13 @@ export const MoreItemsBeforeCollapse: Story = {
   render: (args) => {
     return (
       <Breadcrumbs {...args} isCollapse itemsBeforeCollapse={2} itemsAfterCollapse={1}>
-        <BreadcrumbItem href="javascript:void(0)">
+        <Breadcrumb href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
-        </BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+        </Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+        <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
       </Breadcrumbs>
     );
   },
@@ -146,13 +146,13 @@ export const MoreItemsAfterCollapse: Story = {
   render: (args) => {
     return (
       <Breadcrumbs {...args} isCollapse itemsBeforeCollapse={1} itemsAfterCollapse={2}>
-        <BreadcrumbItem href="javascript:void(0)">
+        <Breadcrumb href="javascript:void(0)">
           <Icon icon={IconCatalog.home} className="h-4 w-4" />
-        </BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Components</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0">Pricing</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Product</BreadcrumbItem>
-        <BreadcrumbItem href="javascript:void(0)">Calendar</BreadcrumbItem>
+        </Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Components</Breadcrumb>
+        <Breadcrumb href="javascript:void(0">Pricing</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Product</Breadcrumb>
+        <Breadcrumb href="javascript:void(0)">Calendar</Breadcrumb>
       </Breadcrumbs>
     );
   },
@@ -163,16 +163,16 @@ export const LotOfItems: Story = {
     return (
       <div>
         <Breadcrumbs {...args}>
-          <BreadcrumbItem href="javascript:void(0)">Home</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Dashboard</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Profile</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Help</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Export</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Analytics</BreadcrumbItem>
-          <BreadcrumbItem href="javascript:void(0)">Settings</BreadcrumbItem>
+          <Breadcrumb href="javascript:void(0)">Home</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Dashboard</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Analytics</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Export</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Settings</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Profile</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Help</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Export</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Analytics</Breadcrumb>
+          <Breadcrumb href="javascript:void(0)">Settings</Breadcrumb>
         </Breadcrumbs>
       </div>
     );

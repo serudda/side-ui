@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { cn } from '@common';
 import { BreadcrumbItemIdentifier } from '../Breadcrumbs';
 
-export interface BreadcrumbItemProps {
+export interface BreadcrumbProps {
   /**
    * Content of the breadcrumb item.
    */
@@ -30,13 +30,13 @@ export interface BreadcrumbItemProps {
   isLast?: boolean;
 }
 
-export const BreadcrumbItem = ({
+export const Breadcrumb = ({
   children,
   className,
   href,
   identifier,
   isLast = false,
-}: BreadcrumbItemProps) => {
+}: BreadcrumbProps) => {
   const classes = {
     container: cn(
       'flex items-center gap-2',
