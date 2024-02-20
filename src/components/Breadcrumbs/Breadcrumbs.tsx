@@ -1,7 +1,6 @@
-import { Children, ReactNode, useState } from 'react';
+import { Children, ReactNode, cloneElement, isValidElement, useState } from 'react';
 import { cn } from '@common';
 import { CollapseDropdown, CollapsedSpread } from '@components';
-import { useBreadcrumb } from '@hooks';
 import {
   calculateChildrenAfterCollapse,
   calculateChildrenBeforeCollapse,
@@ -17,6 +16,7 @@ export enum BreadcrumbItemIdentifier {
   before = 'before',
   collapse = 'collapse',
   after = 'after',
+  all = 'all',
 }
 
 export enum BreadcrumbSpacing {
@@ -111,7 +111,6 @@ export const Breadcrumbs = ({
   const collapseLastItem: ReactNode = collapsedChildren[collapsedChildren.length - 1];
   const afterCollapseFirstItem: ReactNode = childrenAfterCollapse[0];
   const [collapseItemsVisible, setCollapseItemsVisible] = useState(false);
-  const { processBreadcrumbItem } = useBreadcrumb();
 
   const classes = {
     container: cn(
@@ -122,46 +121,84 @@ export const Breadcrumbs = ({
       className,
     ),
     list: cn('flex items-center', [BreadcrumbSpacings[spacing]]),
+    separator: (isLast: boolean, identifier: BreadcrumbItemIdentifier) =>
+      cn('text-gray-400 dark:text-gray-600', 'select-none', {
+        'last:hidden': isLast && identifier === BreadcrumbItemIdentifier.after,
+      }),
   };
 
-  const beforeCollapseItems: Array<ReactNode> = childrenBeforeCollapse.map((item) =>
-    processBreadcrumbItem({
-      item,
-      identifier: BreadcrumbItemIdentifier.before,
-      isFirst: item === firstItem,
-      isLast: false,
-      separator,
-    }),
+  const parseBreadcrumb = (
+    child: ReactNode,
+    separator: string | ReactNode,
+    identifier: BreadcrumbItemIdentifier,
+    isFirst = false,
+    isLast = false,
+    isCollapse = false,
+  ) => {
+    if (!child || !isValidElement(child)) return null;
+
+    const element = cloneElement(child, { isLast, identifier, ...child.props });
+    const result: Array<ReactNode> = [element];
+
+    switch (true) {
+      case isFirst && identifier === BreadcrumbItemIdentifier.after:
+        result.unshift(
+          <span key="left-separator" className={classes.separator(isLast, identifier)}>
+            {separator}
+          </span>,
+        );
+
+        result.push(
+          <span key="right-separator" className={classes.separator(isLast, identifier)}>
+            {separator}
+          </span>,
+        );
+        break;
+
+      case !isLast && !isCollapse:
+        result.push(
+          <span key="following-separator" className={classes.separator(isLast, identifier)}>
+            {separator}
+          </span>,
+        );
+        break;
+    }
+
+    return <>{result}</>;
+  };
+
+  const beforeCollapseItems: Array<ReactNode> = childrenBeforeCollapse.map((child) =>
+    parseBreadcrumb(child, separator, BreadcrumbItemIdentifier.before, child === firstItem),
   );
 
-  const collapseItems: Array<ReactNode> = collapsedChildren.map((item) =>
-    processBreadcrumbItem({
-      collapse: collapseMode === CollapseMode.dropdown,
-      identifier: BreadcrumbItemIdentifier.collapse,
-      isFirst: item === collapseFirstItem,
-      isLast: item === collapseLastItem,
-      item,
+  const collapseItems: Array<ReactNode> = collapsedChildren.map((child) =>
+    parseBreadcrumb(
+      child,
       separator,
-    }),
+      BreadcrumbItemIdentifier.collapse,
+      child === collapseFirstItem,
+      child === collapseLastItem,
+      collapseMode === CollapseMode.dropdown,
+    ),
+  );
+  const afterCollapseItems: Array<ReactNode> = childrenAfterCollapse.map((child) =>
+    parseBreadcrumb(
+      child,
+      separator,
+      BreadcrumbItemIdentifier.after,
+      child === afterCollapseFirstItem,
+      child === lastItem,
+    ),
   );
 
-  const afterCollapseItems: Array<ReactNode> = childrenAfterCollapse.map((item) =>
-    processBreadcrumbItem({
-      identifier: BreadcrumbItemIdentifier.after,
-      item,
-      isFirst: item === afterCollapseFirstItem,
-      isLast: item === lastItem,
+  const allItems: Array<ReactNode> = childrenArray.map((child) =>
+    parseBreadcrumb(
+      child,
       separator,
-    }),
-  );
-
-  const allItems: Array<ReactNode> = childrenArray.map((item) =>
-    processBreadcrumbItem({
-      item,
-      isFirst: item === firstItem,
-      isLast: item === lastItem,
-      separator,
-    }),
+      BreadcrumbItemIdentifier.all,
+      child === firstItem,
+      child === lastItem,
+    ),
   );
 
   const handleCollapseItemsToggle = () => setCollapseItemsVisible(!collapseItemsVisible);
