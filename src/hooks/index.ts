@@ -1,5 +1,4 @@
 export * from './useBodyClass/useBodyClass';
-export * from './useBreadcrumb/useBreadcrumb';
 export * from './useBreakpoint/useBreakpoint';
 export * from './useCopyToClipboard/useCopyToClipboard';
 export * from './useDebounce/useDebounce';
