@@ -113,13 +113,7 @@ export const Breadcrumbs = ({
   const [collapseItemsVisible, setCollapseItemsVisible] = useState(false);
 
   const classes = {
-    container: cn(
-      'flex items-center',
-      'px-4 py-2 w-fit overflow-scroll',
-      'rounded-xl',
-      'scrollbar-track-transparent scrollbar-w-0',
-      className,
-    ),
+    container: cn('flex items-center', 'py-2 w-fit', className),
     list: cn('flex items-center', [BreadcrumbSpacings[spacing]]),
     separator: (isLast: boolean, identifier: BreadcrumbItemIdentifier) =>
       cn('text-gray-400 dark:text-gray-600', 'select-none', {
