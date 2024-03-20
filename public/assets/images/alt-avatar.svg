@@ -1,0 +1,9 @@
+<svg width="150" height="150" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 150 150">
+  <circle cx="75" cy="75" r="75" style="fill:#7f2a61"/>
+
+  <mask id="b" width="114" height="66" x="18" y="99" maskUnits="userSpaceOnUse">
+    <circle cx="75" cy="75" r="75" style="fill:#FFFFFF;"/>
+  </mask>
+  <ellipse fill="00FF00" cx="75" cy="132" class="st3" rx="57" ry="33" style=" fill:#E4C6FA; mask:url(#b)"/>
+  <circle cx="75" cy="63.7" r="27" style="fill:#E4C6FA"/>
+</svg>
