@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { cn } from '@common';
 
+export enum ImageLoading {
+  eager = 'eager',
+  lazy = 'lazy',
+}
+
 export interface ImageProps {
   /**
    * URL of the image
@@ -33,6 +38,12 @@ export interface ImageProps {
   style?: React.CSSProperties;
 
   /**
+   * Specifies the loading behavior of the image.
+   * This loading is the equivalent of the loading attribute of the img tag
+   */
+  loading?: ImageLoading;
+
+  /**
    * Specify an optional className to be added to the component
    */
   className?: string;
@@ -56,7 +67,18 @@ export interface ImageProps {
  */
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
   (
-    { src, srcSet, alt, hasMaxWidth = false, noImg, style, className, onLoad, fallbackImage },
+    {
+      src,
+      srcSet,
+      alt,
+      hasMaxWidth = false,
+      noImg,
+      style,
+      loading = ImageLoading.eager,
+      className,
+      onLoad,
+      fallbackImage,
+    },
     ref,
   ) => {
     const [imageSrc, setImageSrc] = useState(src);
@@ -102,6 +124,7 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             alt={alt}
             onLoad={handleLoad}
             onError={handleError}
+            loading={loading}
           />
         ) : (
           <>
