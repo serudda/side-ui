@@ -38,6 +38,12 @@ export interface ImageProps {
   className?: string;
 
   /**
+   * URL of the fallback image to be displayed if the primary image fails
+   * to load.
+   */
+  fallbackImage?: string;
+
+  /**
    * Callback fired when the image load
    */
   onLoad?: (event: React.SyntheticEvent<HTMLImageElement, Event>) => void;
@@ -49,7 +55,12 @@ export interface ImageProps {
  * Created at 2023-08-26
  */
 export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
-  ({ src, srcSet, alt, hasMaxWidth = false, noImg, style, className, onLoad }, ref) => {
+  (
+    { src, srcSet, alt, hasMaxWidth = false, noImg, style, className, onLoad, fallbackImage },
+    ref,
+  ) => {
+    const [imageSrc, setImageSrc] = useState(src);
+    const [hasAttemptedFallback, setHasAttemptedFallback] = useState(false);
     const [imageLoaded, setImageLoaded] = useState(false);
     const [isValidSrc, setIsValidSrc] = useState(Boolean(src));
 
@@ -64,8 +75,15 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     );
 
     useEffect(() => {
-      setIsValidSrc(Boolean(src));
-    }, [src]);
+      setIsValidSrc(Boolean(imageSrc));
+    }, [imageSrc]);
+
+    const handleError = (): void => {
+      if (!hasAttemptedFallback && fallbackImage) {
+        setImageSrc(fallbackImage);
+        setHasAttemptedFallback(true);
+      } else setIsValidSrc(false);
+    };
 
     const handleLoad = (event: React.SyntheticEvent<HTMLImageElement, Event>): void => {
       setImageLoaded(true);
@@ -79,11 +97,11 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
             ref={ref}
             className={classes}
             style={style}
-            src={src}
+            src={imageSrc}
             srcSet={srcSet}
             alt={alt}
             onLoad={handleLoad}
-            onError={(): void => setIsValidSrc(false)}
+            onError={handleError}
           />
         ) : (
           <>
