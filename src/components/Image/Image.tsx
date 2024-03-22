@@ -97,6 +97,11 @@ export const Image = React.forwardRef<HTMLImageElement, ImageProps>(
     );
 
     useEffect(() => {
+      setImageSrc(src);
+      setHasAttemptedFallback(false);
+    }, [src]);
+
+    useEffect(() => {
       setIsValidSrc(Boolean(imageSrc));
     }, [imageSrc]);
 
