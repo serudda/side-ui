@@ -82,13 +82,14 @@ export const ModalContent = ({
   const classes = {
     content: cn(
       'bg-slate-50 dark:bg-slate-950',
-      'shadow-xl rounded-2xl',
       'overflow-hidden',
       'relative flex flex-col w-full',
       'pointer-events-auto bg-clip-padding outline-0',
       Sizes[size],
       {
         'max-h-[90%]': !isFullScreen,
+        'shadow-xl rounded-2xl': !isFullScreen,
+        'h-screen': isFullScreen,
       },
       className,
     ),
