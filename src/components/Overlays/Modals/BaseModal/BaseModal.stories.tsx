@@ -22,6 +22,10 @@ const ModalBodyLongSample = () => {
   );
 };
 
+const ModalBodyFullScreenSample = () => {
+  return <div className="h-[1000px] bg-red-200"></div>;
+};
+
 const meta = {
   title: 'UI Components/Overlays/Modals/BaseModal',
   component: BaseModal,
@@ -78,4 +82,34 @@ const TemplateImperativeExample = (args: BaseModalProps) => {
 
 export const Default: Story = {
   render: (args) => <TemplateImperativeExample {...args} />,
+};
+
+const TemplateFullScreenExample = (args: BaseModalProps) => {
+  const { modalNode, openModal } = useModal();
+
+  const handleClick = async () => {
+    await openModal<boolean | null>((close) => (
+      <BaseModal
+        className="text-base-white"
+        body={<ModalBodyFullScreenSample />}
+        header={args.header}
+        footer={args.footer}
+        size={args.size}
+        onClose={() => close(true)}
+      />
+    ));
+  };
+
+  return (
+    <>
+      <Button size={ButtonSize.xs} onClick={handleClick} invert>
+        Open Modal
+      </Button>
+      {modalNode}
+    </>
+  );
+};
+
+export const TemplateFullScreen: Story = {
+  render: (args) => <TemplateFullScreenExample {...args} />,
 };
