@@ -1,4 +1,4 @@
-import { Children, ReactNode, cloneElement, isValidElement, useState } from 'react';
+import { Children, Fragment, ReactNode, cloneElement, isValidElement, useState } from 'react';
 import { cn } from '@common';
 import { CollapseDropdown, CollapsedSpread } from '@components';
 import {
@@ -125,6 +125,7 @@ export const Breadcrumbs = ({
     child: ReactNode,
     separator: string | ReactNode,
     identifier: BreadcrumbItemIdentifier,
+    index = 0,
     isFirst = false,
     isLast = false,
     isCollapse = false,
@@ -158,38 +159,41 @@ export const Breadcrumbs = ({
         break;
     }
 
-    return <>{result}</>;
+    return <Fragment key={index}>{result}</Fragment>;
   };
 
-  const beforeCollapseItems: Array<ReactNode> = childrenBeforeCollapse.map((child) =>
-    parseBreadcrumb(child, separator, BreadcrumbItemIdentifier.before, child === firstItem),
+  const beforeCollapseItems: Array<ReactNode> = childrenBeforeCollapse.map((child, index) =>
+    parseBreadcrumb(child, separator, BreadcrumbItemIdentifier.before, index, child === firstItem),
   );
 
-  const collapseItems: Array<ReactNode> = collapsedChildren.map((child) =>
+  const collapseItems: Array<ReactNode> = collapsedChildren.map((child, index) =>
     parseBreadcrumb(
       child,
       separator,
       BreadcrumbItemIdentifier.collapse,
+      index,
       child === collapseFirstItem,
       child === collapseLastItem,
       collapseMode === CollapseMode.dropdown,
     ),
   );
-  const afterCollapseItems: Array<ReactNode> = childrenAfterCollapse.map((child) =>
+  const afterCollapseItems: Array<ReactNode> = childrenAfterCollapse.map((child, index) =>
     parseBreadcrumb(
       child,
       separator,
       BreadcrumbItemIdentifier.after,
+      index,
       child === afterCollapseFirstItem,
       child === lastItem,
     ),
   );
 
-  const allItems: Array<ReactNode> = childrenArray.map((child) =>
+  const allItems: Array<ReactNode> = childrenArray.map((child, index) =>
     parseBreadcrumb(
       child,
       separator,
       BreadcrumbItemIdentifier.all,
+      index,
       child === firstItem,
       child === lastItem,
     ),
