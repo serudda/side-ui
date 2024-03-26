@@ -26,7 +26,7 @@ export const ModalRoot = ({ children }: ModalRootProps) => {
 
   const getModalStyles = () => {
     // it's needed to get the 70% of the screen height
-    const BASE_MODAL_SIZE_GAP = 'calc(100% - 3.5rem)';
+    const BASE_MODAL_SIZE_GAP = '70svh';
     let defaultStyles;
 
     // if the modal content is not full screen
