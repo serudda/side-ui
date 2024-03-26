@@ -89,7 +89,7 @@ export const ModalContent = ({
       {
         'max-h-[90%]': !isFullScreen,
         'shadow-xl rounded-2xl': !isFullScreen,
-        'h-screen': isFullScreen,
+        'h-svh': isFullScreen,
       },
       className,
     ),
