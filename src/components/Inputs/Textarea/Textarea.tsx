@@ -38,6 +38,11 @@ export interface TextareaProps
    * Whether the Textarea is resizable or not
    */
   resize?: Resize;
+
+  /**
+   * The class name for the textarea element
+   */
+  textareaClassName?: string;
 }
 
 /**
@@ -64,6 +69,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChange,
       onBlur,
       onFocus,
+      textareaClassName,
       ...restOfProps
     },
     ref,
@@ -91,6 +97,7 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           'resize-y': resize === Resize.vertical,
           'resize-x': resize === Resize.horizontal,
         },
+        textareaClassName,
       ),
       assistiveText: cn('mt-2 text-xs font-medium', {
         'text-slate-200': fieldState === FormFieldState.default,
