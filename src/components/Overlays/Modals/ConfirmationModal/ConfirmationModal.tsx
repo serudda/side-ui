@@ -66,7 +66,7 @@ export const ConfirmationModal = ({
       onClose={handleCancelButtonClick}
       header={header}
       body={
-        <div className="flex flex-col gap-y-6">
+        <div className="flex flex-col gap-y-6 p-5">
           <p className="text-neutral-50">{description}</p>
         </div>
       }
